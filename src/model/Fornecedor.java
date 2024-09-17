@@ -14,6 +14,14 @@ public class Fornecedor {
     private String nome_resp;
     
     public Fornecedor() {}
+    
+    public Fornecedor (String nome_fantasia, String cnpj_forn, String fone_forn, String email_forn, String nome_resp) {
+        this.nome_fantasia = nome_fantasia;
+        this.cnpj_forn = cnpj_forn;
+        this.fone_forn = fone_forn;
+        this.email_forn = email_forn;
+        this.nome_resp = nome_resp;
+    }
 
     public int getCod_forn() {
         return cod_forn;

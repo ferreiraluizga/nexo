@@ -10,6 +10,10 @@ public class Forma_Pag {
     private String nome_forma;
     
     public Forma_Pag() {}
+    
+    public Forma_Pag(String nome_forma) {
+        this.nome_forma = nome_forma;
+    }
 
     public int getCod_forma_pag() {
         return cod_forma_pag;

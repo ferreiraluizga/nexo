@@ -11,8 +11,9 @@ import model.Marca;
 
 /**
  *
- * @author Admin
+ * @author Vitor
  */
+
 public class MarcaController {
     
         // método para cadastrar cliente

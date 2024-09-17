@@ -10,6 +10,10 @@ public class Marca {
     private String nome_marca;
     
     public Marca() {}
+    
+    public Marca(String nome_marca) {
+        this.nome_marca = nome_marca;
+    }
 
     public int getCod_marca() {
         return cod_marca;
