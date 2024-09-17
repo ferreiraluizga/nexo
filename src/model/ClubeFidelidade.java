@@ -11,6 +11,12 @@ public class ClubeFidelidade {
     private String email;
     
     public ClubeFidelidade() {}
+    
+    public ClubeFidelidade(Cliente cliente, String cpf, String email) {
+        this.cliente = cliente;
+        this.cpf = cpf;
+        this.email = email;
+    }
 
     public int getCod_cli() {
         return cliente.getCod_cli();

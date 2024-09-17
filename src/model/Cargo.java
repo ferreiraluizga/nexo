@@ -13,6 +13,12 @@ public class Cargo {
     private float salario_cargo;
     
     public Cargo() {}
+    
+    public Cargo(String nome_cargo, String desc_cargo, float salario_cargo) {
+        this.nome_cargo = nome_cargo;
+        this.desc_cargo = desc_cargo;
+        this.salario_cargo = salario_cargo;
+    }
 
     public int getCod_cargo() {
         return cod_cargo;

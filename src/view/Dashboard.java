@@ -9,6 +9,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import model.Funcionario;
@@ -26,7 +27,13 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/img/app_logo.png")));
         setExtendedState(MAXIMIZED_BOTH);
-        styleComponents();
+        styleSidebarComponents(jButton1);
+        styleSidebarComponents(jButton2);
+        styleSidebarComponents(jButton3);
+        styleSidebarComponents(jButton4);
+        styleSidebarComponents(jButton5);
+        styleSidebarComponents(jButton6);
+        styleSidebarComponents(jButton7);
     }
     
     public Dashboard(Funcionario func) {
@@ -43,17 +50,23 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         timer.start();
-        styleComponents();
+        styleSidebarComponents(jButton1);
+        styleSidebarComponents(jButton2);
+        styleSidebarComponents(jButton3);
+        styleSidebarComponents(jButton4);
+        styleSidebarComponents(jButton5);
+        styleSidebarComponents(jButton6);
+        styleSidebarComponents(jButton7);
     }
     
-    private void styleComponents() {
-        jButton1.putClientProperty(FlatClientProperties.OUTLINE, false);
-        jButton1.putClientProperty(FlatClientProperties.STYLE,
+    private void styleSidebarComponents(JButton button) {
+        button.putClientProperty(FlatClientProperties.OUTLINE, false);
+        button.putClientProperty(FlatClientProperties.STYLE,
                 "background: #00000000; "
                 + "foreground: #FFFFFF; "
         );
-        jButton1.setFocusPainted(false);
-        jButton1.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setFocusPainted(false);
+        button.setHorizontalAlignment(SwingConstants.LEFT);
     }
 
     /**
@@ -69,9 +82,14 @@ public class Dashboard extends javax.swing.JFrame {
         imageAvatar1 = new resources.graphicComponents.ImageAvatar();
         lblUser = new javax.swing.JLabel();
         lblDateTime = new javax.swing.JLabel();
-        lblImg = new javax.swing.JLabel();
         lblCargo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -110,17 +128,103 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
+        jButton2.setText("Menu Teste");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setIconTextGap(10);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
+
+        jButton3.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
+        jButton3.setText("Menu Teste");
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setIconTextGap(10);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
+
+        jButton4.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
+        jButton4.setText("Menu Teste");
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setIconTextGap(10);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton4MouseExited(evt);
+            }
+        });
+
+        jButton5.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
+        jButton5.setText("Menu Teste");
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setIconTextGap(10);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+        });
+
+        jButton6.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
+        jButton6.setText("Menu Teste");
+        jButton6.setBorder(null);
+        jButton6.setBorderPainted(false);
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setIconTextGap(10);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+
+        jButton7.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
+        jButton7.setText("Menu Teste");
+        jButton7.setBorder(null);
+        jButton7.setBorderPainted(false);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.setIconTextGap(10);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
         gradientPanel1.setLayout(gradientPanel1Layout);
         gradientPanel1Layout.setHorizontalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, gradientPanel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
             .addGroup(gradientPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -130,6 +234,12 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(lblUser, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,10 +251,20 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCargo)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(lblDateTime)
                 .addContainerGap())
         );
@@ -160,7 +280,7 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 634, Short.MAX_VALUE))
+                .addGap(0, 622, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +304,90 @@ public class Dashboard extends javax.swing.JFrame {
             + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        jButton2.putClientProperty(FlatClientProperties.STYLE,
+            "background: #224968; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        jButton2.putClientProperty(FlatClientProperties.STYLE,
+            "background: #00000000; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        jButton3.putClientProperty(FlatClientProperties.STYLE,
+            "background: #224968; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        jButton3.putClientProperty(FlatClientProperties.STYLE,
+            "background: #00000000; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
+        jButton4.putClientProperty(FlatClientProperties.STYLE,
+            "background: #224968; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton4MouseEntered
+
+    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
+        jButton4.putClientProperty(FlatClientProperties.STYLE,
+            "background: #00000000; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton4MouseExited
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        jButton5.putClientProperty(FlatClientProperties.STYLE,
+            "background: #224968; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        jButton5.putClientProperty(FlatClientProperties.STYLE,
+            "background: #00000000; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton5MouseExited
+
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        jButton6.putClientProperty(FlatClientProperties.STYLE,
+            "background: #224968; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        jButton6.putClientProperty(FlatClientProperties.STYLE,
+            "background: #00000000; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        jButton7.putClientProperty(FlatClientProperties.STYLE,
+            "background: #224968; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        jButton7.putClientProperty(FlatClientProperties.STYLE,
+            "background: #00000000; "
+            + "foreground: #FFFFFF; "
+        );
+    }//GEN-LAST:event_jButton7MouseExited
 
     /**
      * @param args the command line arguments
@@ -224,11 +428,16 @@ public class Dashboard extends javax.swing.JFrame {
     private resources.graphicComponents.GradientPanel gradientPanel1;
     private resources.graphicComponents.ImageAvatar imageAvatar1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDateTime;
-    private javax.swing.JLabel lblImg;
     private javax.swing.JLabel lblUser;
     // End of variables declaration//GEN-END:variables
 }
