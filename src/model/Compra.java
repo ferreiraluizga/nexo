@@ -12,7 +12,16 @@ public class Compra {
     private Funcionario func;  
     private Cliente cliente;  
     private Date data_compra;  
-    private Forma_Pag forma;  
+    private FormaPag forma;  
+    
+    public Compra () {}
+    
+    public Compra (Funcionario func, Cliente cliente, Date data_compra, FormaPag forma) {
+        this.func = func;
+        this.cliente = cliente;
+        this.data_compra = data_compra;
+        this.forma = forma;
+    }
     
     public int getCod_Compra() {
         return cod_compra;
@@ -22,26 +31,20 @@ public class Compra {
         this.cod_compra = Cod_Compra;
     }
 
-    public int getCod_Func() {
-        return func.getCod_Func();
+    public Funcionario getFunc() {
+        return func;
     }
 
-    public void setCod_Func(int Cod_Func) {
-        if (this.func == null) {
-            this.func = new Funcionario();
-        }
-        this.func.setCod_Func(Cod_Func);
+    public void setFunc(Funcionario func) {
+        this.func = func;
     }
 
-    public int getCod_Cli() {
-        return cliente.getCod_cli();
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCod_Cli(int Cod_Cli) {
-        if (this.cliente == null) {
-            this.cliente = new Cliente();
-        }
-        this.cliente.setCod_cli(Cod_Cli);
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Date getData_Compra() {
@@ -52,15 +55,12 @@ public class Compra {
         this.data_compra = Data_Compra;
     }
 
-    public int getCod_Forma_Pag() {
-        return forma.getCod_forma_pag();
+    public FormaPag getForma_Pag() {
+        return forma;
     }
 
-    public void setCod_Forma_Pag(int Cod_Forma_Pag) {
-        if (this.forma == null) {
-            this.forma = new Forma_Pag();
-        }
-        this.forma.setCod_forma_pag(Cod_Forma_Pag);
+    public void setForma_Pag(FormaPag forma) {
+        this.forma = forma;
     }
 
 }

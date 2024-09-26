@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.CategoriaProduto;
+import model.Fornecedor;
+import model.Marca;
 import model.Produto;
 
 /**
@@ -23,9 +26,9 @@ public class ProdutoDAO {
             stmt.setString(1, produto.getNome_Prod());
             stmt.setFloat(2, produto.getPreco_Prod());
             stmt.setInt(3, produto.getQuant_Estoque());
-            stmt.setInt(4, produto.getCod_Forn());
-            stmt.setInt(5, produto.getCod_Marca());
-            stmt.setInt(6, produto.getCod_Categoria());
+            stmt.setInt(4, produto.getFornecedor().getCod_forn());
+            stmt.setInt(5, produto.getMarca().getCod_marca());
+            stmt.setInt(6, produto.getCategoria().getCod_categoria());
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -37,17 +40,38 @@ public class ProdutoDAO {
     public static List<Produto> listarProduto() throws SQLException {
         List<Produto> produtos = new ArrayList<>();
 
-        String sql = "SELECT * FROM produto";
+        String sql = "SELECT * FROM produto"
+                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn"
+                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca"
+                + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Produto produto = new Produto();
+                Fornecedor fornecedor = new Fornecedor();
+                Marca marca = new Marca();
+                CategoriaProduto categoria = new CategoriaProduto();
+                
+                fornecedor.setCod_forn(rs.getInt("Cod_Forn"));
+                fornecedor.setNome_fantasia(rs.getString("Nome_Fantasia"));
+                fornecedor.setCnpj_forn(rs.getString("CNPJ_Forn"));
+                fornecedor.setFone_forn(rs.getString("Fone_Forn"));
+                fornecedor.setEmail_forn(rs.getString("Email_Forn"));
+                fornecedor.setNome_resp(rs.getString("Nome_Resp"));
+                
+                marca.setCod_marca(rs.getInt("Cod_Marca"));
+                marca.setNome_marca(rs.getString("Nome_Marca"));
+                
+                categoria.setCod_categoria(rs.getInt("Cod_Categoria"));
+                categoria.setNome_categoria(rs.getString("Nome_Categoria"));
+                categoria.setDesc_categoria(rs.getString("Desc_Categoria"));
+                
                 produto.setCod_Produto(rs.getInt("Cod_Prod"));
                 produto.setNome_Prod(rs.getString("Nome_Prod"));
                 produto.setPreco_Prod(rs.getFloat("Preco_Prod"));
                 produto.setQuant_Estoque(rs.getInt("Quant_Estoque"));
-                produto.setCod_Forn(rs.getInt("Cod_Forn"));
-                produto.setCod_Marca(rs.getInt("Cod_Marca"));
-                produto.setCod_Categoria(rs.getInt("Cod_Categoria"));
+                produto.setFornecedor(fornecedor);
+                produto.setMarca(marca);
+                produto.setCategoria(categoria);
                 produtos.add(produto);
             }
         } catch (SQLException e) {
@@ -61,20 +85,42 @@ public class ProdutoDAO {
     public static List<Produto> buscarPorNome(String nome) throws SQLException {
         List<Produto> produtos = new ArrayList<>();
 
-        String sql = "SELECT * FROM produto WHERE Nome_Cli like ? ORDER BY Nome_Prod";
+        String sql = "SELECT * FROM produto "
+                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn"
+                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca"
+                + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria"
+                + "WHERE Nome_Prod like ? ORDER BY Nome_Prod";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, "%" + nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Produto produto = new Produto();
-                    produto.setCod_Produto(rs.getInt("Cod_Prod"));
-                    produto.setNome_Prod(rs.getString("Nome_Prod"));
-                    produto.setPreco_Prod(rs.getFloat("Preco_Prod"));
-                    produto.setQuant_Estoque(rs.getInt("Quant_Estoque"));
-                    produto.setCod_Forn(rs.getInt("Cod_Forn"));
-                    produto.setCod_Marca(rs.getInt("Cod_Marca"));
-                    produto.setCod_Categoria(rs.getInt("Cod_Categoria"));
-                    produtos.add(produto);
+                Fornecedor fornecedor = new Fornecedor();
+                Marca marca = new Marca();
+                CategoriaProduto categoria = new CategoriaProduto();
+                
+                fornecedor.setCod_forn(rs.getInt("Cod_Forn"));
+                fornecedor.setNome_fantasia(rs.getString("Nome_Fantasia"));
+                fornecedor.setCnpj_forn(rs.getString("CNPJ_Forn"));
+                fornecedor.setFone_forn(rs.getString("Fone_Forn"));
+                fornecedor.setEmail_forn(rs.getString("Email_Forn"));
+                fornecedor.setNome_resp(rs.getString("Nome_Resp"));
+                
+                marca.setCod_marca(rs.getInt("Cod_Marca"));
+                marca.setNome_marca(rs.getString("Nome_Marca"));
+                
+                categoria.setCod_categoria(rs.getInt("Cod_Categoria"));
+                categoria.setNome_categoria(rs.getString("Nome_Categoria"));
+                categoria.setDesc_categoria(rs.getString("Desc_Categoria"));
+                
+                produto.setCod_Produto(rs.getInt("Cod_Prod"));
+                produto.setNome_Prod(rs.getString("Nome_Prod"));
+                produto.setPreco_Prod(rs.getFloat("Preco_Prod"));
+                produto.setQuant_Estoque(rs.getInt("Quant_Estoque"));
+                produto.setFornecedor(fornecedor);
+                produto.setMarca(marca);
+                produto.setCategoria(categoria);
+                produtos.add(produto);
                 }
             }
         } catch (SQLException e) {
@@ -92,9 +138,9 @@ public class ProdutoDAO {
             stmt.setString(1, produto.getNome_Prod());
             stmt.setFloat(2, produto.getPreco_Prod());
             stmt.setInt(3, produto.getQuant_Estoque());
-            stmt.setInt(4, produto.getCod_Forn());
-            stmt.setInt(5, produto.getCod_Marca());
-            stmt.setInt(6, produto.getCod_Categoria());
+            stmt.setInt(4, produto.getFornecedor().getCod_forn());
+            stmt.setInt(5, produto.getMarca().getCod_marca());
+            stmt.setInt(6, produto.getCategoria().getCod_categoria());
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {

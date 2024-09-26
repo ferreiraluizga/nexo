@@ -100,15 +100,15 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSenha)
                             .addComponent(lblUser))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 253, Short.MAX_VALUE)))
                 .addGap(35, 35, 35))
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(lblUser)
@@ -153,27 +153,11 @@ public class Login extends javax.swing.JFrame {
                     func.setEmail_Func(validacao.getEmail_Func());
                     func.setNome_Func(validacao.getNome_Func());
                     func.setCod_Func(validacao.getCod_Func());
-                    func.setCod_Cargo(validacao.getCod_Cargo());
-                    switch (func.getCod_Cargo()) {
-                        case 1:
-                            JOptionPane.showMessageDialog(null, "Seja bem-vindo(a)" + validacao.getNome_Func()
+                    func.setCargo(validacao.getCargo());
+                    JOptionPane.showMessageDialog(null, "Seja bem-vindo(a)" + func.getNome_Func()
                                     + "\nE-mail: " + func.getEmail_Func()
                                     + "\nCódigo de Funcionário: " + func.getCod_Func()
-                                    + "\nCargo: Dono / Administrador", "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        case 2:
-                            JOptionPane.showMessageDialog(null, "<html>Seja bem-vindo(a) <strong>" + validacao.getNome_Func() + "</strong></html>"
-                                    + "\nE-mail: " + func.getEmail_Func()
-                                    + "\nCódigo de Funcionário: " + func.getCod_Func()
-                                    + "\nCargo: Gerente", "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(null, "<html>Seja bem-vindo(a) <strong>" + validacao.getNome_Func() + "</strong></html>"
-                                    + "\nE-mail: " + func.getEmail_Func()
-                                    + "\nCódigo de Funcionário: " + func.getCod_Func()
-                                    + "\nCargo: Operador de Caixa", "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                    }
+                                    + "\nCargo: " + func.getCargo().getNome_cargo(), "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     new Dashboard(func).setVisible(true);
                 } else {

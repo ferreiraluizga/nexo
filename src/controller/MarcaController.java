@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import dao.MarcaDAO;
@@ -16,7 +12,7 @@ import model.Marca;
 
 public class MarcaController {
     
-        // método para cadastrar cliente
+    // método para cadastrar cliente
     public static void cadastrarMarca(String nome_marca) throws SQLException {
         Marca marca = new Marca(nome_marca);
         MarcaDAO.cadastrarMarca(marca);

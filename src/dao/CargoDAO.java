@@ -16,7 +16,7 @@ import model.Cargo;
 
 public class CargoDAO {
      public static void cadastrarCargo(Cargo cargo) throws SQLException {
-        String sql = "INSERT INTO Cargo (Nome_Cargo, Desc_Cargo, Salario_Cargo) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cargo (Nome_Cargo, Desc_Cargo, Salario_Cargo) VALUES (?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, cargo.getNome_cargo());
             stmt.setString(2, cargo.getDesc_cargo());
@@ -30,7 +30,7 @@ public class CargoDAO {
      public static List<Cargo> listarCargo() throws SQLException {
         List<Cargo> cargos = new ArrayList<>();
  
-        String sql = "SELECT * FROM Cargo";
+        String sql = "SELECT * FROM cargo";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Cargo cargo = new Cargo();
@@ -51,7 +51,7 @@ public class CargoDAO {
     public static List<Cargo> buscarPorNome(String nome) throws SQLException {
         List<Cargo> cargos = new ArrayList<>();
  
-        String sql = "SELECT * FROM Cargo WHERE Nome_Cargo like ? ORDER BY Nome_Cargo";
+        String sql = "SELECT * FROM cargo WHERE Nome_Cargo like ? ORDER BY Nome_Cargo";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, "%" + nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
@@ -73,7 +73,7 @@ public class CargoDAO {
     
     // método que edita cargos cadastrados no banco de dados
     public static void editarCargo(Cargo cargo) throws SQLException {
-        String sql = "UPDATE Cargo SET Nome_Cargo=?, Desc_Cargo=?, Salario_Cargo=? WHERE Cod_Cargo=?";
+        String sql = "UPDATE cargo SET Nome_Cargo=?, Desc_Cargo=?, Salario_Cargo=? WHERE Cod_Cargo=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(4, cargo.getCod_cargo());
             stmt.setString(1, cargo.getNome_cargo());
@@ -88,7 +88,7 @@ public class CargoDAO {
     
     // método que deleta cargos cadastrados no banco de dados
     public static void deletarCargo(int id_cargo) throws SQLException {
-        String sql = "DELETE FROM Cargo WHERE Cod_Cargo=?";
+        String sql = "DELETE FROM cargo WHERE Cod_Cargo=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id_cargo);
             stmt.executeUpdate();

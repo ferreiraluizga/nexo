@@ -41,7 +41,7 @@ public class Dashboard extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/img/app_logo.png")));
         setExtendedState(MAXIMIZED_BOTH);
         lblUser.setText(func.getNome_Func());
-        lblCargo.setText(Utilitaries.verificarCargo(func.getCod_Cargo()));
+        lblCargo.setText(func.getCargo().getNome_cargo());
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,7 +147,7 @@ public class Dashboard extends javax.swing.JFrame {
         lblCargo.setText("Cargo");
 
         sidebar_menu1.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
-        sidebar_menu1.setText("Menu Teste");
+        sidebar_menu1.setText("Cadastrar Compra");
         sidebar_menu1.setBorder(null);
         sidebar_menu1.setBorderPainted(false);
         sidebar_menu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -162,7 +162,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         sidebar_menu2.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
-        sidebar_menu2.setText("Menu Teste");
+        sidebar_menu2.setText("Cadastrar Produto");
         sidebar_menu2.setBorder(null);
         sidebar_menu2.setBorderPainted(false);
         sidebar_menu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -177,7 +177,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         sidebar_menu3.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/config.svg")));
-        sidebar_menu3.setText("Menu Teste");
+        sidebar_menu3.setText("NEXOClub");
         sidebar_menu3.setBorder(null);
         sidebar_menu3.setBorderPainted(false);
         sidebar_menu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -540,7 +540,7 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 761, Short.MAX_VALUE))
+                .addGap(0, 764, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

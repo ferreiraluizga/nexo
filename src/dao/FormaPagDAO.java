@@ -7,17 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Forma_Pag;
+import model.FormaPag;
 
 /**
  *
  * @author vitor
  */
 
-public class Forma_PagDAO {
+public class FormaPagDAO {
 
     // método que cadastra cliente no banco de dados
-    public static void cadastrarForma(Forma_Pag forma) throws SQLException {
+    public static void cadastrarForma(FormaPag forma) throws SQLException {
         String sql = "INSERT INTO forma_pag (Nome_Forma) VALUES (?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, forma.getNome_forma());
@@ -29,12 +29,12 @@ public class Forma_PagDAO {
     }
     // método que lista os clientes cadastrados no banco de dados
 
-    public static List<Forma_Pag> listarForma() throws SQLException {
-        List<Forma_Pag> formas = new ArrayList<>();
+    public static List<FormaPag> listarForma() throws SQLException {
+        List<FormaPag> formas = new ArrayList<>();
         String sql = "SELECT * FROM forma_pag";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Forma_Pag forma = new Forma_Pag();
+                FormaPag forma = new FormaPag();
                 forma.setCod_forma_pag(rs.getInt("Cod_Forma_Pag"));
                 forma.setNome_forma(rs.getString("Nome_Forma"));
                 formas.add(forma);
@@ -46,7 +46,7 @@ public class Forma_PagDAO {
     }
 
     // método que edita clientes cadastrados no banco de dados
-    public static void editarForma(Forma_Pag forma) throws SQLException {
+    public static void editarForma(FormaPag forma) throws SQLException {
         String sql = "UPDATE forma_pag SET Nome_Forma=? WHERE Cod_Forma_Pag=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(2, forma.getCod_forma_pag());

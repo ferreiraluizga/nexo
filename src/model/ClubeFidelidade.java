@@ -4,6 +4,7 @@ package model;
  *
  * @author ferreiraluizga
  */
+
 public class ClubeFidelidade {
     
     private Cliente cliente;
@@ -18,15 +19,12 @@ public class ClubeFidelidade {
         this.email = email;
     }
 
-    public int getCod_cli() {
-        return cliente.getCod_cli();
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCod_cli(int cod_cli) {
-        if (this.cliente == null) {
-            this.cliente = new Cliente();
-        }
-        this.cliente.setCod_cli(cod_cli);
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getCpf() {

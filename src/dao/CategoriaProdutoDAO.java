@@ -12,12 +12,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Categoria_Produto;
+import model.CategoriaProduto;
 
-public class Categoria_ProdutoDAO {
+public class CategoriaProdutoDAO {
     
-     public static void cadastrarCategoria(Categoria_Produto categoria_produto) throws SQLException {
-        String sql = "INSERT INTO Categoria_Produto (Nome_Categoria, Desc_Categoria) VALUES (?, ?)";
+     public static void cadastrarCategoria(CategoriaProduto categoria_produto) throws SQLException {
+        String sql = "INSERT INTO categoria_produto (Nome_Categoria, Desc_Categoria) VALUES (?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, categoria_produto.getNome_categoria());
             stmt.setString(2, categoria_produto.getDesc_categoria());
@@ -28,13 +28,13 @@ public class Categoria_ProdutoDAO {
         }
     }
      
-    public static List<Categoria_Produto> listarCategoria() throws SQLException {
-        List<Categoria_Produto> categorias = new ArrayList<>();
+    public static List<CategoriaProduto> listarCategoria() throws SQLException {
+        List<CategoriaProduto> categorias = new ArrayList<>();
  
-        String sql = "SELECT * FROM Categoria_Produto";
+        String sql = "SELECT * FROM categoria_produto";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Categoria_Produto categoria = new Categoria_Produto();
+                CategoriaProduto categoria = new CategoriaProduto();
                 categoria.setCod_categoria(rs.getInt("Cod_Categoria"));
                 categoria.setNome_categoria(rs.getString("Nome_Categoria"));
                 categoria.setDesc_categoria(rs.getString("Desc_Categoria"));
@@ -48,15 +48,15 @@ public class Categoria_ProdutoDAO {
     }
  
     // método que busca uma categoria pelo nome no banco de dados
-    public static List<Categoria_Produto> buscarPorNome(String nome) throws SQLException {
-        List<Categoria_Produto> categorias = new ArrayList<>();
+    public static List<CategoriaProduto> buscarPorNome(String nome) throws SQLException {
+        List<CategoriaProduto> categorias = new ArrayList<>();
  
-        String sql = "SELECT * FROM Categoria_Produto WHERE Nome_Categoria like ? ORDER BY Nome_Categoria";
+        String sql = "SELECT * FROM categoria_produto WHERE Nome_Categoria like ? ORDER BY Nome_Categoria";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, "%" + nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                Categoria_Produto categoria = new Categoria_Produto();
+                CategoriaProduto categoria = new CategoriaProduto();
                 categoria.setCod_categoria(rs.getInt("Cod_Categoria"));
                 categoria.setNome_categoria(rs.getString("Nome_Categoria"));
                 categoria.setDesc_categoria(rs.getString("Desc_Categoria"));
@@ -71,8 +71,8 @@ public class Categoria_ProdutoDAO {
     }
     
     // método que edita cargos cadastrados no banco de dados
-    public static void editarCategoria(Categoria_Produto categoria) throws SQLException {
-        String sql = "UPDATE Cargo SET Nome_Categoria=?, Desc_Categoria=? WHERE Cod_Categoria=?";
+    public static void editarCategoria(CategoriaProduto categoria) throws SQLException {
+        String sql = "UPDATE categoria_produto SET Nome_Categoria=?, Desc_Categoria=? WHERE Cod_Categoria=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(3, categoria.getCod_categoria());
             stmt.setString(1, categoria.getNome_categoria());
@@ -86,7 +86,7 @@ public class Categoria_ProdutoDAO {
     
     // método que deleta cargos cadastrados no banco de dados
     public static void deletarCategoria(int id_categoria) throws SQLException {
-        String sql = "DELETE FROM Categoria_Produto WHERE Cod_Categoria=?";
+        String sql = "DELETE FROM categoria_produto WHERE Cod_Categoria=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id_categoria);
             stmt.executeUpdate();

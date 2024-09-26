@@ -8,7 +8,15 @@ package model;
 public class ProdCompra {
     private Compra compra;  
     private Produto produto; 
-    private int quant_prod; 
+    private int quant_prod;
+    
+    public ProdCompra() {}
+    
+    public ProdCompra(Compra compra, Produto produto, int quant_prod) {
+        this.compra = compra;
+        this.produto = produto;
+        this.quant_prod = quant_prod;
+    }
     
     public int getCod_Compra() {
         return compra.getCod_Compra();
@@ -21,15 +29,12 @@ public class ProdCompra {
         this.compra.setCod_Compra(Cod_Compra);
     }
 
-    public int getCod_Prod() {
-        return produto.getCod_Produto();
+    public Produto getProd() {
+        return produto;
     }
 
-    public void setCod_Prod(int Cod_Prod) {
-        if (this.produto == null) {
-            this.produto = new Produto();
-        }
-        this.produto.setCod_Produto(Cod_Prod);
+    public void setProd(Produto prod) {
+        this.produto = prod;
     }
 
     public int getQuant_Prod() {

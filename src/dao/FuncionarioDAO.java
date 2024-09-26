@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.Cargo;
 import model.Funcionario;
 
 /**
@@ -19,12 +20,12 @@ public class FuncionarioDAO {
     
     // método que cadastra cliente no banco de dados
     public static void cadastrarFuncionario(Funcionario func) throws SQLException {
-        String sql = "INSERT INTO Funcionario (Nome_Func, Nasc_Func, CPF_Func, Cod_Cargo, Email_Func, Senha_Func) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (Nome_Func, Nasc_Func, CPF_Func, Cod_Cargo, Email_Func, Senha_Func) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, func.getNome_Func());
             stmt.setDate(2, (Date) func.getNasc_Func());
             stmt.setString(3, func.getCPF_Func());
-            stmt.setInt(4, func.getCod_Cargo());
+            stmt.setInt(4, func.getCargo().getCod_cargo());
             stmt.setString(5, func.getEmail_Func());
             stmt.setString(6, func.getSenha_Func());
             stmt.execute();
@@ -41,7 +42,7 @@ public class FuncionarioDAO {
     }
     
     private static void cadastrarTelefone(int cod_func, String telefone) throws SQLException {
-        String sql = "INSERT INTO Fone_Func (Cod_Func, Fone_Func) VALUES (?, ?)";
+        String sql = "INSERT INTO fone_func (Cod_Func, Fone_Func) VALUES (?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, cod_func);
             stmt.setString(2, telefone);
@@ -54,17 +55,25 @@ public class FuncionarioDAO {
     public static List<Funcionario> listarFuncionario() throws SQLException {
         List<Funcionario> funcionarios = new ArrayList<>();
 
-        String sql = "SELECT * FROM Cliente";
+        String sql = "SELECT * FROM funcionario INNER JOIN cargo ON funcionario.Cod_Cargo = cargo.Cod_Cargo";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Funcionario func = new Funcionario();
-                func.setCod_Func(rs.getInt("Cod_Cli"));
+                Cargo cargo = new Cargo();
+                
+                cargo.setCod_cargo(rs.getInt("Cod_Cargo"));
+                cargo.setNome_cargo(rs.getString("Nome_Cargo"));
+                cargo.setDesc_cargo(rs.getString("Desc_Cargo"));
+                cargo.setSalario_cargo(rs.getFloat("Salario_Cargo"));
+                
+                func.setCod_Func(rs.getInt("Cod_Func"));
                 func.setNome_Func(rs.getString("Nome_Func"));
                 func.setNasc_Func(rs.getDate("Nasc_Func"));
                 func.setCPF_Func(rs.getString("CPF_Func"));
-                func.setCod_Cargo(rs.getInt("Cod_Cargo"));
                 func.setEmail_Func(rs.getString("Email_Func"));
                 func.setSenha_Func(rs.getString("Senha_Func"));
+                func.setCargo(cargo);
+                func.setTelefone(primeiroTelefone(rs.getInt("Cod_Func")));
                 funcionarios.add(func);
             }
         } catch (SQLException e) {
@@ -72,6 +81,21 @@ public class FuncionarioDAO {
         }
 
         return funcionarios;
+    }
+    
+    private static String primeiroTelefone(int cod_cli) throws SQLException {
+        String sql = "SELECT * FROM fone_cli WHERE Cod_Cli = ? LIMIT 1";
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql);) {
+            stmt.setInt(1, cod_cli);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("Fone_Cli");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
+        }
+        return null;
     }
     
     public static void editarCliente(Funcionario func) throws SQLException {
@@ -82,7 +106,7 @@ public class FuncionarioDAO {
             stmt.setString(1, func.getNome_Func());
             stmt.setDate(2, (Date) func.getNasc_Func());
             stmt.setString(3, func.getCPF_Func());
-            stmt.setInt(4, func.getCod_Cargo());
+            stmt.setInt(4, func.getCargo().getCod_cargo());
             stmt.setString(5, func.getEmail_Func());
             stmt.setString(6, func.getSenha_Func());
             stmt.executeUpdate();
@@ -97,7 +121,7 @@ public class FuncionarioDAO {
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, cod_func);
             stmt.setString(2, telefone);
-            stmt.execute();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar telefone: " + e.getMessage());
         }
@@ -128,15 +152,22 @@ public class FuncionarioDAO {
     
     public static Funcionario validarAdm(String user, String senha) throws SQLException {
         Funcionario func = new Funcionario();
-        String sql = "SELECT * FROM Funcionario WHERE Email_Func = ? AND Senha_Func = ?";
+        Cargo cargo = new Cargo();
+        
+        String sql = "SELECT * FROM funcionario INNER JOIN cargo ON funcionario.Cod_Cargo = cargo.Cod_Cargo WHERE Email_Func = ? AND Senha_Func = ?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, user);
             stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
+                cargo.setCod_cargo(rs.getInt("Cod_Cargo"));
+                cargo.setNome_cargo(rs.getString("Nome_Cargo"));
+                cargo.setDesc_cargo(rs.getString("Desc_Cargo"));
+                cargo.setSalario_cargo(rs.getFloat("Salario_Cargo"));
+                
                 func.setCod_Func(rs.getInt("Cod_Func"));
                 func.setNome_Func(rs.getString("Nome_Func"));
-                func.setCod_Cargo(rs.getInt("Cod_Cargo"));
+                func.setCargo(cargo);
                 func.setEmail_Func(rs.getString("Email_Func"));
             }
             return func;

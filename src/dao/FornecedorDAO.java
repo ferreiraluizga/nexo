@@ -16,7 +16,7 @@ import model.Fornecedor;
 
 public class FornecedorDAO {
      public static void cadastrarFornecedor(Fornecedor fornecedor) throws SQLException {
-        String sql = "INSERT INTO Fornecedor (Nome_Fantasia, CNPJ_Forn, Fone_Forn, Email_Forn, Nome_Resp) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO fornecedor (Nome_Fantasia, CNPJ_Forn, Fone_Forn, Email_Forn, Nome_Resp) VALUES (?, ?, ?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, fornecedor.getNome_fantasia());
             stmt.setString(2, fornecedor.getCnpj_forn());
@@ -32,7 +32,7 @@ public class FornecedorDAO {
      public static List<Fornecedor> listarFornecedor() throws SQLException {
         List<Fornecedor> fornecedores = new ArrayList<>();
  
-        String sql = "SELECT * FROM Fornecedor";
+        String sql = "SELECT * FROM fornecedor";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Fornecedor fornecedor = new Fornecedor();
@@ -55,7 +55,7 @@ public class FornecedorDAO {
     public static List<Fornecedor> buscarPorNome(String nome) throws SQLException {
         List<Fornecedor> fornecedores = new ArrayList<>();
  
-        String sql = "SELECT * FROM Fornecedor WHERE Nome_Fantasia like ? ORDER BY Nome_Fantasia";
+        String sql = "SELECT * FROM fornecedor WHERE Nome_Fantasia like ? ORDER BY Nome_Fantasia";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, "%" + nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
@@ -78,7 +78,7 @@ public class FornecedorDAO {
     }
     // método que edita fornecedores cadastrados no banco de dados
     public static void editarFornecedor(Fornecedor fornecedor) throws SQLException {
-        String sql = "UPDATE Fornecedor SET Nome_Fantasia=?, CNPJ_Forn=?, Fone_Forn=?, Email_Forn=?, Nome_Resp=? WHERE Cod_Forn=?";
+        String sql = "UPDATE fornecedor SET Nome_Fantasia=?, CNPJ_Forn=?, Fone_Forn=?, Email_Forn=?, Nome_Resp=? WHERE Cod_Forn=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(6, fornecedor.getCod_forn());
             stmt.setString(1, fornecedor.getNome_fantasia());
@@ -94,7 +94,7 @@ public class FornecedorDAO {
     }
     // método que deleta clientes cadastrados no banco de dados
     public static void deletarFornecedor(int id_forn) throws SQLException {
-        String sql = "DELETE FROM Fornecedor WHERE Cod_Forn=?";
+        String sql = "DELETE FROM fornecedor WHERE Cod_Forn=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id_forn);
             stmt.executeUpdate();

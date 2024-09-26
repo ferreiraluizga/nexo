@@ -16,7 +16,19 @@ public class Funcionario {
     private Cargo Cargo;  
     private String Email_Func;  
     private String Senha_Func; 
-    private String telefone;
+    private String Telefone;
+    
+    public Funcionario() {}
+    
+    public Funcionario(String nome_func, Date nasc_func, String cpf_func, Cargo cargo, String email_func, String senha_func, String telefone) {
+        this.Nome_Func = nome_func;
+        this.Nasc_Func = nasc_func;
+        this.CPF_Func = cpf_func;
+        this.Cargo = cargo;
+        this.Email_Func = email_func;
+        this.Senha_Func = senha_func;
+        this.Telefone = telefone;
+    }
     
     public int getCod_Func() {
         return Cod_Func;
@@ -50,15 +62,12 @@ public class Funcionario {
         this.CPF_Func = CPF_Func;
     }
 
-    public int getCod_Cargo() {
-        return Cargo.getCod_cargo();
+    public Cargo getCargo() {
+        return Cargo;
     }
 
-    public void setCod_Cargo(int Cod_Cargo) {
-        if (this.Cargo == null) {
-            this.Cargo = new Cargo();
-        }
-        this.Cargo.setCod_cargo(Cod_Cargo);
+    public void setCargo(Cargo cargo) {
+        this.Cargo = cargo;
     }
 
     public String getEmail_Func() {
@@ -78,11 +87,11 @@ public class Funcionario {
     }
 
     public String getTelefone() {
-        return telefone;
+        return Telefone;
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.Telefone = telefone;
     }
 
 }

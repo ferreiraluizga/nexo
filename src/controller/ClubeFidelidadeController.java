@@ -14,7 +14,10 @@ import model.ClubeFidelidade;
 public class ClubeFidelidadeController {
     
     // método para cadastrar clube
-    public static void cadastrarClubeFidelidade(Cliente cliente, String cpf, String email) throws SQLException {
+    public static void cadastrarClubeFidelidade(int cod_cli, String cpf, String email) throws SQLException {
+        Cliente cliente = new Cliente();
+        cliente.setCod_cli(cod_cli);
+        
         ClubeFidelidade clube = new ClubeFidelidade(cliente, cpf, email);
         ClubeFidelidadeDAO.cadastrarClube(clube);
     }
@@ -25,7 +28,10 @@ public class ClubeFidelidadeController {
     }
     
     // método para editar dados de um clube cadastrado
-    public static void editarClubeFidelidade(Cliente cliente, String cpf, String email) throws SQLException {
+    public static void editarClubeFidelidade(int cod_cli, String cpf, String email) throws SQLException {
+        Cliente cliente = new Cliente();
+        cliente.setCod_cli(cod_cli);
+        
         ClubeFidelidade clube = new ClubeFidelidade(cliente, cpf, email);
         ClubeFidelidadeDAO.editarClube(clube);
     }

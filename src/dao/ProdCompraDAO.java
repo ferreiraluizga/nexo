@@ -4,14 +4,14 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import model.ProdCompra;
 
-public class ProdutosCompraDAO {
+public class ProdCompraDAO {
     
     // método para cadastrar produtos de uma compra que depende do cadastro de uma nova compra
-    public static void cadastrarProdutosCompra(ProdCompra produtosCompra) throws SQLException {
-        String sql = "INSERT INTO tb_produtos_compra (Cod_Compra, Cod_Prod, quant_Prod) VALUES (?, ?, ?)";
+    public static void cadastrarProdCompra(ProdCompra produtosCompra) throws SQLException {
+        String sql = "INSERT INTO prod_compra (Cod_Compra, Cod_Prod, quant_Prod) VALUES (?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, produtosCompra.getCod_Compra());
-            stmt.setInt(2, produtosCompra.getCod_Prod());
+            stmt.setInt(2, produtosCompra.getProd().getCod_Produto());
             stmt.setInt(3, produtosCompra.getQuant_Prod());
             stmt.execute();
         } catch (SQLException e) {
@@ -20,10 +20,10 @@ public class ProdutosCompraDAO {
     }
     
     // método para deletar produtos de uma compra, que é acionado ao deletar uma compra
-    public static void deletarProdutosCompra(int id_compra) throws SQLException {
+    public static void deletarProdCompra(int cod_compra) throws SQLException {
         String sql = "DELETE FROM prod_compra WHERE Cod_Compra=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, id_compra);
+            stmt.setInt(1, cod_compra);
             stmt.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar produtos da compra: " + e.getMessage());

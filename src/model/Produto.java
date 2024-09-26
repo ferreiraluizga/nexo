@@ -17,7 +17,7 @@ public class Produto {
     private int quant_estoque;
     private Fornecedor fornecedor;
     private Marca marca;
-    private Categoria_Produto categoria;
+    private CategoriaProduto categoria;
     
     public Produto() {}
 
@@ -53,37 +53,28 @@ public class Produto {
         this.quant_estoque = Quant_Estoque;
     }
 
-    public int getCod_Forn() {
-        return fornecedor.getCod_forn();
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setCod_Forn(int Cod_Forn) {
-        if (this.fornecedor == null) {
-            this.fornecedor = new Fornecedor();
-        }
-        this.fornecedor.setCod_forn(Cod_Forn);    
+    public void setFornecedor(Fornecedor forn) {
+        this.fornecedor = forn;
     }
 
-    public int getCod_Marca() {
-        return marca.getCod_marca();
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setCod_Marca(int Cod_Marca) {
-        if (this.marca == null) {
-            this.marca = new Marca();
-        }
-        this.marca.setCod_marca(Cod_Marca); 
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
-    public int getCod_Categoria() {
-        return categoria.getCod_categoria();
+    public CategoriaProduto getCategoria() {
+        return categoria;
     }
 
-    public void setCod_Categoria(int Cod_Categoria) {
-        if (this.categoria == null) {
-            this.categoria = new Categoria_Produto();
-        }
-        this.categoria.setCod_categoria(Cod_Categoria); 
+    public void setCategoria(CategoriaProduto categoria) {
+        this.categoria = categoria;
     }
 
 }

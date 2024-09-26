@@ -97,18 +97,5 @@ public class Utilitaries {
             e.printStackTrace();
         }
     }
-    
-    public static String verificarCargo(int cod_cargo) {
-        switch (cod_cargo) {
-            case 1:
-                return "Dono / Administrador";
-            case 2:
-                return "Gerente";
-            case 3:
-                return "Operador de Caixa";
-            default:
-                return null;
-        }
-    }
 
 }

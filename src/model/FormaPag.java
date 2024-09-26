@@ -5,13 +5,13 @@ package model;
 * @author rebeca
 */
 
-public class Forma_Pag {
+public class FormaPag {
     private int cod_forma_pag;
     private String nome_forma;
     
-    public Forma_Pag() {}
+    public FormaPag() {}
     
-    public Forma_Pag(String nome_forma) {
+    public FormaPag(String nome_forma) {
         this.nome_forma = nome_forma;
     }
 

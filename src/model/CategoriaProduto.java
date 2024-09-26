@@ -5,14 +5,14 @@ package model;
 * @author rebeca
 */
 
-public class Categoria_Produto {
+public class CategoriaProduto {
     private int cod_categoria;
     private String nome_categoria;
     private String desc_categoria;
     
-    public Categoria_Produto() {}
+    public CategoriaProduto() {}
     
-    public Categoria_Produto(String nome_categoria, String desc_categoria) {
+    public CategoriaProduto(String nome_categoria, String desc_categoria) {
         this.nome_categoria = nome_categoria;
         this.desc_categoria = desc_categoria;
     }

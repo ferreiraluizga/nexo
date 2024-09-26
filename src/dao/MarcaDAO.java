@@ -17,7 +17,7 @@ import model.Marca;
 public class MarcaDAO {
     
     public static void cadastrarMarca(Marca marca) throws SQLException {
-        String sql = "INSERT INTO Marca (Nome_Marca) VALUES (?)";
+        String sql = "INSERT INTO marca (Nome_Marca) VALUES (?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, marca.getNome_marca());
             stmt.execute();
@@ -30,7 +30,7 @@ public class MarcaDAO {
     public static List<Marca> listarMarca() throws SQLException {
         List<Marca> marcas = new ArrayList<>();
  
-        String sql = "SELECT * FROM Marca";
+        String sql = "SELECT * FROM marca";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Marca marca = new Marca();
@@ -49,7 +49,7 @@ public class MarcaDAO {
     public static List<Marca> buscarPorNome(String nome) throws SQLException {
         List<Marca> marcas = new ArrayList<>();
  
-        String sql = "SELECT * FROM Marca WHERE Nome_Marca like ? ORDER BY Nome_Marca";
+        String sql = "SELECT * FROM marca WHERE Nome_Marca like ? ORDER BY Nome_Marca";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, "%" + nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
@@ -69,7 +69,7 @@ public class MarcaDAO {
     
     // método que edita fornecedores cadastrados no banco de dados
     public static void editarMarca(Marca marca) throws SQLException {
-        String sql = "UPDATE Marca SET Nome_Marca=? WHERE Cod_Marca=?";
+        String sql = "UPDATE marca SET Nome_Marca=? WHERE Cod_Marca=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(2, marca.getCod_marca());
             stmt.setString(1, marca.getNome_marca());
@@ -82,7 +82,7 @@ public class MarcaDAO {
     
     // método que deleta clientes cadastrados no banco de dados
     public static void deletarMarca(int id_marca) throws SQLException {
-        String sql = "DELETE FROM Marca WHERE Cod_Marca=?";
+        String sql = "DELETE FROM marca WHERE Cod_Marca=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id_marca);
             stmt.executeUpdate();
