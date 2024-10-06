@@ -9,35 +9,34 @@ import model.Marca;
  *
  * @author Vitor
  */
-
 public class MarcaController {
-    
-    // método para cadastrar cliente
+
+    // método público para cadastrar marca
     public static void cadastrarMarca(String nome_marca) throws SQLException {
         Marca marca = new Marca(nome_marca);
         MarcaDAO.cadastrarMarca(marca);
     }
-    
-    // método para listar clientes cadastrados
+
+    // método público para listar marcas
     public static List<Marca> listarMarca() throws SQLException {
         return MarcaDAO.listarMarca();
     }
     
-        public static List<Marca> buscarPorNome(String nome) throws SQLException {
+    // método público para buscar marcas pelo nome
+    public static List<Marca> buscarPorNome(String nome) throws SQLException {
         return MarcaDAO.buscarPorNome(nome);
     }
-    
-    // método para editar dados de um cliente cadastrado
+
+    // método público para editar dados de uma marca cadastrada
     public static void editarMarca(int cod_marca, String nome_marca) throws SQLException {
         Marca marca = new Marca(nome_marca);
         marca.setCod_marca(cod_marca);
         MarcaDAO.editarMarca(marca);
     }
-    
-    // método para deletar cliente cadastrado
+
+    // método público para deletar marca cadastrada
     public static void deletarMarca(int cod_marca) throws SQLException {
         MarcaDAO.deletarMarca(cod_marca);
     }
-    
-}
 
+}

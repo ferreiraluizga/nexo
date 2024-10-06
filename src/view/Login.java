@@ -147,7 +147,7 @@ public class Login extends javax.swing.JFrame {
             user = txtUser.getText();
             senha = String.valueOf(txtSenha.getPassword());
             try {
-                Funcionario validacao = FuncionarioController.validarAdm(user, senha);
+                Funcionario validacao = FuncionarioController.validarFunc(user, senha);
                 if (validacao.getNome_Func() != null) {
                     Funcionario func = new Funcionario();
                     func.setEmail_Func(validacao.getEmail_Func());

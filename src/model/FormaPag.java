@@ -6,6 +6,7 @@ package model;
 */
 
 public class FormaPag {
+    
     private int cod_forma_pag;
     private String nome_forma;
     
@@ -30,4 +31,5 @@ public class FormaPag {
     public void setNome_forma(String nome_forma) {
         this.nome_forma = nome_forma;
     }
+    
 }

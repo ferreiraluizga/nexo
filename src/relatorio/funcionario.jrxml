@@ -1,0 +1,148 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="funcionario" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="313049d6-6040-4b65-8144-976c1d07558f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL-NEXODatabase"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="Id_Func" class="java.lang.Integer"/>
+	<parameter name="logo_header" class="java.net.URL"/>
+	<query language="sql"><![CDATA[SELECT * 
+FROM funcionario 
+INNER JOIN cargo ON funcionario.Cod_Cargo = cargo.Cod_Cargo
+INNER JOIN fone_func ON funcionario.Cod_Func = fone_func.Cod_Func 
+WHERE funcionario.Cod_Func = $P{Id_Func}
+LIMIT 1]]></query>
+	<field name="Cod_Func" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="Nome_Func" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nome_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nome_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="Nasc_Func" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="Nasc_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nasc_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="CPF_Func" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CPF_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="CPF_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="Cod_Cargo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Cargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="Email_Func" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Email_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Email_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="Senha_Func" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Senha_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Senha_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="funcionario"/>
+	</field>
+	<field name="COLUMN_8" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Cargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cargo"/>
+	</field>
+	<field name="Nome_Cargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nome_Cargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nome_Cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cargo"/>
+	</field>
+	<field name="Desc_Cargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Desc_Cargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Desc_Cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cargo"/>
+	</field>
+	<field name="Salario_Cargo" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="Salario_Cargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Salario_Cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cargo"/>
+	</field>
+	<field name="COLUMN_12" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fone_func"/>
+	</field>
+	<field name="Fone_Func" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Fone_Func"/>
+		<property name="com.jaspersoft.studio.field.label" value="Fone_Func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fone_func"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="82" splitType="Stretch">
+		<element kind="rectangle" uuid="c7ef2eb2-e170-41a6-904f-572921c59f3c" x="-20" y="-20" width="595" height="102" backcolor="#235C87">
+			<pen lineWidth="0.0"/>
+		</element>
+		<element kind="staticText" uuid="65b2c6ab-674a-480e-9a85-d3da31366d08" x="300" y="0" width="248" height="30" forecolor="#FFFFFF" markup="styled" fontName="SansSerif" fontSize="18.0" bold="true" hTextAlign="Right">
+			<text><![CDATA[Relatório do Funcionário]]></text>
+		</element>
+		<element kind="textField" uuid="de23cec3-c6ea-4554-98af-2b61c404bbcb" mode="Transparent" x="430" y="31" width="118" height="20" forecolor="#FFFFFF" markup="none" fontSize="12.0" pattern="dd/MM/yyyy" hTextAlign="Right">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="9d35ca95-329f-46b0-b863-b880c09795b4" x="431" y="51" width="117" height="21" forecolor="#FFFFFF" markup="none" fontSize="12.0" pattern="HH:mm" hTextAlign="Right">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="image" uuid="5daf1c30-7ec2-4344-835c-f10704ced209" x="0" y="0" width="200" height="72" scaleImage="FillFrame" hImageAlign="Center" vImageAlign="Middle">
+			<expression><![CDATA[$P{logo_header}]]></expression>
+		</element>
+	</title>
+	<detail>
+		<band height="197" splitType="Stretch">
+			<element kind="textField" uuid="7c64721f-f387-4129-951e-b083414dc497" x="60" y="30" width="320" height="20" markup="none">
+				<expression><![CDATA[$F{Cod_Func}]]></expression>
+			</element>
+			<element kind="staticText" uuid="7c77889d-d4cd-425b-bd62-c4524e111c3a" x="0" y="30" width="50" height="20">
+				<text><![CDATA[Cod_Func:]]></text>
+			</element>
+			<element kind="textField" uuid="3786caa5-e18b-4253-800b-4235bb059f65" x="90" y="60" width="290" height="18">
+				<expression><![CDATA[$F{Nome_Func}]]></expression>
+			</element>
+			<element kind="staticText" uuid="7243815a-f2c0-4bc8-949b-fd07de2a2310" x="0" y="60" width="80" height="19">
+				<text><![CDATA[Nome Completo:]]></text>
+			</element>
+			<element kind="textField" uuid="c4c60c00-6264-4dac-b73d-24fdfe63e2ce" x="100" y="90" width="280" height="19" pattern="dd/MM/yyyy">
+				<expression><![CDATA[$F{Nasc_Func}]]></expression>
+			</element>
+			<element kind="staticText" uuid="f92c9767-e417-4626-8d3d-e71d3a35eb97" x="0" y="90" width="100" height="19">
+				<text><![CDATA[Data de Nascimento:]]></text>
+			</element>
+			<element kind="textField" uuid="cf7cdb63-29c5-45fe-93ad-18f3bc8d4b42" x="40" y="120" width="140" height="18">
+				<expression><![CDATA[$F{Nome_Cargo}]]></expression>
+			</element>
+			<element kind="staticText" uuid="dd8750db-5a98-4413-9c53-ee533e4b8f30" x="0" y="120" width="40" height="19">
+				<text><![CDATA[Cargo:]]></text>
+			</element>
+			<element kind="textField" uuid="f586cb2a-69d2-43a3-be91-aec8711dca18" x="230" y="120" width="90" height="18" pattern="¤#,##0.##;¤-#,##0.##">
+				<expression><![CDATA[$F{Salario_Cargo}]]></expression>
+			</element>
+			<element kind="staticText" uuid="333ea229-c37a-4203-8cfe-c31189947cf1" x="190" y="120" width="40" height="18">
+				<text><![CDATA[Salário:]]></text>
+			</element>
+			<element kind="textField" uuid="5b5a81b9-fe18-47f1-810f-fbfc3e78444c" x="380" y="120" width="168" height="20">
+				<expression><![CDATA[$F{Email_Func}]]></expression>
+			</element>
+			<element kind="staticText" uuid="afa7594d-5d35-44b9-9add-71d9cafda992" x="340" y="119" width="40" height="20">
+				<text><![CDATA[E-Mail:]]></text>
+			</element>
+			<element kind="textField" uuid="f11d081e-fcfc-4cda-ab98-2fc4fb38b328" x="50" y="150" width="130" height="19">
+				<expression><![CDATA[$F{Fone_Func}]]></expression>
+			</element>
+			<element kind="staticText" uuid="47feafe2-3827-4623-b00b-ed7d2d8a3b44" x="0" y="150" width="50" height="19">
+				<text><![CDATA[Telefone:]]></text>
+			</element>
+			<element kind="textField" uuid="911143bb-73e5-4eee-b821-29c67e908064" x="220" y="150" width="160" height="18">
+				<expression><![CDATA[$F{CPF_Func}]]></expression>
+			</element>
+			<element kind="staticText" uuid="3c349485-37e1-4b21-9f2b-c3a853c7c4fd" x="190" y="150" width="30" height="18">
+				<text><![CDATA[CPF:]]></text>
+			</element>
+		</band>
+	</detail>
+</jasperReport>

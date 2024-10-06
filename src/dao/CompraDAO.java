@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import model.Produto;
 import model.Compra;
 import model.FormaPag;
 import model.Funcionario;
@@ -21,7 +20,7 @@ import model.Funcionario;
 
 public class CompraDAO {
 
-    // método que cadastra produtos no banco de dados
+    // método que cadastra compras no banco de dados
     public static void cadastrarCompra(Compra compra) throws SQLException {
         String sql = "INSERT INTO compra (Cod_Func, Cod_Cli, Data_Compra, Cod_Forma_Pag) VALUES (?, ?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -32,11 +31,11 @@ public class CompraDAO {
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Compra cadastrada com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar compra: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar compra: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // método que lista os produtos cadastrados no banco de dados
+    // método que lista as compras cadastradas no banco de dados
     public static List<Compra> listarCompra() throws SQLException {
         List<Compra> compras = new ArrayList<>();
 
@@ -52,10 +51,14 @@ public class CompraDAO {
                 FormaPag forma = new FormaPag();
                 
                 func.setCod_Func(rs.getInt("Cod_Func"));
+                func.setNome_Func(rs.getString("Nome_Func"));
                 
                 cliente.setCod_cli(rs.getInt("Cod_Cli"));
+                cliente.setNome_cli(rs.getString("Nome_Cli"));
+                cliente.setAtivo_clube(rs.getInt("Ativo_Clube"));
                 
                 forma.setCod_forma_pag(rs.getInt("Cod_Forma_Pag"));
+                forma.setNome_forma(rs.getString("Nome_Forma"));
                 
                 compra.setCod_Compra(rs.getInt("Cod_Compra"));
                 compra.setFunc(func);
@@ -65,13 +68,13 @@ public class CompraDAO {
                 compras.add(compra);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar produtos: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar compras: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         return compras;
     }
 
-    // método que deleta produtos cadastrados no banco de dados
+    // método que deleta compras cadastradas no banco de dados
     public static void deletarCompra(int id_compra) throws SQLException {
         ProdCompraDAO.deletarProdCompra(id_compra);
         String sql = "DELETE FROM compra WHERE Cod_Prod=?";

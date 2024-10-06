@@ -6,6 +6,7 @@ package model;
 */
 
 public class Marca {
+    
     private int cod_marca;
     private String nome_marca;
     

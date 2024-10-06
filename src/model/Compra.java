@@ -1,11 +1,11 @@
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Vitor
  */
-
-import java.util.Date;
 
 public class Compra {
     private int cod_compra;  

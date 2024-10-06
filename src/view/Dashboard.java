@@ -3,17 +3,22 @@ package view;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import model.Funcionario;
 import resources.graphicComponents.FontLoader;
 import resources.utilitaries.Utilitaries;
-
+import view.funcionario.*;
 /**
  *
  * @author ferreiraluizga
@@ -21,7 +26,7 @@ import resources.utilitaries.Utilitaries;
 public class Dashboard extends javax.swing.JFrame {
 
     Funcionario func;
-    
+
     public Dashboard() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/img/app_logo.png")));
@@ -34,7 +39,7 @@ public class Dashboard extends javax.swing.JFrame {
         styleSidebarComponents(sidebar_menu6);
         styleSidebarComponents(sidebar_menu7);
     }
-    
+
     public Dashboard(Funcionario func) {
         this.func = func;
         initComponents();
@@ -57,7 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
         styleSidebarComponents(sidebar_menu6);
         styleSidebarComponents(sidebar_menu7);
     }
-    
+
     private void styleSidebarComponents(JButton button) {
         button.putClientProperty(FlatClientProperties.OUTLINE, false);
         button.putClientProperty(FlatClientProperties.STYLE,
@@ -66,6 +71,26 @@ public class Dashboard extends javax.swing.JFrame {
         );
         button.setFocusPainted(false);
         button.setHorizontalAlignment(SwingConstants.LEFT);
+    }
+
+    private void updateBody(Component com, boolean isSmallPanel) {
+        body.removeAll(); // Remove todos os componentes atuais
+
+        if (isSmallPanel) {
+            JPanel wrapper = new JPanel(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.anchor = GridBagConstraints.CENTER;
+            wrapper.add(com, gbc); // Adiciona o componente ao wrapper
+            body.add(wrapper, BorderLayout.CENTER); // Adiciona o wrapper ao corpo
+        } else {
+            body.add(com, BorderLayout.CENTER); // Adiciona o componente diretamente ao corpo
+        }
+
+        body.invalidate(); // Marca o corpo para um novo layout
+        body.revalidate(); // Revalida o layout do corpo
+        body.repaint(); // Atualiza a visualização
     }
 
     /**
@@ -90,6 +115,7 @@ public class Dashboard extends javax.swing.JFrame {
         sidebar_menu6 = new javax.swing.JButton();
         sidebar_menu7 = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
+        body = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_config = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
@@ -97,7 +123,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuItem21 = new javax.swing.JMenuItem();
         menu_config1 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        menuCadastrarCliente = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -105,10 +131,10 @@ public class Dashboard extends javax.swing.JFrame {
         menu_config2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        menuConsultarFunc = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        menuCadastrarCargo = new javax.swing.JMenuItem();
+        menuConsultarCargo = new javax.swing.JMenuItem();
         menu_config3 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -307,6 +333,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        body.setLayout(new java.awt.BorderLayout());
+
         menu_config.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/settings.svg")));
         menu_config.setText("Configurações");
 
@@ -341,13 +369,13 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenu1.setText("Clientes");
 
-        jMenuItem15.setText("Cadastrar Cliente");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        menuCadastrarCliente.setText("Cadastrar Cliente");
+        menuCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
+                menuCadastrarClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem15);
+        jMenu1.add(menuCadastrarCliente);
 
         jMenuItem16.setText("Consultar Clientes");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -394,33 +422,33 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem11);
 
-        jMenuItem12.setText("Consultar Funcionários");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        menuConsultarFunc.setText("Consultar Funcionários");
+        menuConsultarFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                menuConsultarFuncActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem12);
+        jMenu3.add(menuConsultarFunc);
 
         menu_config2.add(jMenu3);
 
         jMenu4.setText("Cargos");
 
-        jMenuItem13.setText("Cadastrar Cargos");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        menuCadastrarCargo.setText("Cadastrar Cargos");
+        menuCadastrarCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                menuCadastrarCargoActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem13);
+        jMenu4.add(menuCadastrarCargo);
 
-        jMenuItem14.setText("Consultar Cargos");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        menuConsultarCargo.setText("Consultar Cargos");
+        menuConsultarCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                menuConsultarCargoActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem14);
+        jMenu4.add(menuConsultarCargo);
 
         menu_config2.add(jMenu4);
 
@@ -540,11 +568,17 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 764, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(gradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -553,99 +587,99 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void sidebar_menu1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu1MouseEntered
         sidebar_menu1.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu1MouseEntered
 
     private void sidebar_menu1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu1MouseExited
         sidebar_menu1.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu1MouseExited
 
     private void sidebar_menu2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu2MouseEntered
         sidebar_menu2.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu2MouseEntered
 
     private void sidebar_menu2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu2MouseExited
         sidebar_menu2.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu2MouseExited
 
     private void sidebar_menu3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu3MouseEntered
         sidebar_menu3.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu3MouseEntered
 
     private void sidebar_menu3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu3MouseExited
         sidebar_menu3.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu3MouseExited
 
     private void sidebar_menu4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu4MouseEntered
         sidebar_menu4.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu4MouseEntered
 
     private void sidebar_menu4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu4MouseExited
         sidebar_menu4.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu4MouseExited
 
     private void sidebar_menu5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu5MouseEntered
         sidebar_menu5.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu5MouseEntered
 
     private void sidebar_menu5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu5MouseExited
         sidebar_menu5.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu5MouseExited
 
     private void sidebar_menu6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu6MouseEntered
         sidebar_menu6.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu6MouseEntered
 
     private void sidebar_menu6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu6MouseExited
         sidebar_menu6.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu6MouseExited
 
     private void sidebar_menu7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu7MouseEntered
         sidebar_menu7.putClientProperty(FlatClientProperties.STYLE,
-            "background: #224968; "
-            + "foreground: #FFFFFF; "
+                "background: #224968; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu7MouseEntered
 
     private void sidebar_menu7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebar_menu7MouseExited
         sidebar_menu7.putClientProperty(FlatClientProperties.STYLE,
-            "background: #00000000; "
-            + "foreground: #FFFFFF; "
+                "background: #00000000; "
+                + "foreground: #FFFFFF; "
         );
     }//GEN-LAST:event_sidebar_menu7MouseExited
 
@@ -690,24 +724,24 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // TODO add your handling code here:
+        updateBody(new CadastrarFunc(), true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    private void menuConsultarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarFuncActionPerformed
+        updateBody(new ConsultarFunc(), true);
+    }//GEN-LAST:event_menuConsultarFuncActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    private void menuCadastrarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarCargoActionPerformed
+        updateBody(new CadastrarCargo(), true);
+    }//GEN-LAST:event_menuCadastrarCargoActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    private void menuConsultarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarCargoActionPerformed
+        updateBody(new ConsultarCargo(), true);
+    }//GEN-LAST:event_menuConsultarCargoActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    private void menuCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarClienteActionPerformed
+        
+    }//GEN-LAST:event_menuCadastrarClienteActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
@@ -744,6 +778,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel body;
     private resources.graphicComponents.GradientPanel gradientPanel1;
     private resources.graphicComponents.ImageAvatar imageAvatar1;
     private javax.swing.JMenu jMenu1;
@@ -758,10 +793,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
@@ -779,6 +810,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDateTime;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JMenuItem menuCadastrarCargo;
+    private javax.swing.JMenuItem menuCadastrarCliente;
+    private javax.swing.JMenuItem menuConsultarCargo;
+    private javax.swing.JMenuItem menuConsultarFunc;
     private javax.swing.JMenu menu_config;
     private javax.swing.JMenu menu_config1;
     private javax.swing.JMenu menu_config2;

@@ -18,7 +18,7 @@ public class CategoriaProdutoController {
         CategoriaProdutoDAO.cadastrarCategoria(categoria);
     }
     
-    // método para listar categorias cadastrados
+    // método para listar categorias cadastradas
     public static List<CategoriaProduto> listarCategoria() throws SQLException {
         return CategoriaProdutoDAO.listarCategoria();
     }

@@ -11,9 +11,9 @@ import javax.swing.JOptionPane;
 public class Connect {
 
     private static Connection con;
-    private static String url = "jdbc:mysql://localhost:3306/db_mercado?useSSL=false&serverTimezone=UTC";
-    private static String user = "root";
-    private static String password = "";
+    private static final String url = "jdbc:mysql://localhost:3306/db_mercado?useSSL=false&serverTimezone=UTC";
+    private static final String user = "root";
+    private static final String password = "";
 
     // método para conectar aplicação ao banco de dados
     public static Connection getConnection() {

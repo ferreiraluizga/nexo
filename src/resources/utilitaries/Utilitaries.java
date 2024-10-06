@@ -11,11 +11,11 @@ import javax.swing.text.*;
 public class Utilitaries {
 
     // método para formatar campo de telefone
-    public static void formatarTelefone(JFormattedTextField txtTelefone) {
+    public static void formatarCampo(JFormattedTextField textField, String pattern) {
         try {
-            MaskFormatter mask = new MaskFormatter("(##) #####-####");
+            MaskFormatter mask = new MaskFormatter(pattern);
             mask.setPlaceholderCharacter('_');
-            mask.install(txtTelefone);
+            mask.install(textField);
         } catch (ParseException excp) {
             System.out.println(excp);
         }
@@ -37,24 +37,12 @@ public class Utilitaries {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return dataAtual.format(formatter);
     }
-    
+
     // método para buscar hora local
     public static String getHoraAtual() {
-        LocalTime hora = LocalTime.now();        
+        LocalTime hora = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         return hora.format(formatter);
-    }
-    
-    // método para definir manhã, tarde e noite
-    public static String getSaudacao() {
-        LocalTime hora = LocalTime.now();
-        if (hora.isBefore(LocalTime.NOON)) {
-            return "Bom dia :)";
-        } else if (hora.isBefore(LocalTime.of(18, 0))) {
-            return "Boa tarde :)";
-        } else {
-            return "Boa noite :)";
-        }
     }
 
     // método para definir a imagem da tela de login
@@ -72,7 +60,7 @@ public class Utilitaries {
             e.printStackTrace();
         }
     }
-    
+
     public static void setAltImage(JLabel lblImg, File f) {
         try {
             ImageIcon revivalLogo = new ImageIcon(f.getAbsolutePath());
@@ -85,8 +73,8 @@ public class Utilitaries {
             e.printStackTrace();
         }
     }
-    
-    public static void setLoadImage(JLabel lblImg, ImageIcon img) {
+
+    public static void setImage(JLabel lblImg, ImageIcon img) {
         try {
             Image scaledImage = img.getImage().getScaledInstance(
                     lblImg.getWidth(),
@@ -96,6 +84,17 @@ public class Utilitaries {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static LocalDate convertStringToDate(String dateInString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(dateInString, formatter);
+        return date;
+    }
+
+    public static String convertDateToString(LocalDate dateInDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dateInDate.format(formatter);
     }
 
 }

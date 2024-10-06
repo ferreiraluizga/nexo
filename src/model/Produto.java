@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 /**
@@ -20,6 +16,15 @@ public class Produto {
     private CategoriaProduto categoria;
     
     public Produto() {}
+    
+    public Produto(String nome_prod, float preco_prod, int quant_estoque, Fornecedor fornecedor, Marca marca, CategoriaProduto categoria) {
+        this.nome_prod = nome_prod;
+        this.preco_prod = preco_prod;
+        this.quant_estoque = quant_estoque;
+        this.fornecedor = fornecedor;
+        this.marca = marca;
+        this.categoria = categoria;
+    }
 
     public int getCod_Produto() {
         return cod_produto;

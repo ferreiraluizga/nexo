@@ -16,7 +16,7 @@ import model.FormaPag;
 
 public class FormaPagDAO {
 
-    // método que cadastra cliente no banco de dados
+    // método que cadastra forma de pagamento no banco de dados
     public static void cadastrarForma(FormaPag forma) throws SQLException {
         String sql = "INSERT INTO forma_pag (Nome_Forma) VALUES (?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -24,11 +24,11 @@ public class FormaPagDAO {
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Forma de Pagamento cadastrada com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar forma de pagamento: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar forma de pagamento: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    // método que lista os clientes cadastrados no banco de dados
-
+    
+    // método que lista as formas de pagamento cadastradas no banco de dados
     public static List<FormaPag> listarForma() throws SQLException {
         List<FormaPag> formas = new ArrayList<>();
         String sql = "SELECT * FROM forma_pag";
@@ -40,12 +40,12 @@ public class FormaPagDAO {
                 formas.add(forma);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar formas de pagamento: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar formas de pagamento: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         return formas;
     }
 
-    // método que edita clientes cadastrados no banco de dados
+    // método que edita uma forma de pagamento cadastrada no banco de dados
     public static void editarForma(FormaPag forma) throws SQLException {
         String sql = "UPDATE forma_pag SET Nome_Forma=? WHERE Cod_Forma_Pag=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -54,11 +54,11 @@ public class FormaPagDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar forma de pagamento: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao editar forma de pagamento: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // método que deleta clientes cadastrados no banco de dados
+    // método que deleta formas de pagamento cadastradas no banco de dados
     public static void deletarForma(int id_forma) throws SQLException {
         String sql = "DELETE FROM forma_pag WHERE Cod_Forma_Pag=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -66,7 +66,7 @@ public class FormaPagDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Forma de Pagamento deletada com sucesso", "Deletar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar forma de pagamento: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar forma de pagamento: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

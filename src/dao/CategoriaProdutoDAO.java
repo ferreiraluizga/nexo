@@ -1,10 +1,5 @@
 package dao;
 
-/**
-*
-* @author rebeca
-*/
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,20 +9,27 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.CategoriaProduto;
 
+/**
+*
+* @author rebeca
+*/
+
 public class CategoriaProdutoDAO {
     
-     public static void cadastrarCategoria(CategoriaProduto categoria_produto) throws SQLException {
+    // método público para cadastrar categoria 
+    public static void cadastrarCategoria(CategoriaProduto categoria_produto) throws SQLException {
         String sql = "INSERT INTO categoria_produto (Nome_Categoria, Desc_Categoria) VALUES (?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, categoria_produto.getNome_categoria());
             stmt.setString(2, categoria_produto.getDesc_categoria());
             stmt.execute();
-            JOptionPane.showMessageDialog(null, "Categoria do produto cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Categoria de Produto cadastrada com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar categoria do produto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar categoria de produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
+    
+    // método público para listar categorias
     public static List<CategoriaProduto> listarCategoria() throws SQLException {
         List<CategoriaProduto> categorias = new ArrayList<>();
  
@@ -41,13 +43,13 @@ public class CategoriaProdutoDAO {
                 categorias.add(categoria);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar categorias: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar categorias: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
  
         return categorias;
     }
  
-    // método que busca uma categoria pelo nome no banco de dados
+    // método público que busca uma categoria pelo nome
     public static List<CategoriaProduto> buscarPorNome(String nome) throws SQLException {
         List<CategoriaProduto> categorias = new ArrayList<>();
  
@@ -64,13 +66,13 @@ public class CategoriaProdutoDAO {
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar categorias: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar categorias: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
  
         return categorias;
     }
     
-    // método que edita cargos cadastrados no banco de dados
+    // método que edita categorias cadastradas no banco de dados
     public static void editarCategoria(CategoriaProduto categoria) throws SQLException {
         String sql = "UPDATE categoria_produto SET Nome_Categoria=?, Desc_Categoria=? WHERE Cod_Categoria=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -80,7 +82,7 @@ public class CategoriaProdutoDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar categorias: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao editar categoria: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -92,7 +94,7 @@ public class CategoriaProdutoDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Categoria deletada com sucesso", "Deletar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar a categoria: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar a categoria: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

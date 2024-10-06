@@ -189,7 +189,7 @@ CREATE TABLE `marca` (
 
 CREATE TABLE `produto` (
   `Cod_Prod` int(11) NOT NULL,
-  `Nome_Prod` int(255) NOT NULL,
+  `Nome_Prod` varchar(255) NOT NULL,
   `Preco_Prod` float NOT NULL,
   `Quant_Estoque` int(11) NOT NULL,
   `Cod_Forn` int(11) NOT NULL,

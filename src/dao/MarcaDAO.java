@@ -5,10 +5,7 @@ package dao;
 * @author rebeca
 */
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,6 +13,7 @@ import model.Marca;
 
 public class MarcaDAO {
     
+    // método público para cadastrar marca no sistema
     public static void cadastrarMarca(Marca marca) throws SQLException {
         String sql = "INSERT INTO marca (Nome_Marca) VALUES (?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -23,10 +21,11 @@ public class MarcaDAO {
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Marca cadastrada com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar marcas: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar marcas: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
+    
+    // método público para listar marcas cadastradas no sistema
     public static List<Marca> listarMarca() throws SQLException {
         List<Marca> marcas = new ArrayList<>();
  
@@ -39,13 +38,13 @@ public class MarcaDAO {
                 marcas.add(marca);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar marcas: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar marcas: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
  
         return marcas;
     }
  
-    // método que busca uma marca pelo nome no banco de dados
+    // método público para buscar uma marca pelo nome no sistema
     public static List<Marca> buscarPorNome(String nome) throws SQLException {
         List<Marca> marcas = new ArrayList<>();
  
@@ -67,7 +66,7 @@ public class MarcaDAO {
         return marcas;
     }
     
-    // método que edita fornecedores cadastrados no banco de dados
+    // método público para editar uma marca cadastrada no sistema
     public static void editarMarca(Marca marca) throws SQLException {
         String sql = "UPDATE marca SET Nome_Marca=? WHERE Cod_Marca=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -76,11 +75,11 @@ public class MarcaDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar marcas: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao editar marca: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    // método que deleta clientes cadastrados no banco de dados
+    // método público para deletar uma marca cadastrada no sistema
     public static void deletarMarca(int id_marca) throws SQLException {
         String sql = "DELETE FROM marca WHERE Cod_Marca=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -88,7 +87,7 @@ public class MarcaDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Marca deletada com sucesso", "Deletar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar marcas: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar marca: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

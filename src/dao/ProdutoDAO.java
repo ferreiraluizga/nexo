@@ -19,7 +19,7 @@ import model.Produto;
 
 public class ProdutoDAO {
 
-    // método que cadastra produtos no banco de dados
+    // método público que cadastra produtos no banco de dados
     public static void cadastrarProduto(Produto produto) throws SQLException {
         String sql = "INSERT INTO produto (Nome_Prod, Preco_Prod, Quant_Estoque, Cod_Forn, Cod_Marca, Cod_Categoria) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -32,17 +32,17 @@ public class ProdutoDAO {
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // método que lista os produtos cadastrados no banco de dados
+    // método público que lista os produtos cadastrados no banco de dados
     public static List<Produto> listarProduto() throws SQLException {
         List<Produto> produtos = new ArrayList<>();
 
-        String sql = "SELECT * FROM produto"
-                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn"
-                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca"
+        String sql = "SELECT * FROM produto "
+                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn "
+                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca "
                 + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
@@ -75,7 +75,7 @@ public class ProdutoDAO {
                 produtos.add(produto);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar produtos: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar produtos: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         return produtos;
@@ -86,15 +86,15 @@ public class ProdutoDAO {
         List<Produto> produtos = new ArrayList<>();
 
         String sql = "SELECT * FROM produto "
-                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn"
-                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca"
-                + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria"
+                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn "
+                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca "
+                + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria "
                 + "WHERE Nome_Prod like ? ORDER BY Nome_Prod";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, "%" + nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    Produto produto = new Produto();
+                Produto produto = new Produto();
                 Fornecedor fornecedor = new Fornecedor();
                 Marca marca = new Marca();
                 CategoriaProduto categoria = new CategoriaProduto();
@@ -124,13 +124,13 @@ public class ProdutoDAO {
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar cliente: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         return produtos;
     }
 
-    // método que edita produtos cadastrados no banco de dados
+    // método público que edita produtos cadastrados no banco de dados
     public static void editarProduto(Produto produto) throws SQLException {
         String sql = "UPDATE produto SET Nome_Prod=?, Preco_Prod=?, Quant_Estoque=?, Cod_Forn=?, Cod_Marca=?, Cod_Categoria=? WHERE Cod_Prod=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -144,11 +144,11 @@ public class ProdutoDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar produto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // método que deleta produtos cadastrados no banco de dados
+    // método público que deleta produtos cadastrados no banco de dados
     public static void deletarProduto(int id_prod) throws SQLException {
         String sql = "DELETE FROM produto WHERE Cod_Prod=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -156,7 +156,7 @@ public class ProdutoDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Produto deletado com sucesso", "Deletar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar produto: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -11,7 +11,7 @@ public class Funcionario {
     
     private int Cod_Func;  
     private String Nome_Func;  
-    private Date Nasc_Func; 
+    private LocalDate Nasc_Func; 
     private String CPF_Func;  
     private Cargo Cargo;  
     private String Email_Func;  
@@ -20,7 +20,7 @@ public class Funcionario {
     
     public Funcionario() {}
     
-    public Funcionario(String nome_func, Date nasc_func, String cpf_func, Cargo cargo, String email_func, String senha_func, String telefone) {
+    public Funcionario(String nome_func, LocalDate nasc_func, String cpf_func, Cargo cargo, String email_func, String senha_func, String telefone) {
         this.Nome_Func = nome_func;
         this.Nasc_Func = nasc_func;
         this.CPF_Func = cpf_func;
@@ -46,11 +46,11 @@ public class Funcionario {
         this.Nome_Func = Nome_Func;
     }
 
-    public Date getNasc_Func() {
+    public LocalDate getNasc_Func() {
         return Nasc_Func;
     }
 
-    public void setNasc_Func(Date Nasc_Func) {
+    public void setNasc_Func(LocalDate Nasc_Func) {
         this.Nasc_Func = Nasc_Func;
     }
 

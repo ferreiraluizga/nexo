@@ -2,7 +2,7 @@ package model;
 
 /**
  *
- * @author Admin
+ * @author vitor
  */
 
 public class ProdCompra {
@@ -18,15 +18,12 @@ public class ProdCompra {
         this.quant_prod = quant_prod;
     }
     
-    public int getCod_Compra() {
-        return compra.getCod_Compra();
+    public Compra getCompra() {
+        return compra;
     }
 
-    public void setCod_Compra(int Cod_Compra) {
-        if (this.compra == null) {
-            this.compra = new Compra();
-        }
-        this.compra.setCod_Compra(Cod_Compra);
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 
     public Produto getProd() {

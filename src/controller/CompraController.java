@@ -16,19 +16,19 @@ import model.Funcionario;
 public class CompraController {
     
     
-    // método para cadastrar cliente
+    // método para cadastrar compra
     public static void cadastrarCompra(Funcionario func, Cliente cliente, Date data, FormaPag forma_pag) throws SQLException {
         Compra compra = new Compra(func, cliente, data, forma_pag);
         CompraDAO.cadastrarCompra(compra);
     }
     
-    // método para listar clientes cadastrados
+    // método para listar compras cadastradas
     public static List<Compra> listarCompra() throws SQLException {
         return CompraDAO.listarCompra();
     }
     
     
-    // método para deletar cliente cadastrado
+    // método para deletar compra cadastrada
     public static void deletarCompra(int id_compra) throws SQLException {
         CompraDAO.deletarCompra(id_compra);
     }
