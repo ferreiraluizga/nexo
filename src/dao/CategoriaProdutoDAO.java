@@ -55,7 +55,7 @@ public class CategoriaProdutoDAO {
  
         String sql = "SELECT * FROM categoria_produto WHERE Nome_Categoria like ? ORDER BY Nome_Categoria";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                 CategoriaProduto categoria = new CategoriaProduto();

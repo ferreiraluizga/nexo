@@ -27,6 +27,16 @@ public class ClubeFidelidadeController {
         return ClubeFidelidadeDAO.listarClube();
     }
     
+    // método para listar por id
+    public static ClubeFidelidade buscarClubePorId(int cod_cli) throws SQLException {
+        return ClubeFidelidadeDAO.buscarClubePorId(cod_cli);
+    }
+    
+    // método para buscar por nome
+    public static List<ClubeFidelidade> buscarPorNome(String nome) throws SQLException {
+        return ClubeFidelidadeDAO.buscarPorNome(nome);
+    }
+    
     // método para editar dados de um clube cadastrado
     public static void editarClubeFidelidade(int cod_cli, String cpf, String email) throws SQLException {
         Cliente cliente = new Cliente();
@@ -40,5 +50,6 @@ public class ClubeFidelidadeController {
     public static void deletarClubeFidelidade(int cod_cli) throws SQLException {
         ClubeFidelidadeDAO.deletarClube(cod_cli);
     }
+    
     
 }

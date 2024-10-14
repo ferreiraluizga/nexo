@@ -30,6 +30,11 @@ public class ProdutoController {
         return ProdutoDAO.buscarPorNome(nome);
     }
     
+    // método público para buscar produtos por id
+    public static Produto buscarPorId(int id) throws SQLException {
+        return ProdutoDAO.buscarPorId(id);
+    }
+    
     // método público para editar produtos cadastrados
     public static void editarProduto(int cod_prod, String nome_prod, float preco_prod, int quant_estoque, Fornecedor fornecedor, Marca marca, CategoriaProduto categoria) throws SQLException {
         Produto prod = new Produto(nome_prod, preco_prod, quant_estoque, fornecedor, marca, categoria);

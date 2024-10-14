@@ -7,13 +7,16 @@ import controller.FuncionarioController;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cargo;
 import model.Funcionario;
+import net.sf.jasperreports.engine.JRException;
 import resources.utilitaries.Utilitaries;
 
 /**
@@ -33,6 +36,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
         Utilitaries.formatarCampo(txtTelefone, "(##) #####-####");
     }
 
+    // método para atribuir cargos ao select (combo box)
     private void atribuirCargos() {
         List<Cargo> cargos = new ArrayList<>();
         try {
@@ -46,6 +50,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
         }
     }
 
+    // método para estilizar componentes
     private void styleComponents() {
         btnBuscar.putClientProperty(FlatClientProperties.STYLE, "background: null; foreground: #FFFFFF; border: null");
         btnBuscar.setFocusPainted(false);
@@ -94,8 +99,9 @@ public class ConsultarFunc extends javax.swing.JPanel {
                 } catch (SQLException ex) {
                     Logger.getLogger(ConsultarCargo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                break;
             default:
-                throw new AssertionError();
+                
         }
 
         DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();
@@ -134,7 +140,6 @@ public class ConsultarFunc extends javax.swing.JPanel {
         btnEditar = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
-        lblImg = new javax.swing.JLabel();
         panelEditar = new resources.graphicComponents.PanelRound();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -199,6 +204,12 @@ public class ConsultarFunc extends javax.swing.JPanel {
         lblNomeConsultar.setForeground(new java.awt.Color(255, 255, 255));
         lblNomeConsultar.setText("Insira o nome do Funcionário");
         lblNomeConsultar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        txtNomeConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeConsultarKeyReleased(evt);
+            }
+        });
 
         tblFunc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,22 +295,20 @@ public class ConsultarFunc extends javax.swing.JPanel {
         panelConsultarLayout.setHorizontalGroup(
             panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelConsultarLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConsultarLayout.createSequentialGroup()
-                        .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomeConsultar)
-                            .addComponent(lblNomeConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNomeConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(lblImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                        .addComponent(btnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scrollPane))
@@ -308,28 +317,23 @@ public class ConsultarFunc extends javax.swing.JPanel {
         panelConsultarLayout.setVerticalGroup(
             panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelConsultarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(37, 37, 37)
                 .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelConsultarLayout.createSequentialGroup()
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelConsultarLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
-                        .addComponent(lblNomeConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNomeConsultar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNomeConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addGap(30, 30, 30))
         );
 
         tabbedPane.addTab("Consultar", panelConsultar);
@@ -376,6 +380,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
         lblTelefone.setText("Telefone");
 
         comboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Cargo" }));
+        comboBoxCargo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblCargo.setForeground(new java.awt.Color(255, 255, 255));
         lblCargo.setText("Cargo");
@@ -486,7 +491,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(tabbedPane)
                 .addGap(25, 25, 25))
         );
 
@@ -600,10 +605,24 @@ public class ConsultarFunc extends javax.swing.JPanel {
         int selectedRow = tblFunc.getSelectedRow();
         if (selectedRow != -1) {
             int id = (int) tblFunc.getValueAt(selectedRow, 0);
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("id_func", id);
+            try {
+                Utilitaries.imprimirRelatorio(parameters, "funcionario.jrxml");
+            } catch (JRException ex) {
+                Logger.getLogger(ConsultarFunc.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultarFunc.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro para imprimir o relatório", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRelatorioActionPerformed
+
+    private void txtNomeConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultarKeyReleased
+        String nome = txtNomeConsultar.getText();
+        listarFuncionarios(2, nome);
+    }//GEN-LAST:event_txtNomeConsultarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -619,7 +638,6 @@ public class ConsultarFunc extends javax.swing.JPanel {
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblImg;
     private javax.swing.JLabel lblNasc;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNomeConsultar;

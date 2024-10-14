@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import resources.utilitaries.Utilitaries;
 
 /**
  *
@@ -16,6 +17,7 @@ public class CadastrarCargo extends javax.swing.JPanel {
 
     public CadastrarCargo() {
         initComponents();
+        styleComponents();
     }
     
     // método para estilizar componentes
@@ -26,6 +28,12 @@ public class CadastrarCargo extends javax.swing.JPanel {
         btnCadastrar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnCadastrar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
         btnCadastrar.setFocusPainted(false);
+    }
+    
+    // método para limpar campos
+    private void limparCampos() {
+        Utilitaries.limparCampos(panelRound1);
+        txtDesc.setText(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +51,7 @@ public class CadastrarCargo extends javax.swing.JPanel {
         btnCadastrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextArea();
+        btnLimpar = new javax.swing.JButton();
 
         panelRound2.setBackground(new java.awt.Color(30, 64, 92));
         panelRound2.setRoundBottomLeft(20);
@@ -88,6 +97,8 @@ public class CadastrarCargo extends javax.swing.JPanel {
         lblSalario.setText("Salário do Cargo");
 
         btnCadastrar.setText("Cadastrar Cargo");
+        btnCadastrar.setBorderPainted(false);
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -97,6 +108,15 @@ public class CadastrarCargo extends javax.swing.JPanel {
         txtDesc.setColumns(20);
         txtDesc.setRows(5);
         jScrollPane1.setViewportView(txtDesc);
+
+        btnLimpar.setText("Limpar");
+        btnLimpar.setBorderPainted(false);
+        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -110,12 +130,15 @@ public class CadastrarCargo extends javax.swing.JPanel {
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtSalario)
                             .addComponent(lblSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRound1Layout.createSequentialGroup()
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpar)))
                 .addGap(25, 25, 25))
         );
         panelRound1Layout.setVerticalGroup(
@@ -134,7 +157,9 @@ public class CadastrarCargo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCadastrar)
+                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnLimpar))
                 .addGap(25, 25, 25))
         );
 
@@ -167,15 +192,21 @@ public class CadastrarCargo extends javax.swing.JPanel {
             
             try {
                 CargoController.cadastrarCargo(nome, desc, salario);
+                limparCampos();
             } catch (SQLException ex) {
                 Logger.getLogger(CadastrarCargo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnLimparActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblNome;

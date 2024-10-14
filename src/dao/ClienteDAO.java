@@ -1,9 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -14,11 +11,11 @@ import model.Cliente;
  * @author ferreiraluizga
  */
 public class ClienteDAO {
-
+    
     // método que cadastra cliente no banco de dados
-    public static void cadastrarCliente(Cliente cliente) throws SQLException {
+    public static int cadastrarCliente(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO cliente (Nome_Cli, Ativo_Clube) VALUES (?, ?)";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, cliente.getNome_cli());
             stmt.setInt(2, cliente.getAtivo_clube());
             stmt.execute();
@@ -26,12 +23,14 @@ public class ClienteDAO {
                 if (generatedKeys.next()) {
                     int id_cli = generatedKeys.getInt(1);
                     cadastrarTelefone(id_cli, cliente.getTelefone());
+                    return id_cli;
                 }
             }
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + e.getMessage());
         }
+        return 0;
     }
 
     private static void cadastrarTelefone(int cod_cli, String telefone) throws SQLException {

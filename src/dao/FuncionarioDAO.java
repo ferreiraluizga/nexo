@@ -88,7 +88,7 @@ public class FuncionarioDAO {
         String sql = "SELECT * FROM funcionario INNER JOIN cargo ON funcionario.Cod_Cargo = cargo.Cod_Cargo "
                 + "WHERE Nome_Func like ? ORDER BY Nome_Func";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Funcionario func = new Funcionario();
@@ -242,6 +242,8 @@ public class FuncionarioDAO {
                 func.setNome_Func(rs.getString("Nome_Func"));
                 func.setCargo(cargo);
                 func.setEmail_Func(rs.getString("Email_Func"));
+                func.setSenha_Func(rs.getString("Senha_Func"));
+                func.setTelefone(primeiroTelefone(rs.getInt("Cod_Func")));
             }
             return func;
         } catch (SQLException e) {

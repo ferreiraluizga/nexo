@@ -91,7 +91,7 @@ public class ProdutoDAO {
                 + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria "
                 + "WHERE Nome_Prod like ? ORDER BY Nome_Prod";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                 Produto produto = new Produto();
@@ -128,6 +128,53 @@ public class ProdutoDAO {
         }
 
         return produtos;
+    }
+    
+    // método que busca um produto pelo nome no banco de dados
+    public static Produto buscarPorId(int id) throws SQLException {
+        Produto prod = new Produto();
+
+        String sql = "SELECT * FROM produto "
+                + "INNER JOIN fornecedor ON produto.Cod_Forn = fornecedor.Cod_Forn "
+                + "INNER JOIN marca ON produto.Cod_Marca = marca.Cod_Marca "
+                + "INNER JOIN categoria_produto ON produto.Cod_Categoria = categoria_produto.Cod_Categoria "
+                + "WHERE Cod_Prod = ?";
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                Fornecedor fornecedor = new Fornecedor();
+                Marca marca = new Marca();
+                CategoriaProduto categoria = new CategoriaProduto();
+                
+                fornecedor.setCod_forn(rs.getInt("Cod_Forn"));
+                fornecedor.setNome_fantasia(rs.getString("Nome_Fantasia"));
+                fornecedor.setCnpj_forn(rs.getString("CNPJ_Forn"));
+                fornecedor.setFone_forn(rs.getString("Fone_Forn"));
+                fornecedor.setEmail_forn(rs.getString("Email_Forn"));
+                fornecedor.setNome_resp(rs.getString("Nome_Resp"));
+                
+                marca.setCod_marca(rs.getInt("Cod_Marca"));
+                marca.setNome_marca(rs.getString("Nome_Marca"));
+                
+                categoria.setCod_categoria(rs.getInt("Cod_Categoria"));
+                categoria.setNome_categoria(rs.getString("Nome_Categoria"));
+                categoria.setDesc_categoria(rs.getString("Desc_Categoria"));
+                
+                prod.setCod_Produto(rs.getInt("Cod_Prod"));
+                prod.setNome_Prod(rs.getString("Nome_Prod"));
+                prod.setPreco_Prod(rs.getFloat("Preco_Prod"));
+                prod.setQuant_Estoque(rs.getInt("Quant_Estoque"));
+                prod.setFornecedor(fornecedor);
+                prod.setMarca(marca);
+                prod.setCategoria(categoria);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return prod;
     }
 
     // método público que edita produtos cadastrados no banco de dados

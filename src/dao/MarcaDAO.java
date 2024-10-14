@@ -50,7 +50,7 @@ public class MarcaDAO {
  
         String sql = "SELECT * FROM marca WHERE Nome_Marca like ? ORDER BY Nome_Marca";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                 Marca marca = new Marca();

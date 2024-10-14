@@ -15,6 +15,7 @@ import resources.utilitaries.Utilitaries;
  *
  * @author ferreiraluizga
  */
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -34,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         txtSenha.putClientProperty("JComponent.roundRect", true);
         btnEntrar.putClientProperty("JButton.buttonType", "roundRect");
         btnEntrar.putClientProperty(FlatClientProperties.OUTLINE, false);
-        btnEntrar.putClientProperty(FlatClientProperties.STYLE, "background: #6495ED; foreground: #FFFFFF; borderColor: null");
+        btnEntrar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF; borderColor: null");
         btnEntrar.setFocusPainted(false);
     }
 
@@ -154,6 +155,8 @@ public class Login extends javax.swing.JFrame {
                     func.setNome_Func(validacao.getNome_Func());
                     func.setCod_Func(validacao.getCod_Func());
                     func.setCargo(validacao.getCargo());
+                    func.setSenha_Func(validacao.getSenha_Func());
+                    func.setTelefone(validacao.getTelefone());
                     JOptionPane.showMessageDialog(null, "Seja bem-vindo(a)" + func.getNome_Func()
                                     + "\nE-mail: " + func.getEmail_Func()
                                     + "\nCódigo de Funcionário: " + func.getCod_Func()

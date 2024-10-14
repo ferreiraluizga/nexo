@@ -103,7 +103,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="tabbedPane" pref="470" max="32767" attributes="0"/>
+                  <Component id="tabbedPane" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -137,24 +137,22 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtNomeConsultar" max="32767" attributes="0"/>
-                                      <Component id="lblNomeConsultar" pref="653" max="32767" attributes="0"/>
+                                      <Component id="lblNomeConsultar" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnBuscar" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblImg" max="32767" attributes="0"/>
+                                  <Component id="btnBuscar" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btnDeletar" min="-2" pref="247" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnEditar" min="-2" pref="259" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnRelatorio" pref="191" max="32767" attributes="0"/>
+                                  <Component id="btnRelatorio" pref="184" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnRefresh" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
@@ -167,22 +165,18 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblImg" min="-2" pref="85" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="btnBuscar" min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblNomeConsultar" max="32767" attributes="0"/>
+                                  <Component id="lblNomeConsultar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtNomeConsultar" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="btnBuscar" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="scrollPane" min="-2" pref="255" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="scrollPane" pref="283" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="btnDeletar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -191,7 +185,7 @@
                               </Group>
                               <Component id="btnRefresh" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -207,6 +201,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtNomeConsultar">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNomeConsultarKeyReleased"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="scrollPane">
                   <AuxValues>
@@ -343,8 +340,6 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRelatorioActionPerformed"/>
                   </Events>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblImg">
                 </Component>
               </SubComponents>
             </Container>
@@ -563,6 +558,9 @@
                       <StringArray count="1">
                         <StringItem index="0" value="Selecione um Cargo"/>
                       </StringArray>
+                    </Property>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
                   <AuxValues>

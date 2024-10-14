@@ -58,7 +58,7 @@ public class FornecedorDAO {
  
         String sql = "SELECT * FROM fornecedor WHERE Nome_Fantasia like ? ORDER BY Nome_Fantasia";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Fornecedor fornecedor = new Fornecedor();

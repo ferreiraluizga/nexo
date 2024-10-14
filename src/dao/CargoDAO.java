@@ -54,7 +54,7 @@ public class CargoDAO {
         
         String sql = "SELECT * FROM cargo WHERE Nome_Cargo like ? ORDER BY Nome_Cargo";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, nome + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                 Cargo cargo = new Cargo();

@@ -20,6 +20,7 @@ import resources.utilitaries.Utilitaries;
  *
  * @author ferreiraluizga
  */
+
 public class CadastrarFunc extends javax.swing.JPanel {
 
     public CadastrarFunc() {
@@ -51,13 +52,21 @@ public class CadastrarFunc extends javax.swing.JPanel {
         try {
             cargos = CargoController.listarCargo();
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultarCargo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarFunc.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (Cargo cargo : cargos) {
             String temp = cargo.getCod_cargo() + " - " + cargo.getNome_cargo();
             comboBoxCargo.addItem(temp);
         }
     }
+    
+    // método para limpar campos
+    private void limparCampos() {
+        Utilitaries.limparCampos(panelRound1);
+        txtDominio.setText("@nexo.com.br");
+        comboBoxCargo.setSelectedIndex(0);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -81,6 +90,7 @@ public class CadastrarFunc extends javax.swing.JPanel {
         txtNasc = new javax.swing.JFormattedTextField();
         lblImg = new javax.swing.JLabel();
         txtDominio = new javax.swing.JTextField();
+        btnLimpar = new javax.swing.JButton();
         panelRound2 = new resources.graphicComponents.PanelRound();
         lblTitulo = new javax.swing.JLabel();
 
@@ -110,9 +120,11 @@ public class CadastrarFunc extends javax.swing.JPanel {
         lblSenha.setText("Senha");
 
         comboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Cargo" }));
+        comboBoxCargo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnImg.setText("Selecionar Imagem");
         btnImg.setBorderPainted(false);
+        btnImg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImg.setFocusPainted(false);
         btnImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +147,15 @@ public class CadastrarFunc extends javax.swing.JPanel {
 
         txtDominio.setText("@nexo.com.br");
         txtDominio.setEnabled(false);
+
+        btnLimpar.setText("Limpar");
+        btnLimpar.setBorderPainted(false);
+        btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -171,14 +192,20 @@ public class CadastrarFunc extends javax.swing.JPanel {
                             .addComponent(lblImg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtSenha)
                             .addGroup(panelRound1Layout.createSequentialGroup()
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(txtDominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
+                                        .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLimpar))
+                                    .addGroup(panelRound1Layout.createSequentialGroup()
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(txtDominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(25, 25, 25))
         );
         panelRound1Layout.setVerticalGroup(
@@ -220,7 +247,8 @@ public class CadastrarFunc extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImg)
-                    .addComponent(btnCadastrar))
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnLimpar))
                 .addGap(25, 25, 25))
         );
 
@@ -274,19 +302,20 @@ public class CadastrarFunc extends javax.swing.JPanel {
         int cod_cargo;
         LocalDate nasc;
         
-        if (txtNome.getText().isEmpty() || txtNasc.getText() == "__/__/____" || txtCpf.getText() == "___.___.___-__" || txtTelefone.getText() == "(__) _____-____" || txtEmail.getText().isEmpty()) {
+        if (txtNome.getText().isEmpty() || txtNasc.getText().equals("__/__/____") || txtCpf.getText().equals("___.___.___-__") || txtTelefone.getText().equals("(__) _____-____") || comboBoxCargo.getSelectedIndex() == 0 || txtEmail.getText().isEmpty() || txtSenha.getPassword().equals("")) {
             JOptionPane.showMessageDialog(panelRound1, "Preencha todos os campos para enviar", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             nome = txtNome.getText();
             nasc = Utilitaries.convertStringToDate(txtNasc.getText());
-            cpf = txtCpf.getText().replaceAll("[\\.\\s-]", "");
-            telefone = txtTelefone.getText().replaceAll("[()\\s-]", "");
+            cpf = txtCpf.getText().replaceAll("[^0-9]", "");
+            telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
             String cargoTemp = String.valueOf(comboBoxCargo.getSelectedItem()).replaceAll("\\D.*", "");
             cod_cargo = Integer.parseInt(cargoTemp);
             email = txtEmail.getText() + txtDominio.getText();
             senha = String.valueOf(txtSenha.getPassword());
             try {
                 FuncionarioController.cadastrarFuncionario(nome, nasc, cpf, cod_cargo, email, senha, telefone);
+                limparCampos();
             } catch (SQLException ex) {
                 Logger.getLogger(CadastrarFunc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -303,14 +332,19 @@ public class CadastrarFunc extends javax.swing.JPanel {
 
         if (load == fileChooser.APPROVE_OPTION) {
             f = fileChooser.getSelectedFile();
-            Utilitaries.setAltImage(lblImg, f);
+            Utilitaries.setFileImage(lblImg, f);
         }
     }//GEN-LAST:event_btnImgActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnLimparActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnImg;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JComboBox<String> comboBoxCargo;
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblCpf;

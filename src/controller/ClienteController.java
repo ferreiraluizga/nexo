@@ -13,9 +13,9 @@ import model.Cliente;
 public class ClienteController {
     
     // método para cadastrar cliente
-    public static void cadastrarCliente(String nome, int ativo_clube, String telefone) throws SQLException {
+    public static int cadastrarCliente(String nome, int ativo_clube, String telefone) throws SQLException {
         Cliente cliente = new Cliente(nome, ativo_clube, telefone);
-        ClienteDAO.cadastrarCliente(cliente);
+        return ClienteDAO.cadastrarCliente(cliente);
     }
     
     // método para listar clientes cadastrados

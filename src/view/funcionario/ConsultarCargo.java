@@ -17,6 +17,7 @@ import resources.utilitaries.Utilitaries;
  *
  * @author ferreiraluizga
  */
+
 public class ConsultarCargo extends javax.swing.JPanel {
 
     public ConsultarCargo() {
@@ -25,21 +26,21 @@ public class ConsultarCargo extends javax.swing.JPanel {
         listarCargos(1, null);
         styleComponents();
     }
-    
+
     // método para estilizar componentes usando a biblioteca FlatLaf
     private void styleComponents() {
         btnBuscar.putClientProperty(FlatClientProperties.STYLE, "background: null; foreground: #FFFFFF; border: null");
         btnBuscar.setFocusPainted(false);
         btnRefresh.putClientProperty(FlatClientProperties.STYLE, "background: null; foreground: #FFFFFF; border: null");
         btnRefresh.setFocusPainted(false);
-        
+
         btnDeletar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnDeletar.putClientProperty(FlatClientProperties.STYLE, "background: #DC3545; foreground: #FFFFFF");
         btnDeletar.setFocusPainted(false);
         btnEditar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnEditar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
         btnEditar.setFocusPainted(false);
-        
+
         btnAtualizar.putClientProperty("JButton.buttonType", "roundRect");
         btnAtualizar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnAtualizar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
@@ -48,8 +49,8 @@ public class ConsultarCargo extends javax.swing.JPanel {
         btnCancelar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnCancelar.putClientProperty(FlatClientProperties.STYLE, "background: #DC3545; foreground: #FFFFFF");
         btnCancelar.setFocusPainted(false);
-        
-        txtNomeConsultar.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome do cliente");
+
+        txtNomeConsultar.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome do cargo");
     }
 
     // método para listar clientes cadastrados ao iniciar a tela
@@ -70,10 +71,11 @@ public class ConsultarCargo extends javax.swing.JPanel {
                 } catch (SQLException ex) {
                     Logger.getLogger(ConsultarCargo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                break;
             default:
                 throw new AssertionError();
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) tblCargo.getModel();
         model.setRowCount(0);
         int columnSize[] = {10, 100, 200, 50};
@@ -88,7 +90,6 @@ public class ConsultarCargo extends javax.swing.JPanel {
             row[3] = cargo.getSalario_cargo();
             model.addRow(row);
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -164,6 +165,12 @@ public class ConsultarCargo extends javax.swing.JPanel {
 
         lblNomeConsultar.setForeground(new java.awt.Color(255, 255, 255));
         lblNomeConsultar.setText("Insira o nome do Cargo");
+
+        txtNomeConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeConsultarKeyReleased(evt);
+            }
+        });
 
         tblCargo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -489,6 +496,11 @@ public class ConsultarCargo extends javax.swing.JPanel {
             Logger.getLogger(ConsultarCargo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void txtNomeConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultarKeyReleased
+        String nome = txtNomeConsultar.getText();
+        listarCargos(2, nome);
+    }//GEN-LAST:event_txtNomeConsultarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
