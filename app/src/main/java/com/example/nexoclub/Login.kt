@@ -66,22 +66,14 @@ fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navC
                 .padding(vertical = 75.dp, horizontal = 28.dp)
                 .fillMaxHeight()
         ) {
+            Spacer(modifier = Modifier.height(24.dp))
+            
             Image(
                 painter = painterResource(R.drawable.nexo_logo),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .size(85.dp)
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Texto "Fazer Login"
-            Text(
-                text = "Fazer Login",
-                fontSize = 38.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -153,6 +145,8 @@ fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navC
                     .fillMaxWidth()
                     .clickable { navController.navigate("CriarConta") }
             )
+
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
