@@ -498,11 +498,12 @@ public class ConsultarForn extends javax.swing.JPanel {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         int id_forn = Integer.parseInt(txtId.getText());
         String nome_fantasia = txtNomeFantasia.getText();
+        String cnpj = txtCnpj.getText().replaceAll("[^0-9]", "");
         String nome_responsavel = txtNomeResp.getText();
-        String telefone = txtTelefone.getText();
+        String telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
         String email = txtEmail.getText();
         try {
-            FornecedorController.editarFornecedor(id_forn, nome_fantasia, telefone, telefone, email, nome_responsavel);
+            FornecedorController.editarFornecedor(id_forn, nome_fantasia, cnpj, telefone, email, nome_responsavel);
             tabbedPane.setEnabledAt(1, false);
             tabbedPane.setSelectedIndex(0);
             listarFornecedores(1, null);

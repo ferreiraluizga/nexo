@@ -23,10 +23,10 @@ public class ClienteDAO {
                 if (generatedKeys.next()) {
                     int id_cli = generatedKeys.getInt(1);
                     cadastrarTelefone(id_cli, cliente.getTelefone());
+                    JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
                     return id_cli;
                 }
             }
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + e.getMessage());
         }
@@ -93,6 +93,7 @@ public class ClienteDAO {
                     cliente.setCod_cli(rs.getInt("Cod_Cli"));
                     cliente.setNome_cli(rs.getString("Nome_Cli"));
                     cliente.setAtivo_clube(rs.getInt("Ativo_Clube"));
+                    cliente.setTelefone(primeiroTelefone(rs.getInt("Cod_Cli")));
                     clientes.add(cliente);
                 }
             }
@@ -101,6 +102,28 @@ public class ClienteDAO {
         }
 
         return clientes;
+    }
+    
+    // método que busca um cliente pelo nome no banco de dados
+    public static Cliente buscarPorId(int id) throws SQLException {
+        Cliente cliente = new Cliente();
+
+        String sql = "SELECT * FROM cliente WHERE Cod_Cli = ?";
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    cliente.setCod_cli(rs.getInt("Cod_Cli"));
+                    cliente.setNome_cli(rs.getString("Nome_Cli"));
+                    cliente.setAtivo_clube(rs.getInt("Ativo_Clube"));
+                    cliente.setTelefone(primeiroTelefone(rs.getInt("Cod_Cli")));
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar cliente: " + e.getMessage());
+        }
+
+        return cliente;
     }
 
     // método que edita clientes cadastrados no banco de dados
@@ -150,6 +173,19 @@ public class ClienteDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar telefone: " + e.getMessage());
         }
+    }
+    
+    public static boolean verificarClienteNoClube(int id) throws SQLException {
+        String sql = "SELECT * FROM cliente INNER JOIN clube_fidelidade ON cliente.Cod_Cli = clube_fidelidade.Cod_Cli WHERE cliente.Cod_Cli = ?";       
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar cliente: " + e.getMessage());
+        }       
+        return false;
     }
 
 }

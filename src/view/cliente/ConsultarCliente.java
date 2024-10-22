@@ -33,8 +33,6 @@ public class ConsultarCliente extends javax.swing.JPanel {
         Utilitaries.formatarCampo(txtCpf, "###.###.###-##");
     }
 
-    private int opcao_clube;
-
     // método para estilizar componentes
     private void styleComponents() {
         btnBuscar.putClientProperty(FlatClientProperties.STYLE, "background: null; foreground: #FFFFFF; border: null");
@@ -566,13 +564,14 @@ public class ConsultarCliente extends javax.swing.JPanel {
 
             int option = JOptionPane.showOptionDialog(
                     null,
-                    "Opções de Deleção:",
+                    "Selecione uma operação de remoção:",
                     "Deletar",
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     options,
-                    options[2]);
+                    null);
+
             if (option == 0) {
                 int status = JOptionPane.showConfirmDialog(null, "Deseja deletar o cliente?", "Deletar", JOptionPane.YES_NO_OPTION);
                 if (status == JOptionPane.YES_OPTION) {
@@ -605,12 +604,19 @@ public class ConsultarCliente extends javax.swing.JPanel {
             tabbedPane.setEnabledAt(1, true);
             tabbedPane.setSelectedIndex(1);
             int id = (int) tblCliente.getValueAt(selectedRow, 0);
+            String ativo_clube = (String) tblCliente.getValueAt(selectedRow, 3);
             try {
-                ClubeFidelidade cliente = ClubeFidelidadeController.buscarClubePorId(id);
-                txtId.setText(String.valueOf(cliente.getCliente().getCod_cli()));
-                txtNome.setText(cliente.getCliente().getNome_cli());
-                txtTelefone.setText(cliente.getCliente().getTelefone());
-                if (cliente.getCliente().getAtivo_clube() == 1) {
+                if (ativo_clube.equals("Não")) {
+                    Cliente cliente = ClienteController.buscarPorId(id);
+                    txtId.setText(String.valueOf(id));
+                    txtNome.setText(cliente.getNome_cli());
+                    txtTelefone.setText(cliente.getTelefone());
+                    comboBoxClube.setSelectedIndex(0);
+                } else {
+                    ClubeFidelidade cliente = ClubeFidelidadeController.buscarClubePorId(id);
+                    txtId.setText(String.valueOf(cliente.getCliente().getCod_cli()));
+                    txtNome.setText(cliente.getCliente().getNome_cli());
+                    txtTelefone.setText(cliente.getCliente().getTelefone());
                     comboBoxClube.setSelectedIndex(1);
                     lblCpf.setVisible(true);
                     lblCpf.setVisible(true);
@@ -618,14 +624,6 @@ public class ConsultarCliente extends javax.swing.JPanel {
                     lblCpf.setVisible(true);
                     txtCpf.setText(cliente.getCpf());
                     txtEmail.setText(cliente.getEmail());
-                    opcao_clube = 1;
-                } else {
-                    comboBoxClube.setSelectedIndex(0);
-                    lblCpf.setVisible(false);
-                    lblCpf.setVisible(false);
-                    lblCpf.setVisible(false);
-                    lblCpf.setVisible(false);
-                    opcao_clube = 0;
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -643,6 +641,14 @@ public class ConsultarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        boolean clienteAtivo = false;
+
+        try {
+            clienteAtivo = ClienteController.verificarClienteNoClube(Integer.parseInt(txtId.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         int id_cliente = Integer.parseInt(txtId.getText());
         String nome = txtNome.getText();
         String telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
@@ -651,14 +657,20 @@ public class ConsultarCliente extends javax.swing.JPanel {
         String email = txtEmail.getText();
 
         try {
-            ClienteController.editarCliente(id_cliente, nome, ativo_clube, telefone);
-            if (opcao_clube == 0) {
-                if (comboBoxClube.getSelectedIndex() == 1) {
+            if (comboBoxClube.getSelectedIndex() == 1) {
+                if (clienteAtivo == true) {
+                    ClienteController.editarCliente(id_cliente, nome, ativo_clube, telefone);
+                    ClubeFidelidadeController.editarClubeFidelidade(id_cliente, cpf, email);
+                } else {
+                    ClienteController.editarCliente(id_cliente, nome, ativo_clube, telefone);
                     ClubeFidelidadeController.cadastrarClubeFidelidade(id_cliente, cpf, email);
                 }
             } else {
-                if (comboBoxClube.getSelectedIndex() == 1) {
-                    ClubeFidelidadeController.editarClubeFidelidade(id_cliente, cpf, email);
+                if (clienteAtivo == true) {
+                    ClubeFidelidadeController.deletarClubeFidelidade(id_cliente);
+                    ClienteController.editarCliente(id_cliente, nome, ativo_clube, telefone);
+                } else {
+                    ClienteController.editarCliente(id_cliente, nome, ativo_clube, telefone);
                 }
             }
         } catch (SQLException ex) {
@@ -702,20 +714,30 @@ public class ConsultarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_comboBoxFiltroActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        int selectedRow = tblCliente.getSelectedRow();
-        if (selectedRow != -1) {
-            int id = (int) tblCliente.getValueAt(selectedRow, 0);
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("id_func", id);
+        Object[] options = {"Relatório de Clientes", "Relatório do NEXOClub", "Cancelar"};
+
+        int option = JOptionPane.showOptionDialog(
+                null,
+                "Qual relatório você deseja imprimir?",
+                "Relatórios",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                null);
+
+        if (option == 0) {
             try {
-                Utilitaries.imprimirRelatorio(parameters, "funcionario.jrxml");
-            } catch (JRException ex) {
-                Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+                Utilitaries.imprimirRelatorio(null, "cliente.jrxml", false, 0);
+            } catch (JRException | SQLException ex) {
                 Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um registro para imprimir o relatório", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (option == 1) {
+            try {
+                Utilitaries.imprimirRelatorio(null, "nexoclub.jrxml", false, 0);
+            } catch (JRException | SQLException ex) {
+                Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 

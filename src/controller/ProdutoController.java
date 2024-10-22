@@ -46,4 +46,12 @@ public class ProdutoController {
     public static void deletarProduto(int cod_prod) throws SQLException {
         ProdutoDAO.deletarProduto(cod_prod);
     }
+    
+    // método para atualizar estoque após compra efetuada
+    public static void atualizarQuantidadeProduto(int cod_prod, int quant_prod) throws SQLException {
+        Produto prod = new Produto();
+        prod.setCod_Produto(cod_prod);
+        prod.setQuant_Estoque(quant_prod);
+        ProdutoDAO.atualizarQuantidadeProduto(prod);
+    }
 }

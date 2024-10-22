@@ -3,10 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/N%20E%20X%20O/nexo_desktopApp/src/view/cliente/Cadastrar.java</file>
-            <file>file:/D:/N%20E%20X%20O/nexo_desktopApp/src/view/cliente/CadastrarCliente.java</file>
-            <file>file:/D:/N%20E%20X%20O/nexo_desktopApp/src/view/produto/CadastrarCategoria.java</file>
-            <file>file:/D:/N%20E%20X%20O/nexo_desktopApp/src/model/ClubeFidelidade.java</file>
+            <file>file:/D:/N%20E%20X%20O/nexo_desktopApp/src/dao/CategoriaProdutoDAO.java</file>
         </group>
     </open-files>
 </project-private>

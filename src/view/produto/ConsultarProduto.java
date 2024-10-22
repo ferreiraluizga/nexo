@@ -626,9 +626,8 @@ public class ConsultarProduto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        int selectedRow = tblProd.getSelectedRow();
         try {
-            Utilitaries.imprimirRelatorio(null, "produto.jrxml");
+            Utilitaries.imprimirRelatorio(null, "produto.jrxml", false, 0);
         } catch (JRException ex) {
             Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

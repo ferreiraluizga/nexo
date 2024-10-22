@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.Cliente;
 import resources.utilitaries.Utilitaries;
 
 /**
@@ -40,7 +39,12 @@ public class CadastrarCliente extends javax.swing.JPanel {
     // método para limpar campos
     private void limparCampos() {
         Utilitaries.limparCampos(panelRound1);
+        lblCpf.setVisible(false);
+        txtCpf.setVisible(false);
+        lblEmail.setVisible(false);
+        txtEmail.setVisible(false);
         comboBoxClube.setSelectedIndex(0);
+        txtNome.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -230,10 +234,10 @@ public class CadastrarCliente extends javax.swing.JPanel {
                 cpf = txtCpf.getText().replaceAll("[^0-9]", "");
                 email = txtEmail.getText();
                 
-                Cliente cliente = new Cliente(nome, ativo_clube, telefone);
                 try {
                     int cod_cli = ClienteController.cadastrarCliente(nome, ativo_clube, telefone);
                     ClubeFidelidadeController.cadastrarClubeFidelidade(cod_cli, cpf, email);
+                    limparCampos();
                 } catch (SQLException ex) {
                     Logger.getLogger(CadastrarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -608,7 +608,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("id_func", id);
             try {
-                Utilitaries.imprimirRelatorio(parameters, "funcionario.jrxml");
+                Utilitaries.imprimirRelatorio(parameters, "funcionario.jrxml", false, 0);
             } catch (JRException ex) {
                 Logger.getLogger(ConsultarFunc.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

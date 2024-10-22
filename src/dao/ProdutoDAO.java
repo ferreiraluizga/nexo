@@ -206,5 +206,18 @@ public class ProdutoDAO {
             JOptionPane.showMessageDialog(null, "Erro ao deletar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    // método para atualizar quantidade do produto após compra efetuada
+    public static void atualizarQuantidadeProduto(Produto produto) throws SQLException {
+        String sql = "UPDATE produto SET Quant_Estoque = Quant_Estoque - ? WHERE Cod_Prod = ?";
+        
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, produto.getQuant_Estoque());
+            stmt.setInt(2, produto.getCod_Produto());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar estoque: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 }

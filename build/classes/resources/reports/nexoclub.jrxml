@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cliente" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="43f7e92e-bfc3-4b74-898a-48216aff2142">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL-NEXODatabase"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select * from cliente 
+left join clube_fidelidade on cliente.Cod_Cli = clube_fidelidade.Cod_Cli
+left join fone_cli on cliente.Cod_Cli = fone_cli.Cod_Cli
+where cliente.Ativo_Clube = 1
+limit 1]]>
+	</queryString>
+	<field name="Cod_Cli" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Cli"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Cli"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Nome_Cli" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nome_Cli"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nome_Cli"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Ativo_Clube" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Ativo_Clube"/>
+		<property name="com.jaspersoft.studio.field.label" value="Ativo_Clube"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="COLUMN_4" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Cli"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Cli"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clube_fidelidade"/>
+	</field>
+	<field name="CPF_Clube" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CPF_Clube"/>
+		<property name="com.jaspersoft.studio.field.label" value="CPF_Clube"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clube_fidelidade"/>
+	</field>
+	<field name="Email_Clube" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Email_Clube"/>
+		<property name="com.jaspersoft.studio.field.label" value="Email_Clube"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clube_fidelidade"/>
+	</field>
+	<field name="COLUMN_7" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cod_Cli"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cod_Cli"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fone_cli"/>
+	</field>
+	<field name="Fone_Cli" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Fone_Cli"/>
+		<property name="com.jaspersoft.studio.field.label" value="Fone_Cli"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fone_cli"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="0" width="595" height="100" backcolor="#235C87" uuid="972ca76f-00e7-47d3-9fd0-62e89d7ba4e9"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy | HH:mm">
+				<reportElement x="0" y="50" width="320" height="20" forecolor="#FFFFFF" uuid="c2f0a773-d47a-4cc4-ab31-a9852e6b1522"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="320" height="30" forecolor="#FFFFFF" uuid="00bc5c0b-65dd-43bf-b517-4db01646591a"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório do NEXOClub]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="410" y="20" width="135" height="50" uuid="8951729e-4175-40fd-b5e2-03ba2cb8dcdd"/>
+				<imageExpression><![CDATA["src/resources/img/white_logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="170" y="2" width="100" height="30" uuid="fb79f182-2583-43b6-a034-f04469ce9a74"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="270" y="2" width="100" height="30" uuid="35b9bc03-9547-4c24-965c-e6d1119c2c37"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="21" width="60" height="14" uuid="642c9e09-c945-450c-b0bb-d8015f3a03bf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="07a21996-3006-4c89-95a0-cda8f5a6a12b"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="21" width="127" height="14" uuid="8dad5896-c614-4f5d-a1a2-95447cc021d5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0347a4e3-3255-4b95-aeac-279ea32e29e7"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Completo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="21" width="92" height="14" uuid="09ac8671-f68a-4ba7-a2a7-92767c06211f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0ab8273-c9d4-4225-97a0-e43d1c918b3e"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="21" width="92" height="14" uuid="ac8b5917-1e1e-4274-95ec-b0e64386a628">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31d199a0-08a8-42d2-aa39-db31bc7b8fa4"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ativo no Clube?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="21" width="92" height="14" uuid="d6f0b6c4-7f32-46e2-b9aa-b3e169f8ea59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ffdf9d2-5a81-49dd-94d1-54572c4a5b7b"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="21" width="92" height="14" uuid="1910331c-ab6c-435e-ae02-20db5fee43ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03967702-f466-4bec-8f7c-a2a8f22ec00a"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-Mail]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="20" uuid="39000cd4-e7a0-4686-a14f-2cb00cad53c5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="07a21996-3006-4c89-95a0-cda8f5a6a12b"/>
+				</reportElement>
+				<box topPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Cod_Cli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="126" height="20" uuid="6abb33c0-5333-437f-8e4f-457cab5c542c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0347a4e3-3255-4b95-aeac-279ea32e29e7"/>
+				</reportElement>
+				<box topPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Nome_Cli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="0" width="92" height="20" uuid="15af6abe-1471-458d-a495-d0dc4d3ff3e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0ab8273-c9d4-4225-97a0-e43d1c918b3e"/>
+				</reportElement>
+				<box topPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Fone_Cli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="92" height="20" uuid="8e968369-213c-472e-95bc-e41c3b0a717f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31d199a0-08a8-42d2-aa39-db31bc7b8fa4"/>
+				</reportElement>
+				<box topPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Ativo_Clube} == 1 ? "Sim" : "Não"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="92" height="20" uuid="6a869fe8-f5b0-4314-b413-f04a8c49cc55">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ffdf9d2-5a81-49dd-94d1-54572c4a5b7b"/>
+				</reportElement>
+				<box topPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CPF_Clube}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="92" height="20" uuid="a00c50b7-b51f-4184-9281-1e886a45ce08">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03967702-f466-4bec-8f7c-a2a8f22ec00a"/>
+				</reportElement>
+				<box topPadding="4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Email_Clube}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

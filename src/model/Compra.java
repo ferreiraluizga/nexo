@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -11,12 +11,12 @@ public class Compra {
     private int cod_compra;  
     private Funcionario func;  
     private Cliente cliente;  
-    private Date data_compra;  
+    private LocalDate data_compra;  
     private FormaPag forma;  
     
     public Compra () {}
     
-    public Compra (Funcionario func, Cliente cliente, Date data_compra, FormaPag forma) {
+    public Compra (Funcionario func, Cliente cliente, LocalDate data_compra, FormaPag forma) {
         this.func = func;
         this.cliente = cliente;
         this.data_compra = data_compra;
@@ -47,11 +47,11 @@ public class Compra {
         this.cliente = cliente;
     }
 
-    public Date getData_Compra() {
+    public LocalDate getData_Compra() {
         return data_compra;
     }
 
-    public void setData_Compra(Date Data_Compra) {
+    public void setData_Compra(LocalDate Data_Compra) {
         this.data_compra = Data_Compra;
     }
 

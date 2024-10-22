@@ -13,7 +13,7 @@ public class ProdCompraDAO {
     
     // método para cadastrar produtos de uma compra que depende do cadastro de uma nova compra
     public static void cadastrarProdCompra(ProdCompra produtosCompra) throws SQLException {
-        String sql = "INSERT INTO prod_compra (Cod_Compra, Cod_Prod, quant_Prod) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO prod_compra (Cod_Compra, Cod_Prod, Quant_Prod) VALUES (?, ?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, produtosCompra.getCompra().getCod_Compra());
             stmt.setInt(2, produtosCompra.getProd().getCod_Produto());

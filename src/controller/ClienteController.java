@@ -28,6 +28,10 @@ public class ClienteController {
         return ClienteDAO.buscarPorNome(nome);
     }
     
+    public static Cliente buscarPorId(int id) throws SQLException {
+        return ClienteDAO.buscarPorId(id);
+    }
+    
     // método para editar dados de um cliente cadastrado
     public static void editarCliente(int cod_cli, String nome, int ativo_clube, String telefone) throws SQLException {
         Cliente cliente = new Cliente(nome, ativo_clube, telefone);
@@ -38,6 +42,10 @@ public class ClienteController {
     // método para deletar cliente cadastrado
     public static void deletarCliente(int cod_cli) throws SQLException {
         ClienteDAO.deletarCliente(cod_cli);
+    }
+    
+    public static boolean verificarClienteNoClube(int id) throws SQLException {
+        return ClienteDAO.verificarClienteNoClube(id);
     }
     
 }

@@ -36,7 +36,6 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/img/app_logo.png")));
         setExtendedState(MAXIMIZED_BOTH);
-        styleComponents();
         Utilitaries.setImage(lblDashboardLogo, "dashboard_logo.png");
     }
 
@@ -45,7 +44,6 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/img/app_logo.png")));
         setExtendedState(MAXIMIZED_BOTH);
-        styleComponents();
         lblUser.setText(func.getNome_Func());
         lblCargo.setText(func.getCargo().getNome_cargo());
         Timer timer = new Timer(1000, new ActionListener() {
@@ -57,16 +55,7 @@ public class Dashboard extends javax.swing.JFrame {
         timer.start();
         definirFuncionalidade(func.getCargo().getNome_cargo());
         Utilitaries.setImage(lblDashboardLogo, "dashboard_logo.png");
-    }
-
-    private void styleSidebarComponents(JButton button) {
-        button.putClientProperty(FlatClientProperties.OUTLINE, false);
-        button.putClientProperty(FlatClientProperties.STYLE,
-                "background: #00000000; "
-                + "foreground: #FFFFFF; "
-        );
-        button.setFocusPainted(false);
-        button.setHorizontalAlignment(SwingConstants.LEFT);
+        Utilitaries.updateBody(body, new CadastrarCompra(func), false);
     }
     
     // método para definir funcionalidades de acordo com o cargo
@@ -81,14 +70,6 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }
     
-    private void styleComponents() {
-        styleSidebarComponents(sidebarBtn1);
-        styleSidebarComponents(sidebarBtn2);
-        styleSidebarComponents(sidebarBtn3);
-        styleSidebarComponents(sidebarBtn4);
-        styleSidebarComponents(sidebarBtn5);
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,12 +79,6 @@ public class Dashboard extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblDateTime = new javax.swing.JLabel();
         lblCargo = new javax.swing.JLabel();
-        separator = new javax.swing.JSeparator();
-        sidebarBtn1 = new javax.swing.JButton();
-        sidebarBtn2 = new javax.swing.JButton();
-        sidebarBtn3 = new javax.swing.JButton();
-        sidebarBtn4 = new javax.swing.JButton();
-        sidebarBtn5 = new javax.swing.JButton();
         lblDashboardLogo = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
@@ -161,93 +136,6 @@ public class Dashboard extends javax.swing.JFrame {
         lblCargo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCargo.setText("Cargo");
 
-        separator.setForeground(new java.awt.Color(255, 255, 255));
-
-        sidebarBtn1.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        sidebarBtn1.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/products.svg")));
-        sidebarBtn1.setText("Cadastrar Compra");
-        sidebarBtn1.setBorderPainted(false);
-        sidebarBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        sidebarBtn1.setFocusable(false);
-        sidebarBtn1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sidebarBtn1.setIconTextGap(10);
-        sidebarBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sidebarBtn1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                sidebarBtn1MouseExited(evt);
-            }
-        });
-
-        sidebarBtn2.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        sidebarBtn2.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/products.svg")));
-        sidebarBtn2.setText("Cadastrar Cliente");
-        sidebarBtn2.setBorderPainted(false);
-        sidebarBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        sidebarBtn2.setFocusable(false);
-        sidebarBtn2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sidebarBtn2.setIconTextGap(10);
-        sidebarBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sidebarBtn2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                sidebarBtn2MouseExited(evt);
-            }
-        });
-
-        sidebarBtn3.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        sidebarBtn3.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/products.svg")));
-        sidebarBtn3.setText("Teste 1");
-        sidebarBtn3.setBorderPainted(false);
-        sidebarBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        sidebarBtn3.setFocusable(false);
-        sidebarBtn3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sidebarBtn3.setIconTextGap(10);
-        sidebarBtn3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sidebarBtn3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                sidebarBtn3MouseExited(evt);
-            }
-        });
-
-        sidebarBtn4.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        sidebarBtn4.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/products.svg")));
-        sidebarBtn4.setText("Teste 1");
-        sidebarBtn4.setBorderPainted(false);
-        sidebarBtn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        sidebarBtn4.setFocusable(false);
-        sidebarBtn4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sidebarBtn4.setIconTextGap(10);
-        sidebarBtn4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sidebarBtn4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                sidebarBtn4MouseExited(evt);
-            }
-        });
-
-        sidebarBtn5.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        sidebarBtn5.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/products.svg")));
-        sidebarBtn5.setText("Teste 1");
-        sidebarBtn5.setBorderPainted(false);
-        sidebarBtn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        sidebarBtn5.setFocusable(false);
-        sidebarBtn5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sidebarBtn5.setIconTextGap(10);
-        sidebarBtn5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sidebarBtn5MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                sidebarBtn5MouseExited(evt);
-            }
-        });
-
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -259,12 +147,6 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(sidebarBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(sidebarBtn5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(sidebarBtn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(sidebarBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(sidebarBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(separator, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(lblCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -285,19 +167,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCargo)
-                .addGap(24, 24, 24)
-                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sidebarBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(sidebarBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(sidebarBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(sidebarBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(sidebarBtn5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
                 .addComponent(lblDateTime)
                 .addGap(18, 18, 18))
         );
@@ -534,7 +404,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -551,11 +421,11 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCadastrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarCompraActionPerformed
-        Utilitaries.updateBody(body, new CadastrarCompra(), false);
+        Utilitaries.updateBody(body, new CadastrarCompra(func), false);
     }//GEN-LAST:event_menuCadastrarCompraActionPerformed
 
     private void menuConsultarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarCompraActionPerformed
-        Utilitaries.updateBody(body, new ConsultarCompra(), false);
+        Utilitaries.updateBody(body, new ConsultarCompra(), true);
     }//GEN-LAST:event_menuConsultarCompraActionPerformed
 
     private void menuCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarProdutoActionPerformed
@@ -633,76 +503,6 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuSairActionPerformed
 
-    private void sidebarBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn1MouseEntered
-        sidebarBtn1.putClientProperty(FlatClientProperties.STYLE,
-                "background: #224968; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn1MouseEntered
-
-    private void sidebarBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn1MouseExited
-        sidebarBtn1.putClientProperty(FlatClientProperties.STYLE,
-                "background: #00000000; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn1MouseExited
-
-    private void sidebarBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn2MouseEntered
-        sidebarBtn2.putClientProperty(FlatClientProperties.STYLE,
-                "background: #224968; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn2MouseEntered
-
-    private void sidebarBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn2MouseExited
-        sidebarBtn2.putClientProperty(FlatClientProperties.STYLE,
-                "background: #00000000; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn2MouseExited
-
-    private void sidebarBtn3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn3MouseEntered
-        sidebarBtn3.putClientProperty(FlatClientProperties.STYLE,
-                "background: #224968; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn3MouseEntered
-
-    private void sidebarBtn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn3MouseExited
-        sidebarBtn3.putClientProperty(FlatClientProperties.STYLE,
-                "background: #00000000; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn3MouseExited
-
-    private void sidebarBtn4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn4MouseEntered
-        sidebarBtn4.putClientProperty(FlatClientProperties.STYLE,
-                "background: #224968; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn4MouseEntered
-
-    private void sidebarBtn4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn4MouseExited
-        sidebarBtn4.putClientProperty(FlatClientProperties.STYLE,
-                "background: #00000000; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn4MouseExited
-
-    private void sidebarBtn5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn5MouseEntered
-        sidebarBtn5.putClientProperty(FlatClientProperties.STYLE,
-                "background: #224968; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn5MouseEntered
-
-    private void sidebarBtn5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarBtn5MouseExited
-        sidebarBtn5.putClientProperty(FlatClientProperties.STYLE,
-                "background: #00000000; "
-                + "foreground: #FFFFFF; "
-        );
-    }//GEN-LAST:event_sidebarBtn5MouseExited
-
     private void menuCadastrarFormaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarFormaActionPerformed
         Utilitaries.updateBody(body, new CadastrarForma(), true);
     }//GEN-LAST:event_menuCadastrarFormaActionPerformed
@@ -762,12 +562,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu menu_configuracoes;
     private javax.swing.JMenu menu_funcionarios;
     private javax.swing.JMenu menu_produtos;
-    private javax.swing.JSeparator separator;
     private resources.graphicComponents.GradientPanel sidebar;
-    private javax.swing.JButton sidebarBtn1;
-    private javax.swing.JButton sidebarBtn2;
-    private javax.swing.JButton sidebarBtn3;
-    private javax.swing.JButton sidebarBtn4;
-    private javax.swing.JButton sidebarBtn5;
     // End of variables declaration//GEN-END:variables
 }

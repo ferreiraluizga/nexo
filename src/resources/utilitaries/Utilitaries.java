@@ -134,14 +134,29 @@ public class Utilitaries {
         }
     }
 
-    public static void imprimirRelatorio(Map<String, Object> parameters, String report) throws JRException, SQLException {
+    public static void imprimirRelatorio(Map<String, Object> parameters, String report, boolean salvarPdf, int id_compra) throws JRException, SQLException {
         try (Connection conn = Connect.getConnection()) {
             String jrxmlFile = "src/resources/reports/" + report;
             String jasperFile = JasperCompileManager.compileReportToFile(jrxmlFile);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, parameters, conn);
             JasperViewer viewer = new JasperViewer(jasperPrint, false);
             viewer.setVisible(true);
-            //JasperExportManager.exportReportToPdfFile(jasperPrint, "src/connect/relatorio.pdf");
+            if (salvarPdf) {
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "src/resources/comprovantes/compra_" + id_compra + ".pdf");
+            }
+        }
+    }
+    
+    public static void abrirComprovanteCompra(int id_compra) {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File arquivoPDF = new File("src/resources/comprovantes/compra_" + id_compra + ".pdf");
+                if (arquivoPDF.exists()) {
+                    Desktop.getDesktop().open(arquivoPDF);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     

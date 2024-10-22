@@ -208,7 +208,7 @@ public class CadastrarForn extends javax.swing.JPanel {
             cnpj_forn = txtCnpj.getText().replaceAll("[^0-9]", "");
             email_forn = txtEmail.getText();
             nome_resp = txtNomeResp.getText();
-            fone_forn = txtTelefone.getText();
+            fone_forn = txtTelefone.getText().replaceAll("[^0-9]", "");
             try {
                 FornecedorController.cadastrarFornecedor(nome_fantasia, cnpj_forn, fone_forn, email_forn, nome_resp);
                 limparCampos();
