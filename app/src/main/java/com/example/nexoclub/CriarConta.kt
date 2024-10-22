@@ -85,6 +85,8 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                 .padding(vertical = 75.dp, horizontal = 28.dp)
                 .fillMaxHeight()
         ) {
+            Spacer(modifier = Modifier.height(24.dp))
+            
             Image(
                 painter = painterResource(R.drawable.nexo_logo),
                 contentDescription = null,
@@ -92,18 +94,7 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                     .fillMaxWidth()
                     .size(85.dp)
             )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Texto "Fazer Login"
-            Text(
-                text = "Cadastro",
-                fontSize = 38.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                modifier = Modifier.padding(bottom = 24.dp)
-            )
-
+            
             Spacer(modifier = Modifier.weight(1f))
 
             // input name
@@ -203,7 +194,7 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                     .padding(8.dp)
                     .height(55.dp)
             ) {
-                Text(text = "Entrar", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                Text(text = "Cadastrar", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
             }
 
             Text(
@@ -223,6 +214,8 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                     .fillMaxWidth()
                     .clickable { navController.navigate("Login") }
             )
+
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
