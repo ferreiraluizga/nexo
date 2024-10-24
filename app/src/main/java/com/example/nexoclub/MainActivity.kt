@@ -78,7 +78,8 @@ class MainActivity : ComponentActivity() {
                             CriarContaScreen(modifier = Modifier.padding(innerPadding), viewModel, navController)
                         }
                         // Tela principal com BottomNavigation
-                        composable(route = "Home") {
+                        composable(route = "Home/{id}") { backStackEntry ->
+                            val id = backStackEntry.arguments?.getString("id")?.toIntOrNull() ?: -1
                             val homeNavController = rememberNavController()
                             Scaffold(
                                 bottomBar = {
@@ -94,7 +95,7 @@ class MainActivity : ComponentActivity() {
                                         HomeScreen()
                                     }
                                     composable(BottomNavItem.Profile.route) {
-                                        ProfileScreen()
+                                        ProfileScreen(id_cli = id, viewModel)
                                     }
                                 }
                             }

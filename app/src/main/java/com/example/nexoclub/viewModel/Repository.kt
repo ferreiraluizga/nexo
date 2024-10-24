@@ -15,4 +15,8 @@ class Repository(private val db: ClienteDatabase) {
     suspend fun validarCliente(cpfEmail: String): Cliente? {
         return db.clienteDAO().validarCliente(cpfEmail)
     }
+
+    suspend fun buscarPorId(id_cli: Int): Cliente? {
+        return db.clienteDAO().buscarPorId(id_cli)
+    }
 }

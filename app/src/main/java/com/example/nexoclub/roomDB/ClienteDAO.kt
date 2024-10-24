@@ -15,5 +15,8 @@ interface ClienteDAO {
 
     @Query("SELECT * FROM Cliente WHERE cpfEmail = :cpfEmail LIMIT 1")
     suspend fun validarCliente(cpfEmail: String): Cliente?
+
+    @Query("SELECT * FROM Cliente WHERE id = :id_cli")
+    suspend fun buscarPorId(id_cli: Int): Cliente?
 }
 

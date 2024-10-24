@@ -106,8 +106,8 @@ fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navC
                     } else {
                         viewModel.validarCliente(cpfEmail) { cliente ->
                             if (cliente != null) {
-                                Toast.makeText(context, "Bem-vindo de volta " + cliente.nome, Toast.LENGTH_SHORT).show()
-                                navController.navigate("Home")
+                                Toast.makeText(context, "Bem-vindo(a) de volta " + cliente.nome, Toast.LENGTH_SHORT).show()
+                                navController.navigate("Home/${cliente.id}")
                             } else {
                                 Toast.makeText(context, "Cliente não encontrado", Toast.LENGTH_SHORT).show()
                             }
