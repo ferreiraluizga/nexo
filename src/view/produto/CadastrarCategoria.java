@@ -23,7 +23,6 @@ public class CadastrarCategoria extends javax.swing.JPanel {
     // método para estilizar componentes
     private void styleComponents() {
         txtNomeCategoria.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome da categoria");
-        txtDescCategoria.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite a descrição da categoria");
         btnCadastrar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnCadastrar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
         btnCadastrar.setFocusPainted(false);
@@ -32,6 +31,8 @@ public class CadastrarCategoria extends javax.swing.JPanel {
     // método para limpar campos
     private void limparCampos() {
         Utilitaries.limparCampos(panelRound1);
+        txtDescCategoria.setText(null);
+        txtNomeCategoria.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -105,6 +106,11 @@ public class CadastrarCategoria extends javax.swing.JPanel {
         btnLimpar.setText("Limpar");
         btnLimpar.setBorderPainted(false);
         btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -173,6 +179,10 @@ public class CadastrarCategoria extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnLimparActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

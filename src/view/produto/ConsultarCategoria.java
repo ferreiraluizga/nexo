@@ -3,7 +3,6 @@ package view.produto;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.CategoriaProdutoController;
-import controller.MarcaController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.CategoriaProduto;
-import model.Marca;
 import resources.utilitaries.Utilitaries;
 
 /**
@@ -421,13 +419,13 @@ public class ConsultarCategoria extends javax.swing.JPanel {
         int selectedRow = tblCategoria.getSelectedRow();
         if (selectedRow != -1) {
             int id_categoria = (int) tblCategoria.getValueAt(selectedRow, 0);
-            int status = JOptionPane.showConfirmDialog(null, "Deseja deletar a marca?", "Deletar", JOptionPane.YES_NO_OPTION);
+            int status = JOptionPane.showConfirmDialog(null, "Deseja deletar a categoria?", "Deletar", JOptionPane.YES_NO_OPTION);
             if (status == JOptionPane.YES_OPTION) {
                 try {
                     CategoriaProdutoController.deletarCategoria(id_categoria);
                     listarCategorias(1, null);
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro ao deletar marca: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Erro ao deletar categoria: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {

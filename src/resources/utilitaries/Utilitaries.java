@@ -3,7 +3,10 @@ package resources.utilitaries;
 import dao.Connect;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -14,8 +17,7 @@ import java.time.format.*;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.text.*;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.imageio.ImageIO;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -114,21 +116,76 @@ public class Utilitaries {
         BigInteger bigInt = new BigInteger(1, messageDigest);
         return String.format("%032x", bigInt);
     }
-    
-    public static void saveImageFromJLabel(JLabel label, String destinationPath) {
-        ImageIcon icon = (ImageIcon) label.getIcon();
-        if (icon != null) {
-            BufferedImage image = new BufferedImage(
-                icon.getIconWidth(),
-                icon.getIconHeight(),
-                BufferedImage.TYPE_INT_ARGB
-            );
-            image.getGraphics().drawImage(icon.getImage(), 0, 0, null);
-            File destinationFile = new File(destinationPath);
+
+    // método para apresentar imagens salvas no banco de dados
+    public static ImageIcon getImageFromDatabase(int id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ImageIcon imageIcon = null;
+
+        try {
+            conn = Connect.getConnection();
+            String sql = "SELECT Img_Func FROM img_func WHERE Cod_Func = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                byte[] imageBytes = rs.getBytes("Img_Func");
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+                BufferedImage bufferedImage = ImageIO.read(bis);
+                imageIcon = new ImageIcon(bufferedImage);
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                ImageIO.write(image, "png", destinationFile);
-                System.out.println("Imagem salva com sucesso!");
-            } catch (IOException e) {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return imageIcon;
+    }
+    
+    // método para salvar imagens no banco de dados
+    public static void saveImageIconToDatabase(int id, ImageIcon imageIcon) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ByteArrayOutputStream baos = null;
+
+        try {
+            BufferedImage bufferedImage = new BufferedImage(
+                imageIcon.getIconWidth(),
+                imageIcon.getIconHeight(),
+                BufferedImage.TYPE_INT_RGB
+            );
+            bufferedImage.getGraphics().drawImage(imageIcon.getImage(), 0, 0, null);
+            baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "jpg", baos);
+            byte[] imageBytes = baos.toByteArray();
+
+            conn = Connect.getConnection();
+
+            String sql = "UPDATE img_func SET Img_Func = ? WHERE Cod_Func = ?";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setBytes(1, imageBytes);
+            stmt.setInt(2, id);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (baos != null) baos.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -146,7 +203,7 @@ public class Utilitaries {
             }
         }
     }
-    
+
     public static void abrirComprovanteCompra(int id_compra) {
         if (Desktop.isDesktopSupported()) {
             try {
@@ -159,8 +216,8 @@ public class Utilitaries {
             }
         }
     }
-    
-    public static void updateBody(JPanel body,Component com, boolean isSmallPanel) {
+
+    public static void updateBody(JPanel body, Component com, boolean isSmallPanel) {
         body.removeAll();
         if (isSmallPanel) {
             JPanel wrapper = new JPanel(new GridBagLayout());
@@ -176,6 +233,16 @@ public class Utilitaries {
         body.invalidate();
         body.revalidate();
         body.repaint();
+    }
+
+    public static float formatarPreco(String preco) {
+        preco = preco.replace(",", ".");
+        float precoFloat = Float.parseFloat(preco);
+        return Math.round(precoFloat * 100.0f) / 100.0f;
+    }
+
+    public static String formatarPrecoParaTexto(float preco) {
+        return String.format("%.2f", preco).replace(".", ",");
     }
 
 }

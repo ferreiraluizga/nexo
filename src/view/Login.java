@@ -4,7 +4,10 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import controller.FuncionarioController;
 import java.awt.Toolkit;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import model.Funcionario;
@@ -145,29 +148,31 @@ public class Login extends javax.swing.JFrame {
         if (txtUser.getText().isEmpty() || String.valueOf(txtSenha.getPassword()).isEmpty()) {
             JOptionPane.showMessageDialog(null, "Insira usuário e senha para continuar", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
-            user = txtUser.getText();
-            senha = String.valueOf(txtSenha.getPassword());
             try {
-                Funcionario validacao = FuncionarioController.validarFunc(user, senha);
-                if (validacao.getNome_Func() != null) {
-                    Funcionario func = new Funcionario();
-                    func.setEmail_Func(validacao.getEmail_Func());
-                    func.setNome_Func(validacao.getNome_Func());
-                    func.setCod_Func(validacao.getCod_Func());
-                    func.setCargo(validacao.getCargo());
-                    func.setSenha_Func(validacao.getSenha_Func());
-                    func.setTelefone(validacao.getTelefone());
-                    JOptionPane.showMessageDialog(null, "Seja bem-vindo(a)" + func.getNome_Func()
-                                    + "\nE-mail: " + func.getEmail_Func()
-                                    + "\nCódigo de Funcionário: " + func.getCod_Func()
-                                    + "\nCargo: " + func.getCargo().getNome_cargo(), "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
-                    new Dashboard(func).setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuário ou Senha incorretos", "Acesso Negado", JOptionPane.ERROR_MESSAGE);
+                user = txtUser.getText();
+                String senhaTemp = String.valueOf(txtSenha.getPassword());
+                senha = Utilitaries.encryptString(senhaTemp);
+                try {
+                    Funcionario validacao = FuncionarioController.validarFunc(user, senha);
+                    if (validacao.getNome_Func() != null) {
+                        Funcionario func = new Funcionario();
+                        func.setEmail_Func(validacao.getEmail_Func());
+                        func.setNome_Func(validacao.getNome_Func());
+                        func.setCod_Func(validacao.getCod_Func());
+                        func.setCargo(validacao.getCargo());
+                        func.setSenha_Func(validacao.getSenha_Func());
+                        func.setTelefone(validacao.getTelefone());
+                        JOptionPane.showMessageDialog(null, "Seja bem-vindo(a) de volta " + func.getNome_Func(), "Bem-Vindo(a)", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                        new Dashboard(func).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuário ou Senha incorretos", "Acesso Negado", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + e.getMessage());
                 }
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + e.getMessage());
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE,null, ex);
             }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed

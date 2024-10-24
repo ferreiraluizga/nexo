@@ -24,7 +24,6 @@ public class CadastrarCargo extends javax.swing.JPanel {
     private void styleComponents() {
         txtNome.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome do cargo");
         txtSalario.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o salário do cargo");
-        txtDesc.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite a descrição do cargo");
         btnCadastrar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnCadastrar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
         btnCadastrar.setFocusPainted(false);
@@ -34,6 +33,7 @@ public class CadastrarCargo extends javax.swing.JPanel {
     private void limparCampos() {
         Utilitaries.limparCampos(panelRound1);
         txtDesc.setText(null);
+        txtNome.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -187,7 +187,7 @@ public class CadastrarCargo extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(panelRound1, "Preencha todos os campos para enviar", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             nome = txtNome.getText();
-            salario = Float.parseFloat(txtSalario.getText());
+            salario = Utilitaries.formatarPreco(txtSalario.getText());
             desc = txtDesc.getText();
             
             try {

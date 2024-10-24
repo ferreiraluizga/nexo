@@ -146,7 +146,7 @@ public class ConsultarProduto extends javax.swing.JPanel {
         }
         for (Marca marca : marcas) {
             String temp = marca.getCod_marca() + " - " + marca.getNome_marca();
-            comboBoxCategoria.addItem(temp);
+            comboBoxMarca.addItem(temp);
         }
     }
 
@@ -367,7 +367,7 @@ public class ConsultarProduto extends javax.swing.JPanel {
         lblNome.setText("Nome do Produto");
 
         lblPreco.setForeground(new java.awt.Color(255, 255, 255));
-        lblPreco.setText("Preço");
+        lblPreco.setText("Preço (XX,XX)");
 
         lblId.setForeground(new java.awt.Color(255, 255, 255));
         lblId.setText("Id");
@@ -577,7 +577,7 @@ public class ConsultarProduto extends javax.swing.JPanel {
 
             txtId.setText(String.valueOf(id));
             txtNome.setText(prod.getNome_Prod());
-            txtPreco.setText(String.valueOf(prod.getPreco_Prod()));
+            txtPreco.setText(Utilitaries.formatarPrecoParaTexto(prod.getPreco_Prod()));
             txtQuant.setValue(prod.getQuant_Estoque());
             comboBoxForn.setSelectedIndex(prod.getFornecedor().getCod_forn());
             comboBoxCategoria.setSelectedIndex(prod.getCategoria().getCod_categoria());
@@ -599,7 +599,7 @@ public class ConsultarProduto extends javax.swing.JPanel {
         Marca marca = new Marca();
         int id_prod = Integer.parseInt(txtId.getText());
         String nome = txtNome.getText();
-        float preco = Float.parseFloat(txtPreco.getText());
+        float preco = Utilitaries.formatarPreco(txtPreco.getText());
         int quant = (int) txtQuant.getValue();
         String fornTemp = String.valueOf(comboBoxForn.getSelectedItem()).replaceAll("\\D.*", "");
         String categoriaTemp = String.valueOf(comboBoxCategoria.getSelectedItem()).replaceAll("\\D.*", "");

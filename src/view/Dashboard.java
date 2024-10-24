@@ -1,14 +1,11 @@
 package view;
 
-import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import model.Funcionario;
@@ -56,6 +53,7 @@ public class Dashboard extends javax.swing.JFrame {
         definirFuncionalidade(func.getCargo().getNome_cargo());
         Utilitaries.setImage(lblDashboardLogo, "dashboard_logo.png");
         Utilitaries.updateBody(body, new CadastrarCompra(func), false);
+        imgFunc.setIcon(Utilitaries.getImageFromDatabase(func.getCod_Func()));
     }
     
     // método para definir funcionalidades de acordo com o cargo
@@ -63,9 +61,13 @@ public class Dashboard extends javax.swing.JFrame {
         switch (nome_cargo) {
             case "Gerente":
                 menu_funcionarios.setEnabled(false);
+                menu_pagamentos.setEnabled(false);
                 break;
             case "Operador de Caixa":
                 menu_funcionarios.setEnabled(false);
+                menu_produtos.setEnabled(false);
+                menu_pagamentos.setEnabled(false);
+                menuConsultarCompra.setEnabled(false);
                 break;
         }
     }
@@ -75,7 +77,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         sidebar = new resources.graphicComponents.GradientPanel();
-        imageAvatar1 = new resources.graphicComponents.ImageAvatar();
+        imgFunc = new resources.graphicComponents.ImageAvatar();
         lblUser = new javax.swing.JLabel();
         lblDateTime = new javax.swing.JLabel();
         lblCargo = new javax.swing.JLabel();
@@ -112,7 +114,7 @@ public class Dashboard extends javax.swing.JFrame {
         menu_compras = new javax.swing.JMenu();
         menuCadastrarCompra = new javax.swing.JMenuItem();
         menuConsultarCompra = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
+        menu_pagamentos = new javax.swing.JMenu();
         menuCadastrarForma = new javax.swing.JMenuItem();
         menuConsultarForma = new javax.swing.JMenuItem();
 
@@ -144,7 +146,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblDashboardLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imgFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(sidebarLayout.createSequentialGroup()
@@ -161,13 +163,13 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(lblDashboardLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(imgFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCargo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
                 .addComponent(lblDateTime)
                 .addGap(18, 18, 18))
         );
@@ -373,7 +375,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         menu_compras.add(menuConsultarCompra);
 
-        jMenu9.setText("Formas de Pagamento");
+        menu_pagamentos.setText("Formas de Pagamento");
 
         menuCadastrarForma.setText("Cadastrar Formas");
         menuCadastrarForma.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +383,7 @@ public class Dashboard extends javax.swing.JFrame {
                 menuCadastrarFormaActionPerformed(evt);
             }
         });
-        jMenu9.add(menuCadastrarForma);
+        menu_pagamentos.add(menuCadastrarForma);
 
         menuConsultarForma.setText("Consultar Formas");
         menuConsultarForma.addActionListener(new java.awt.event.ActionListener() {
@@ -389,9 +391,9 @@ public class Dashboard extends javax.swing.JFrame {
                 menuConsultarFormaActionPerformed(evt);
             }
         });
-        jMenu9.add(menuConsultarForma);
+        menu_pagamentos.add(menuConsultarForma);
 
-        menu_compras.add(jMenu9);
+        menu_compras.add(menu_pagamentos);
 
         menuBar.add(menu_compras);
 
@@ -523,14 +525,13 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
-    private resources.graphicComponents.ImageAvatar imageAvatar1;
+    private resources.graphicComponents.ImageAvatar imgFunc;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDashboardLogo;
     private javax.swing.JLabel lblDateTime;
@@ -561,6 +562,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu menu_compras;
     private javax.swing.JMenu menu_configuracoes;
     private javax.swing.JMenu menu_funcionarios;
+    private javax.swing.JMenu menu_pagamentos;
     private javax.swing.JMenu menu_produtos;
     private resources.graphicComponents.GradientPanel sidebar;
     // End of variables declaration//GEN-END:variables

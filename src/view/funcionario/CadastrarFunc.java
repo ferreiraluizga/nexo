@@ -4,12 +4,14 @@ import com.formdev.flatlaf.FlatClientProperties;
 import controller.CargoController;
 import controller.FuncionarioController;
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -65,6 +67,7 @@ public class CadastrarFunc extends javax.swing.JPanel {
         Utilitaries.limparCampos(panelRound1);
         txtDominio.setText("@nexo.com.br");
         comboBoxCargo.setSelectedIndex(0);
+        txtNome.requestFocus();
     }
     
     @SuppressWarnings("unchecked")
@@ -305,18 +308,23 @@ public class CadastrarFunc extends javax.swing.JPanel {
         if (txtNome.getText().isEmpty() || txtNasc.getText().equals("__/__/____") || txtCpf.getText().equals("___.___.___-__") || txtTelefone.getText().equals("(__) _____-____") || comboBoxCargo.getSelectedIndex() == 0 || txtEmail.getText().isEmpty() || txtSenha.getPassword().equals("")) {
             JOptionPane.showMessageDialog(panelRound1, "Preencha todos os campos para enviar", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
-            nome = txtNome.getText();
-            nasc = Utilitaries.convertStringToDate(txtNasc.getText());
-            cpf = txtCpf.getText().replaceAll("[^0-9]", "");
-            telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
-            String cargoTemp = String.valueOf(comboBoxCargo.getSelectedItem()).replaceAll("\\D.*", "");
-            cod_cargo = Integer.parseInt(cargoTemp);
-            email = txtEmail.getText() + txtDominio.getText();
-            senha = String.valueOf(txtSenha.getPassword());
             try {
-                FuncionarioController.cadastrarFuncionario(nome, nasc, cpf, cod_cargo, email, senha, telefone);
-                limparCampos();
-            } catch (SQLException ex) {
+                nome = txtNome.getText();
+                nasc = Utilitaries.convertStringToDate(txtNasc.getText());
+                cpf = txtCpf.getText().replaceAll("[^0-9]", "");
+                telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
+                String cargoTemp = String.valueOf(comboBoxCargo.getSelectedItem()).replaceAll("\\D.*", "");
+                cod_cargo = Integer.parseInt(cargoTemp);
+                email = txtEmail.getText() + txtDominio.getText();
+                String senhaTemp = String.valueOf(txtSenha.getPassword());
+                senha = Utilitaries.encryptString(senhaTemp);
+                try {
+                    FuncionarioController.cadastrarFuncionario(nome, nasc, cpf, cod_cargo, email, senha, telefone, (ImageIcon) lblImg.getIcon());
+                    limparCampos();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadastrarFunc.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(CadastrarFunc.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

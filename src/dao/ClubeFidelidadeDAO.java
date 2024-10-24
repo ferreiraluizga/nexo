@@ -88,22 +88,6 @@ public class ClubeFidelidadeDAO {
         return clientes;
     }
 
-    // método para pegar primeiro telefone do cliente
-    private static String primeiroTelefone(int cod_cli) throws SQLException {
-        String sql = "SELECT * FROM fone_cli WHERE Cod_Cli = ? LIMIT 1";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql);) {
-            stmt.setInt(1, cod_cli);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getString("Fone_Cli");
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
-        }
-        return null;
-    }
-
     // método para listar clube por id
     public static ClubeFidelidade buscarClubePorId(int cod_cli) throws SQLException {
         ClubeFidelidade cliente_clube = new ClubeFidelidade();
@@ -130,6 +114,22 @@ public class ClubeFidelidadeDAO {
         }
 
         return cliente_clube;
+    }
+    
+    // método para pegar primeiro telefone do cliente
+    private static String primeiroTelefone(int cod_cli) throws SQLException {
+        String sql = "SELECT * FROM fone_cli WHERE Cod_Cli = ? LIMIT 1";
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql);) {
+            stmt.setInt(1, cod_cli);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("Fone_Cli");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
+        }
+        return null;
     }
 
     // método para editar cliente do clube

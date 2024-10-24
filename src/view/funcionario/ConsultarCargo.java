@@ -440,7 +440,7 @@ public class ConsultarCargo extends javax.swing.JPanel {
             txtId.setText(String.valueOf(id));
             txtNome.setText(nome);
             txtDesc.setText(desc);
-            txtSalario.setText(String.valueOf(salario));
+            txtSalario.setText(Utilitaries.formatarPrecoParaTexto(salario));
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar", "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -486,7 +486,7 @@ public class ConsultarCargo extends javax.swing.JPanel {
         int id_cargo = Integer.parseInt(txtId.getText());
         String nome = txtNome.getText();
         String desc = txtDesc.getText();
-        float salario = Float.parseFloat(txtSalario.getText());
+        float salario = Utilitaries.formatarPreco(txtSalario.getText());
         try {
             CargoController.editarCargo(id_cargo, nome, desc, salario);
             tabbedPane.setEnabledAt(1, false);

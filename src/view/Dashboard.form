@@ -246,7 +246,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarCompraActionPerformed"/>
               </Events>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="jMenu9">
+            <Menu class="javax.swing.JMenu" name="menu_pagamentos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Formas de Pagamento"/>
               </Properties>
@@ -335,7 +335,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="lblDashboardLogo" alignment="2" min="-2" pref="175" max="-2" attributes="0"/>
-                      <Component id="imageAvatar1" alignment="2" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="imgFunc" alignment="2" min="-2" pref="150" max="-2" attributes="0"/>
                       <Component id="lblUser" alignment="2" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -357,13 +357,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="lblDashboardLogo" min="-2" pref="60" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="imageAvatar1" min="-2" pref="150" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="imgFunc" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="lblCargo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="502" max="32767" attributes="0"/>
+                  <EmptySpace pref="480" max="32767" attributes="0"/>
                   <Component id="lblDateTime" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -371,7 +371,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="resources.graphicComponents.ImageAvatar" name="imageAvatar1">
+        <Container class="resources.graphicComponents.ImageAvatar" name="imgFunc">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
             <Property name="useNullLayout" type="boolean" value="true"/>

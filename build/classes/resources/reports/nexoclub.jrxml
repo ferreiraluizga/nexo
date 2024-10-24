@@ -16,8 +16,7 @@
 		<![CDATA[select * from cliente 
 left join clube_fidelidade on cliente.Cod_Cli = clube_fidelidade.Cod_Cli
 left join fone_cli on cliente.Cod_Cli = fone_cli.Cod_Cli
-where cliente.Ativo_Clube = 1
-limit 1]]>
+where cliente.Ativo_Clube = 1 order by cliente.Cod_Cli]]>
 	</queryString>
 	<field name="Cod_Cli" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="Cod_Cli"/>

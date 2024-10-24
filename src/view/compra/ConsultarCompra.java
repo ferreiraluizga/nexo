@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package view.compra;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ClienteController;
 import controller.CompraController;
-import controller.FuncionarioController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Compra;
-import model.Funcionario;
 import resources.utilitaries.Utilitaries;
-import view.funcionario.ConsultarCargo;
 
 /**
  *
@@ -27,19 +21,33 @@ import view.funcionario.ConsultarCargo;
  */
 public class ConsultarCompra extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ConsultarCompra
-     */
     public ConsultarCompra() {
         initComponents();
         listarCompras();
+        styleComponents();
+    }
+
+    private void styleComponents() {
+        btnBuscar.putClientProperty(FlatClientProperties.STYLE, "background: null; foreground: #FFFFFF; border: null");
+        btnBuscar.setFocusPainted(false);
+        btnRefresh.putClientProperty(FlatClientProperties.STYLE, "background: null; foreground: #FFFFFF; border: null");
+        btnRefresh.setFocusPainted(false);
+
+        btnDeletar.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnDeletar.putClientProperty(FlatClientProperties.STYLE, "background: #DC3545; foreground: #FFFFFF");
+        btnDeletar.setFocusPainted(false);
+        btnRelatorio.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnRelatorio.putClientProperty(FlatClientProperties.STYLE, "background: #6495ED; foreground: #FFFFFF");
+        btnRelatorio.setFocusPainted(false);
+
+        txtNomeConsultar.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite de acordo com o filtro selecionado");
     }
 
     // método para listar clientes cadastrados ao iniciar a tela
     private void listarCompras() {
         try {
             List<Compra> compras = CompraController.listarCompra();
-            
+
             DefaultTableModel model = (DefaultTableModel) tblCompra.getModel();
             model.setRowCount(0);
             int columnSize[] = {10, 100, 100, 100, 100, 100};
@@ -60,7 +68,82 @@ public class ConsultarCompra extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(ConsultarCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
+    private void listarPorFiltro(int id, String nome) {
+        if (comboBoxFiltro.getSelectedIndex() == 1) {
+            try {
+                List<Compra> compras = CompraController.buscarPorId(id);
+                
+                DefaultTableModel model = (DefaultTableModel) tblCompra.getModel();
+                model.setRowCount(0);
+                int columnSize[] = {10, 100, 100, 100, 100, 100};
+                for (int i = 0; i < tblCompra.getColumnCount(); i++) {
+                    tblCompra.getColumnModel().getColumn(i).setPreferredWidth(columnSize[i]);
+                }
+                for (Compra compra : compras) {
+                    Object[] row = new Object[6];
+                    row[0] = compra.getCod_Compra();
+                    row[1] = compra.getFunc().getNome_Func();
+                    row[2] = compra.getCliente().getNome_cli();
+                    row[3] = compra.getForma_Pag().getNome_forma();
+                    row[4] = compra.getData_Compra().toString();
+                    float temp = calcularTotalCompra(compra.getCod_Compra(), compra.getCliente().getCod_cli());
+                    row[5] = String.format("R$ %.2f", temp);
+                    model.addRow(row);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (comboBoxFiltro.getSelectedIndex() == 2) {
+            try {
+                List<Compra> compras = CompraController.buscarPorCliente(nome);
+                
+                DefaultTableModel model = (DefaultTableModel) tblCompra.getModel();
+                model.setRowCount(0);
+                int columnSize[] = {10, 100, 100, 100, 100, 100};
+                for (int i = 0; i < tblCompra.getColumnCount(); i++) {
+                    tblCompra.getColumnModel().getColumn(i).setPreferredWidth(columnSize[i]);
+                }
+                for (Compra compra : compras) {
+                    Object[] row = new Object[6];
+                    row[0] = compra.getCod_Compra();
+                    row[1] = compra.getFunc().getNome_Func();
+                    row[2] = compra.getCliente().getNome_cli();
+                    row[3] = compra.getForma_Pag().getNome_forma();
+                    row[4] = compra.getData_Compra().toString();
+                    float temp = calcularTotalCompra(compra.getCod_Compra(), compra.getCliente().getCod_cli());
+                    row[5] = String.format("R$ %.2f", temp);
+                    model.addRow(row);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (comboBoxFiltro.getSelectedIndex() == 3) {
+            try {
+                List<Compra> compras = CompraController.buscarPorFuncionario(nome);
+                
+                DefaultTableModel model = (DefaultTableModel) tblCompra.getModel();
+                model.setRowCount(0);
+                int columnSize[] = {10, 100, 100, 100, 100, 100};
+                for (int i = 0; i < tblCompra.getColumnCount(); i++) {
+                    tblCompra.getColumnModel().getColumn(i).setPreferredWidth(columnSize[i]);
+                }
+                for (Compra compra : compras) {
+                    Object[] row = new Object[6];
+                    row[0] = compra.getCod_Compra();
+                    row[1] = compra.getFunc().getNome_Func();
+                    row[2] = compra.getCliente().getNome_cli();
+                    row[3] = compra.getForma_Pag().getNome_forma();
+                    row[4] = compra.getData_Compra().toString();
+                    float temp = calcularTotalCompra(compra.getCod_Compra(), compra.getCliente().getCod_cli());
+                    row[5] = String.format("R$ %.2f", temp);
+                    model.addRow(row);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private float calcularTotalCompra(int id_compra, int id_cliente) {
@@ -73,7 +156,8 @@ public class ConsultarCompra extends javax.swing.JPanel {
             } else {
                 desconto = calcularDesconto(totalParcial);
                 totalReal = totalParcial - desconto;
-            }   return totalReal;
+            }
+            return totalReal;
         } catch (SQLException ex) {
             Logger.getLogger(ConsultarCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,7 +184,7 @@ public class ConsultarCompra extends javax.swing.JPanel {
         lblTitulo5 = new javax.swing.JLabel();
         panelRound3 = new resources.graphicComponents.PanelRound();
         panelConsultar = new resources.graphicComponents.PanelRound();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxFiltro = new javax.swing.JComboBox<>();
         lblNomeConsultar = new javax.swing.JLabel();
         txtNomeConsultar = new javax.swing.JTextField();
         scrollPane = new javax.swing.JScrollPane();
@@ -146,7 +230,7 @@ public class ConsultarCompra extends javax.swing.JPanel {
 
         panelConsultar.setBackground(new java.awt.Color(29, 77, 117));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtros de Busca", "Busca por Código", "Busca por Cliente", "Busca por Funcionário" }));
+        comboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtros de Busca", "Busca por Código", "Busca por Cliente", "Busca por Funcionário" }));
 
         lblNomeConsultar.setForeground(new java.awt.Color(255, 255, 255));
         lblNomeConsultar.setText("Digite de acordo com o filtro de busca");
@@ -235,12 +319,12 @@ public class ConsultarCompra extends javax.swing.JPanel {
                 .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConsultarLayout.createSequentialGroup()
                         .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomeConsultar)
-                            .addComponent(lblNomeConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(lblNomeConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNomeConsultar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -260,7 +344,7 @@ public class ConsultarCompra extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNomeConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -306,16 +390,19 @@ public class ConsultarCompra extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultarKeyReleased
-        String nome = txtNomeConsultar.getText();
-    }//GEN-LAST:event_txtNomeConsultarKeyReleased
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int id;
         String nome;
         if (txtNomeConsultar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Insira um nome para continuar", "Atenção", JOptionPane.WARNING_MESSAGE);
+        } else if (comboBoxFiltro.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Defina um filtro de busca", "Atenção", JOptionPane.WARNING_MESSAGE);
+        } else if (comboBoxFiltro.getSelectedIndex() == 1) {
+            id = Integer.parseInt(txtNomeConsultar.getText());
+            listarPorFiltro(id, null);
         } else {
             nome = txtNomeConsultar.getText();
+            listarPorFiltro(0, nome);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -353,13 +440,25 @@ public class ConsultarCompra extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
+    private void txtNomeConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultarKeyReleased
+        if (comboBoxFiltro.getSelectedIndex() == 0) {
+            listarCompras();
+        } else if (comboBoxFiltro.getSelectedIndex() == 1) {
+            int id = Integer.parseInt(txtNomeConsultar.getText());
+            listarPorFiltro(id, null);
+        } else {
+            String nome = txtNomeConsultar.getText();
+            listarPorFiltro(0, nome);
+        }
+    }//GEN-LAST:event_txtNomeConsultarKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRelatorio;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboBoxFiltro;
     private javax.swing.JLabel lblNomeConsultar;
     private javax.swing.JLabel lblTitulo5;
     private resources.graphicComponents.PanelRound panelConsultar;

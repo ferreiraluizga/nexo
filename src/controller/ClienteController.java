@@ -44,6 +44,7 @@ public class ClienteController {
         ClienteDAO.deletarCliente(cod_cli);
     }
     
+    // método para verificar existência de um cliente no clube de fidelidade
     public static boolean verificarClienteNoClube(int id) throws SQLException {
         return ClienteDAO.verificarClienteNoClube(id);
     }

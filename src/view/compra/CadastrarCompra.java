@@ -1,5 +1,6 @@
 package view.compra;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import controller.ClienteController;
 import controller.ClubeFidelidadeController;
 import controller.CompraController;
@@ -39,6 +40,7 @@ public class CadastrarCompra extends javax.swing.JPanel {
         listarClientes(1, null);
         atribuirFormas();
         comboBoxParcela.setVisible(false);
+        styleComponents();
     }
 
     public CadastrarCompra(Funcionario func) {
@@ -48,6 +50,7 @@ public class CadastrarCompra extends javax.swing.JPanel {
         atribuirFormas();
         comboBoxParcela.setVisible(false);
         this.func = func;
+        styleComponents();
     }
 
     // método para atribuir cargos ao select (combo box)
@@ -71,18 +74,18 @@ public class CadastrarCompra extends javax.swing.JPanel {
         switch (opcao) {
             case 1:
                 try {
-                    produtos = ProdutoController.listarProduto();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+                produtos = ProdutoController.listarProduto();
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            break;
             case 2:
                 try {
-                    produtos = ProdutoController.buscarPorNome(nome);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+                produtos = ProdutoController.buscarPorNome(nome);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            break;
             default:
                 throw new AssertionError();
         }
@@ -110,18 +113,18 @@ public class CadastrarCompra extends javax.swing.JPanel {
         switch (opcao) {
             case 1:
                 try {
-                    clientes = ClienteController.listarCliente();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+                clientes = ClienteController.listarCliente();
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            break;
             case 2:
                 try {
-                    clientes = ClienteController.buscarPorNome(nome);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+                clientes = ClienteController.buscarPorNome(nome);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            break;
             default:
                 throw new AssertionError();
         }
@@ -151,6 +154,30 @@ public class CadastrarCompra extends javax.swing.JPanel {
             }
             model.addRow(row);
         }
+    }
+
+    private void styleComponents() {
+        txtNomeProd.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome do produto");
+        btnAdicionarCarrinho.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnAdicionarCarrinho.putClientProperty(FlatClientProperties.STYLE, "background: #6495ED; foreground: #FFFFFF");
+        btnAdicionarCarrinho.setFocusPainted(false);
+
+        txtNomeCliente.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome do produto");
+        btnAdicionarCliente.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnAdicionarCliente.putClientProperty(FlatClientProperties.STYLE, "background: #6495ED; foreground: #FFFFFF");
+        btnAdicionarCliente.setFocusPainted(false);
+
+        btnRemoverCarrinho.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnRemoverCarrinho.putClientProperty(FlatClientProperties.STYLE, "background: #B8860B; foreground: #FFFFFF");
+        btnRemoverCarrinho.setFocusPainted(false);
+
+        btnFinalizar.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnFinalizar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
+        btnFinalizar.setFocusPainted(false);
+
+        btnCancelar.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnCancelar.putClientProperty(FlatClientProperties.STYLE, "background: #DC3545; foreground: #FFFFFF");
+        btnCancelar.setFocusPainted(false);
     }
 
     private void adicionarCarrinho(Produto prod, int qtd) {
@@ -268,6 +295,18 @@ public class CadastrarCompra extends javax.swing.JPanel {
         Utilitaries.imprimirRelatorio(parameters, "comprovante_compra.jrxml", true, id_compra);
     }
 
+    // método para limpar campos
+    private void limparCampos() {
+        Utilitaries.limparCampos(panelProduto);
+        Utilitaries.limparCampos(panelCliente);
+        Utilitaries.limparCampos(panelCompra);
+        lblValorAPagar.setText("R$ 00,00");
+        txtQtd.setValue(0);
+        comboBoxPag.setSelectedIndex(0);
+        DefaultTableModel model = (DefaultTableModel) tblCompra.getModel();
+        model.setRowCount(0);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -355,6 +394,8 @@ public class CadastrarCompra extends javax.swing.JPanel {
         lblQtd.setText("Qtd:");
 
         btnAdicionarCarrinho.setText("Adicionar ao Carrinho");
+        btnAdicionarCarrinho.setBorderPainted(false);
+        btnAdicionarCarrinho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdicionarCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionarCarrinhoActionPerformed(evt);
@@ -436,6 +477,8 @@ public class CadastrarCompra extends javax.swing.JPanel {
         });
 
         btnAdicionarCliente.setText("Selecionar Cliente");
+        btnAdicionarCliente.setBorderPainted(false);
+        btnAdicionarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdicionarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionarClienteActionPerformed(evt);
@@ -526,6 +569,8 @@ public class CadastrarCompra extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tblCompra);
 
         btnRemoverCarrinho.setText("Remover Produto do Carrinho");
+        btnRemoverCarrinho.setBorderPainted(false);
+        btnRemoverCarrinho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemoverCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoverCarrinhoActionPerformed(evt);
@@ -576,6 +621,8 @@ public class CadastrarCompra extends javax.swing.JPanel {
 
         btnFinalizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnFinalizar.setText("Finalizar Compra");
+        btnFinalizar.setBorderPainted(false);
+        btnFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarActionPerformed(evt);
@@ -584,6 +631,13 @@ public class CadastrarCompra extends javax.swing.JPanel {
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound5Layout = new javax.swing.GroupLayout(panelRound5);
         panelRound5.setLayout(panelRound5Layout);
@@ -861,6 +915,13 @@ public class CadastrarCompra extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Selecione um produto para remover do carrinho", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRemoverCarrinhoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        int status = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a compra?", "Deletar", JOptionPane.YES_NO_OPTION);
+        if (status == JOptionPane.YES_OPTION) {
+            limparCampos();
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

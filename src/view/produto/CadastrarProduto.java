@@ -89,6 +89,7 @@ public class CadastrarProduto extends javax.swing.JPanel {
         comboBoxForn.setSelectedIndex(0);
         comboBoxMarca.setSelectedIndex(0);
         txtQuant.setValue(0);
+        txtNome.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -151,7 +152,7 @@ public class CadastrarProduto extends javax.swing.JPanel {
         lblNome.setText("Nome do Produto");
 
         lblPreco.setForeground(new java.awt.Color(255, 255, 255));
-        lblPreco.setText("Preço");
+        lblPreco.setText("Preço (XX,XX)");
 
         lblQuant.setForeground(new java.awt.Color(255, 255, 255));
         lblQuant.setText("Quantidade em Estoque");
@@ -282,16 +283,16 @@ public class CadastrarProduto extends javax.swing.JPanel {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         String nome;
         float preco;
-        int quant;
+        int quant = (int) txtQuant.getValue();
         Fornecedor forn = new Fornecedor();
         CategoriaProduto categoria = new CategoriaProduto();
         Marca marca = new Marca();
         
-        if (txtNome.getText().isEmpty() || txtPreco.getText().isEmpty() || Integer.parseInt((String) txtQuant.getValue()) < 1 || comboBoxForn.getSelectedIndex() == 0 || comboBoxCategoria.getSelectedIndex() == 0 || comboBoxMarca.getSelectedIndex() == 0) {
+        if (txtNome.getText().isEmpty() || txtPreco.getText().isEmpty() || quant < 1 || comboBoxForn.getSelectedIndex() == 0 || comboBoxCategoria.getSelectedIndex() == 0 || comboBoxMarca.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(panelRound1, "Preencha todos os campos para enviar", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             nome = txtNome.getText();
-            preco = Float.parseFloat(txtPreco.getText());
+            preco = Utilitaries.formatarPreco(txtPreco.getText());
             quant = (int) txtQuant.getValue();
             String fornTemp = String.valueOf(comboBoxForn.getSelectedItem()).replaceAll("\\D.*", "");
             String categoriaTemp = String.valueOf(comboBoxCategoria.getSelectedItem()).replaceAll("\\D.*", "");

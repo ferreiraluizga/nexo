@@ -209,8 +209,7 @@ public class ProdutoDAO {
     
     // método para atualizar quantidade do produto após compra efetuada
     public static void atualizarQuantidadeProduto(Produto produto) throws SQLException {
-        String sql = "UPDATE produto SET Quant_Estoque = Quant_Estoque - ? WHERE Cod_Prod = ?";
-        
+        String sql = "UPDATE produto SET Quant_Estoque = Quant_Estoque - ? WHERE Cod_Prod = ?";   
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, produto.getQuant_Estoque());
             stmt.setInt(2, produto.getCod_Produto());

@@ -33,6 +33,7 @@ public class ClienteDAO {
         return 0;
     }
 
+    // método para cadastrar telefone do cliente
     private static void cadastrarTelefone(int cod_cli, String telefone) throws SQLException {
         String sql = "INSERT INTO fone_cli (Cod_Cli, Fone_Cli) VALUES (?, ?)";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -65,6 +66,7 @@ public class ClienteDAO {
         return clientes;
     }
 
+    // método para retornar o telefone principal do cliente
     private static String primeiroTelefone(int cod_cli) throws SQLException {
         String sql = "SELECT * FROM fone_cli WHERE Cod_Cli = ? LIMIT 1";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql);) {
@@ -104,7 +106,7 @@ public class ClienteDAO {
         return clientes;
     }
     
-    // método que busca um cliente pelo nome no banco de dados
+    // método que busca um cliente pelo id no banco de dados
     public static Cliente buscarPorId(int id) throws SQLException {
         Cliente cliente = new Cliente();
 
@@ -141,6 +143,7 @@ public class ClienteDAO {
         }
     }
 
+    // método para editar telefone de um cliente cadastrado no banco
     private static void editarTelefone(int cod_cli, String telefone) throws SQLException {
         String sql = "UPDATE fone_cli SET Fone_Cli=? WHERE Cod_Cli=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -165,6 +168,7 @@ public class ClienteDAO {
         }
     }
 
+    // método para deletar telefone de um cliente cadastrado no banco
     private static void deletarTelefone(int cod_cli) throws SQLException {
         String sql = "DELETE FROM fone_cli WHERE Cod_Cli=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -175,6 +179,7 @@ public class ClienteDAO {
         }
     }
     
+    // método para verificar se o cliente está ou não no clube de fidelidade
     public static boolean verificarClienteNoClube(int id) throws SQLException {
         String sql = "SELECT * FROM cliente INNER JOIN clube_fidelidade ON cliente.Cod_Cli = clube_fidelidade.Cod_Cli WHERE cliente.Cod_Cli = ?";       
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {

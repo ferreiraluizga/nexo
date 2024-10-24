@@ -2,6 +2,12 @@ package view;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
+import controller.FuncionarioController;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import model.Funcionario;
 import resources.graphicComponents.FontLoader;
@@ -28,14 +34,20 @@ public class AlterarLogin extends javax.swing.JFrame {
         this.func = func;
         txtNome.setText(func.getNome_Func());
         txtEmail.setText(func.getEmail_Func());
-        txtSenha.setText(func.getSenha_Func());
         txtTelefone.setText(func.getTelefone());
+        ImageIcon img_func = Utilitaries.getImageFromDatabase(func.getCod_Func());
+        Utilitaries.setLabelImageIcon(lblImg, img_func);
         styleComponents();
     }
     
     private void styleComponents() {
+        btnAtualizar.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnAtualizar.putClientProperty(FlatClientProperties.STYLE, "background: #28A745; foreground: #FFFFFF");
         btnAtualizar.setFocusPainted(false);
+        btnImg.putClientProperty(FlatClientProperties.OUTLINE, false);
+        btnImg.putClientProperty(FlatClientProperties.STYLE, "background: #6495ED; foreground: #FFFFFF");
+        btnImg.setFocusPainted(false);
+        txtSenha.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
     }
 
     @SuppressWarnings("unchecked")
@@ -70,7 +82,7 @@ public class AlterarLogin extends javax.swing.JFrame {
 
         txtNome.setEnabled(false);
 
-        lblSenha.setText("Senha");
+        lblSenha.setText("Nova Senha");
 
         btnImg.setText("Alterar Imagem");
         btnImg.setBorderPainted(false);
@@ -145,11 +157,22 @@ public class AlterarLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        String novaSenha = String.valueOf(txtSenha.getPassword());
-        
+        try {
+            String novaSenhaTemp = String.valueOf(txtSenha.getPassword());
+            String novaSenha = Utilitaries.encryptString(novaSenhaTemp);
+            String telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
+            ImageIcon img_func = (ImageIcon) lblImg.getIcon();
+            FuncionarioController.alterarLogin(func.getCod_Func(), novaSenha, telefone, img_func);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlterarLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AlterarLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     public static void main(String args[]) {

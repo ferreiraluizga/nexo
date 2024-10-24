@@ -28,12 +28,27 @@ public class CompraController {
         return CompraDAO.listarCompra();
     }
     
+    // método para buscar compra pelo id
+    public static List<Compra> buscarPorId(int id) throws SQLException {
+        return CompraDAO.buscarPorId(id);
+    }
+    
+    // método para buscar compra pelo nome do funcionario
+    public static List<Compra> buscarPorFuncionario(String nome) throws SQLException {
+        return CompraDAO.buscarPorFuncionario(nome);
+    }
+    
+    // método para buscar compra pelo nome do cliente
+    public static List<Compra> buscarPorCliente(String nome) throws SQLException {
+        return CompraDAO.buscarPorCliente(nome);
+    }
     
     // método para deletar compra cadastrada
     public static void deletarCompra(int id_compra) throws SQLException {
         CompraDAO.deletarCompra(id_compra);
     }
     
+    // método para calcular valor total da compra
     public static float calcularValorTotalCompra(int codCompra) {
         return CompraDAO.calcularValorTotalCompra(codCompra);
     }

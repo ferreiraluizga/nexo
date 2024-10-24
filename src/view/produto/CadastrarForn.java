@@ -37,6 +37,7 @@ public class CadastrarForn extends javax.swing.JPanel {
     // método para limpar campos
     private void limparCampos() {
         Utilitaries.limparCampos(panelRound1);
+        txtNomeFantasia.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
