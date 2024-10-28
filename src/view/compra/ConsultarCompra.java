@@ -5,7 +5,6 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ClienteController;
 import controller.CompraController;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -203,7 +202,7 @@ public class ConsultarCompra extends javax.swing.JPanel {
         lblTitulo5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo5.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo5.setText("Funcionários");
+        lblTitulo5.setText("Compras");
 
         javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(panelRound8);
         panelRound8.setLayout(panelRound8Layout);

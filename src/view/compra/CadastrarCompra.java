@@ -1,6 +1,7 @@
 package view.compra;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ClienteController;
 import controller.ClubeFidelidadeController;
 import controller.CompraController;
@@ -9,6 +10,7 @@ import controller.ProdCompraController;
 import controller.ProdutoController;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -393,6 +395,7 @@ public class CadastrarCompra extends javax.swing.JPanel {
         lblQtd.setForeground(new java.awt.Color(255, 255, 255));
         lblQtd.setText("Qtd:");
 
+        btnAdicionarCarrinho.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/cart_add.svg")));
         btnAdicionarCarrinho.setText("Adicionar ao Carrinho");
         btnAdicionarCarrinho.setBorderPainted(false);
         btnAdicionarCarrinho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -568,6 +571,7 @@ public class CadastrarCompra extends javax.swing.JPanel {
         tblCompra.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblCompra);
 
+        btnRemoverCarrinho.setIcon(new FlatSVGIcon(getClass().getResource("/resources/img/cart_remove.svg")));
         btnRemoverCarrinho.setText("Remover Produto do Carrinho");
         btnRemoverCarrinho.setBorderPainted(false);
         btnRemoverCarrinho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -863,7 +867,7 @@ public class CadastrarCompra extends javax.swing.JPanel {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         Cliente cliente = new Cliente();
-        LocalDate data_compra = LocalDate.now();
+        LocalDateTime data_compra = LocalDateTime.now();
         FormaPag forma_pag = new FormaPag();
         DefaultTableModel model = (DefaultTableModel) tblCompra.getModel();
         float total, desconto;

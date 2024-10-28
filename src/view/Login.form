@@ -51,17 +51,19 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblTitulo" alignment="2" pref="293" max="32767" attributes="0"/>
+                      <Group type="103" alignment="2" groupAlignment="2" attributes="0">
+                          <Component id="lblTitulo" alignment="2" pref="293" max="32767" attributes="0"/>
+                          <Component id="lblImg" alignment="2" min="-2" pref="228" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="btnEntrar" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtUser" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblImg" alignment="2" min="-2" pref="228" max="-2" attributes="0"/>
                               <Component id="lblSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="253" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
@@ -99,7 +101,7 @@
         <Component class="javax.swing.JButton" name="btnEntrar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins SemiBold" size="12" style="0"/>
+              <Font name="Poppins" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Entrar"/>
             <Property name="toolTipText" type="java.lang.String" value="Fazer Login"/>

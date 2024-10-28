@@ -13,9 +13,8 @@ import resources.utilitaries.Utilitaries;
  *
  * @author ferreiraluizga
  */
-
 public class FuncionarioDAO {
-    
+
     // método público para cadastrar funcionario
     public static void cadastrarFuncionario(Funcionario func, ImageIcon img_func) throws SQLException {
         String sql = "INSERT INTO funcionario (Nome_Func, Nasc_Func, CPF_Func, Cod_Cargo, Email_Func, Senha_Func) VALUES (?, ?, ?, ?, ?, ?)";
@@ -39,7 +38,7 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar funcionário: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método privado para cadastrar telefone do funcionario
     private static void cadastrarTelefone(int cod_func, String telefone) throws SQLException {
         String sql = "INSERT INTO fone_func (Cod_Func, Fone_Func) VALUES (?, ?)";
@@ -51,7 +50,7 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método público para listar funcionarios
     public static List<Funcionario> listarFuncionario() throws SQLException {
         List<Funcionario> funcionarios = new ArrayList<>();
@@ -61,12 +60,12 @@ public class FuncionarioDAO {
             while (rs.next()) {
                 Funcionario func = new Funcionario();
                 Cargo cargo = new Cargo();
-                
+
                 cargo.setCod_cargo(rs.getInt("Cod_Cargo"));
                 cargo.setNome_cargo(rs.getString("Nome_Cargo"));
                 cargo.setDesc_cargo(rs.getString("Desc_Cargo"));
                 cargo.setSalario_cargo(rs.getFloat("Salario_Cargo"));
-                
+
                 func.setCod_Func(rs.getInt("Cod_Func"));
                 func.setNome_Func(rs.getString("Nome_Func"));
                 func.setNasc_Func(rs.getDate("Nasc_Func").toLocalDate());
@@ -83,7 +82,7 @@ public class FuncionarioDAO {
 
         return funcionarios;
     }
-    
+
     // método público para buscar funcionario por nome
     public static List<Funcionario> buscarPorNome(String nome) throws SQLException {
         List<Funcionario> funcionarios = new ArrayList<>();
@@ -119,7 +118,7 @@ public class FuncionarioDAO {
 
         return funcionarios;
     }
-    
+
     // método público para buscar funcionario por id
     public static Funcionario buscarPorId(int id) throws SQLException {
         Funcionario func = new Funcionario();
@@ -153,7 +152,7 @@ public class FuncionarioDAO {
 
         return func;
     }
-    
+
     // método privado que busca telefone primário do funcionário
     private static String primeiroTelefone(int cod_Func) throws SQLException {
         String sql = "SELECT * FROM fone_func WHERE Cod_Func = ? LIMIT 1";
@@ -169,27 +168,35 @@ public class FuncionarioDAO {
         }
         return null;
     }
-    
+
     // método público para editar funcionario
     public static void editarFuncionario(Funcionario func, ImageIcon img_func) throws SQLException {
-        String sql = "UPDATE funcionario SET Nome_Func=?, Nasc_Func=?, CPF_Func=?, Cod_Cargo=?, Email_Func=?, Senha_Func=? WHERE Cod_Func=?";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(7, func.getCod_Func());
+        String sql = "UPDATE funcionario SET Nome_Func=?, Nasc_Func=?, CPF_Func=?, Cod_Cargo=?, Email_Func=? WHERE Cod_Func=?";
+        String sqlSenha = "UPDATE funcionario SET Senha_Func=? WHERE Cod_Func=?";
+
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            if (!func.getSenha_Func().isEmpty()) {
+                try (PreparedStatement stmtSenha = con.prepareStatement(sqlSenha)) {
+                    stmtSenha.setString(1, func.getSenha_Func());
+                    stmtSenha.setInt(2, func.getCod_Func());
+                    stmtSenha.executeUpdate();
+                }
+            }
             stmt.setString(1, func.getNome_Func());
             stmt.setDate(2, Date.valueOf(func.getNasc_Func()));
             stmt.setString(3, func.getCPF_Func());
             stmt.setInt(4, func.getCargo().getCod_cargo());
             stmt.setString(5, func.getEmail_Func());
-            stmt.setString(6, func.getSenha_Func());
+            stmt.setInt(6, func.getCod_Func());
             editarTelefone(func.getCod_Func(), func.getTelefone());
             Utilitaries.saveImageIconToDatabase(func.getCod_Func(), img_func);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar cliente: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao editar funcionário: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método privado para editar telefone do funcionario
     private static void editarTelefone(int cod_func, String telefone) throws SQLException {
         String sql = "UPDATE fone_func SET Fone_Func=? WHERE Cod_Func=?";
@@ -201,7 +208,7 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro ao editar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método público para deletar funcionario cadastrado
     public static void deletarFuncionario(int cod_func) throws SQLException {
         deletarTelefone(cod_func);
@@ -215,7 +222,7 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro ao deletar Cliente: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método privado para deletar telefone do funcionario
     private static void deletarTelefone(int cod_func) throws SQLException {
         String sql = "DELETE FROM fone_func WHERE Cod_Func=?";
@@ -226,7 +233,7 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro ao deletar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método privado para deletar imagem do banco de dados
     private static void deletarImagem(int cod_func) throws SQLException {
         String sql = "DELETE FROM img_func WHERE Cod_Func=?";
@@ -237,12 +244,12 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro ao deletar imagem: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // método público para validar login no sistema
     public static Funcionario validarFunc(String user, String senha) throws SQLException {
         Funcionario func = new Funcionario();
         Cargo cargo = new Cargo();
-        
+
         String sql = "SELECT * FROM funcionario INNER JOIN cargo ON funcionario.Cod_Cargo = cargo.Cod_Cargo WHERE Email_Func = ? AND Senha_Func = ?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, user);
@@ -253,7 +260,7 @@ public class FuncionarioDAO {
                 cargo.setNome_cargo(rs.getString("Nome_Cargo"));
                 cargo.setDesc_cargo(rs.getString("Desc_Cargo"));
                 cargo.setSalario_cargo(rs.getFloat("Salario_Cargo"));
-                
+
                 func.setCod_Func(rs.getInt("Cod_Func"));
                 func.setNome_Func(rs.getString("Nome_Func"));
                 func.setCargo(cargo);
@@ -265,23 +272,25 @@ public class FuncionarioDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao validar funcionario: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         return null;
     }
-    
+
     // método para alterar informações de login do usuário
-    public static void alterarLogin(int cod_func, String senha, String telefone, ImageIcon img_func) throws SQLException{
+    public static void alterarLogin(int cod_func, String senha, String telefone, ImageIcon img_func) throws SQLException {
         Utilitaries.saveImageIconToDatabase(cod_func, img_func);
         editarTelefone(cod_func, telefone);
-        String sql = "UPDATE funcionario SET Senha_Func=? WHERE Cod_Func=?";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, senha);
-            stmt.setInt(2, cod_func);
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Login atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        if (!senha.isEmpty()) {
+            String sql = "UPDATE funcionario SET Senha_Func=? WHERE Cod_Func=?";
+            try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+                stmt.setString(1, senha);
+                stmt.setInt(2, cod_func);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao editar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
+        JOptionPane.showMessageDialog(null, "Login atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
 }

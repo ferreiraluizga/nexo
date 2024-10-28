@@ -21,7 +21,7 @@ public class CompraDAO {
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, compra.getFunc().getCod_Func());
             stmt.setInt(2, compra.getCliente().getCod_cli());
-            stmt.setDate(3, Date.valueOf(compra.getData_Compra()));
+            stmt.setTimestamp(3, Timestamp.valueOf(compra.getData_Compra()));
             stmt.setInt(4, compra.getForma_Pag().getCod_forma_pag());
             stmt.execute();
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
@@ -64,7 +64,7 @@ public class CompraDAO {
                 compra.setCod_Compra(rs.getInt("Cod_Compra"));
                 compra.setFunc(func);
                 compra.setCliente(cliente);
-                compra.setData_Compra(rs.getDate("Data_Compra").toLocalDate());
+                compra.setData_Compra(rs.getTimestamp("Data_Compra").toLocalDateTime());
                 compra.setForma_Pag(forma);
                 compras.add(compra);
             }
@@ -106,7 +106,7 @@ public class CompraDAO {
                     compra.setCod_Compra(rs.getInt("Cod_Compra"));
                     compra.setFunc(func);
                     compra.setCliente(cliente);
-                    compra.setData_Compra(rs.getDate("Data_Compra").toLocalDate());
+                    compra.setData_Compra(rs.getTimestamp("Data_Compra").toLocalDateTime());
                     compra.setForma_Pag(forma);
                     compras.add(compra);
                 }
@@ -149,7 +149,7 @@ public class CompraDAO {
                     compra.setCod_Compra(rs.getInt("Cod_Compra"));
                     compra.setFunc(func);
                     compra.setCliente(cliente);
-                    compra.setData_Compra(rs.getDate("Data_Compra").toLocalDate());
+                    compra.setData_Compra(rs.getTimestamp("Data_Compra").toLocalDateTime());
                     compra.setForma_Pag(forma);
                     compras.add(compra);
                 }
@@ -192,7 +192,7 @@ public class CompraDAO {
                     compra.setCod_Compra(rs.getInt("Cod_Compra"));
                     compra.setFunc(func);
                     compra.setCliente(cliente);
-                    compra.setData_Compra(rs.getDate("Data_Compra").toLocalDate());
+                    compra.setData_Compra(rs.getTimestamp("Data_Compra").toLocalDateTime());
                     compra.setForma_Pag(forma);
                     compras.add(compra);
                 }

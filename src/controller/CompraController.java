@@ -3,6 +3,7 @@ package controller;
 import dao.CompraDAO;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import model.Compra;
 import model.Cliente;
@@ -18,7 +19,7 @@ public class CompraController {
     
     
     // método para cadastrar compra
-    public static int cadastrarCompra(Funcionario func, Cliente cliente, LocalDate data, FormaPag forma_pag) throws SQLException {
+    public static int cadastrarCompra(Funcionario func, Cliente cliente, LocalDateTime data, FormaPag forma_pag) throws SQLException {
         Compra compra = new Compra(func, cliente, data, forma_pag);
         return CompraDAO.cadastrarCompra(compra);
     }

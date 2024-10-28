@@ -129,11 +129,12 @@ public class Dashboard extends javax.swing.JFrame {
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUser.setText("Funcionario");
 
-        lblDateTime.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDateTime.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lblDateTime.setForeground(new java.awt.Color(255, 255, 255));
         lblDateTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDateTime.setText("HH:mm:ss DD/MM/YYYY");
 
+        lblCargo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         lblCargo.setForeground(new java.awt.Color(255, 255, 255));
         lblCargo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCargo.setText("Cargo");
@@ -169,7 +170,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCargo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
                 .addComponent(lblDateTime)
                 .addGap(18, 18, 18))
         );

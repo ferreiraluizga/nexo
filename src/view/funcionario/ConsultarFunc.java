@@ -84,7 +84,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
         txtNomeConsultar.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Digite o nome do funcionário");
 
         txtSenha.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
-        
+
         btnImg.putClientProperty(FlatClientProperties.OUTLINE, false);
         btnImg.putClientProperty(FlatClientProperties.STYLE, "background: #6495ED; foreground: #FFFFFF");
         btnImg.setFocusPainted(false);
@@ -110,7 +110,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
                 }
                 break;
             default:
-                
+
         }
 
         DefaultTableModel model = (DefaultTableModel) tblFunc.getModel();
@@ -423,14 +423,13 @@ public class ConsultarFunc extends javax.swing.JPanel {
                     .addGroup(panelEditarLayout.createSequentialGroup()
                         .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtId)
+                                    .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNome)
-                                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
+                                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelEditarLayout.createSequentialGroup()
                                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCpf)
@@ -439,25 +438,27 @@ public class ConsultarFunc extends javax.swing.JPanel {
                                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTelefone)
                                     .addComponent(lblTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 21, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
                         .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNasc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboBoxCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxCargo, 0, 161, Short.MAX_VALUE)
                             .addComponent(lblCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNasc)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEditarLayout.createSequentialGroup()
-                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelEditarLayout.createSequentialGroup()
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnImg, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                            .addComponent(lblImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(panelEditarLayout.createSequentialGroup()
+                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
         panelEditarLayout.setVerticalGroup(
@@ -488,6 +489,10 @@ public class ConsultarFunc extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnImg))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
                         .addComponent(lblEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,14 +500,11 @@ public class ConsultarFunc extends javax.swing.JPanel {
                         .addComponent(lblSenha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(btnImg, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("Editar", panelEditar);
@@ -590,7 +592,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
             txtTelefone.setText(func.getTelefone());
             comboBoxCargo.setSelectedIndex(func.getCargo().getCod_cargo());
             txtEmail.setText(func.getEmail_Func());
-            
+
             ImageIcon img_func = Utilitaries.getImageFromDatabase(id);
             Utilitaries.setLabelImageIcon(lblImg, img_func);
         } else {
@@ -605,27 +607,36 @@ public class ConsultarFunc extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        try {                                             
-            int cod_func = Integer.parseInt(txtId.getText());
-            String nome = txtNome.getText();
-            LocalDate nasc = Utilitaries.convertStringToDate(txtNasc.getText());
-            String cpf = txtCpf.getText().replaceAll("[\\.\\s-]", "");
-            String telefone = txtTelefone.getText().replaceAll("[()\\s-]", "");
-            String cargoTemp = String.valueOf(comboBoxCargo.getSelectedItem()).replaceAll("\\D.*", "");
-            int cod_cargo = Integer.parseInt(cargoTemp);
-            String email = txtEmail.getText();
-            String senhaTemp = String.valueOf(txtSenha.getPassword());
-            String senha = Utilitaries.encryptString(senhaTemp);
-            try {
-                FuncionarioController.editarFuncionario(cod_func, nome, nasc, cpf, cod_cargo, email, senha, telefone, (ImageIcon) lblImg.getIcon());
-                tabbedPane.setEnabledAt(1, false);
-                tabbedPane.setSelectedIndex(0);
-                listarFuncionarios(1, null);
-            } catch (SQLException ex) {
-                Logger.getLogger(ConsultarCargo.class.getName()).log(Level.SEVERE, null, ex);
+        String senha = null;
+        if (String.valueOf(txtSenha.getPassword()).isEmpty()) {
+            int status = JOptionPane.showConfirmDialog(null, "Tem certeza que manterá a mesma senha", "Alteração de Senha", JOptionPane.YES_NO_OPTION);
+            if (status == JOptionPane.YES_OPTION) {
+                senha = "";
             }
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(ConsultarFunc.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            try {
+                String senhaTemp = String.valueOf(txtSenha.getPassword());
+                senha = Utilitaries.encryptString(senhaTemp);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(ConsultarFunc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        int cod_func = Integer.parseInt(txtId.getText());
+        String nome = txtNome.getText();
+        LocalDate nasc = Utilitaries.convertStringToDate(txtNasc.getText());
+        String cpf = txtCpf.getText().replaceAll("[\\.\\s-]", "");
+        String telefone = txtTelefone.getText().replaceAll("[()\\s-]", "");
+        String cargoTemp = String.valueOf(comboBoxCargo.getSelectedItem()).replaceAll("\\D.*", "");
+        int cod_cargo = Integer.parseInt(cargoTemp);
+        String email = txtEmail.getText();
+        ImageIcon img_func = (ImageIcon) lblImg.getIcon();
+        try {
+            FuncionarioController.editarFuncionario(cod_func, nome, nasc, cpf, cod_cargo, email, senha, telefone, img_func);
+            tabbedPane.setEnabledAt(1, false);
+            tabbedPane.setSelectedIndex(0);
+            listarFuncionarios(1, null);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCargo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 

@@ -64,7 +64,7 @@ public class Login extends javax.swing.JFrame {
 
         lblImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        btnEntrar.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
+        btnEntrar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.setToolTipText("Fazer Login");
         btnEntrar.setBorderPainted(false);
