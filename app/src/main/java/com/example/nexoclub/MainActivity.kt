@@ -95,7 +95,7 @@ class MainActivity : ComponentActivity() {
                                         HomeScreen()
                                     }
                                     composable(BottomNavItem.Profile.route) {
-                                        ProfileScreen(id_cli = id, viewModel)
+                                        ProfileScreen(id_cli = id, viewModel, navController)
                                     }
                                 }
                             }

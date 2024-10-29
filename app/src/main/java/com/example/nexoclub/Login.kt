@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -34,6 +35,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -44,8 +47,6 @@ import com.example.nexoclub.viewModel.ClienteViewModel
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navController: NavController) {
-
-    rememberScrollState()
 
     var cpfEmail by remember { mutableStateOf("") }
 
@@ -67,7 +68,7 @@ fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navC
                 .fillMaxHeight()
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            
+
             Image(
                 painter = painterResource(R.drawable.nexo_logo),
                 contentDescription = null,
@@ -91,6 +92,10 @@ fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navC
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(16.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
@@ -99,6 +104,7 @@ fun LoginScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel, navC
             Spacer(modifier = Modifier.height(16.dp))
 
             val context = LocalContext.current
+
             Button(
                 onClick = {
                     if (cpfEmail.isBlank()) {

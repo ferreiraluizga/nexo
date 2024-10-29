@@ -112,6 +112,10 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(16.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
@@ -133,6 +137,10 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                         telefone = it
                     }
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Phone,
+                    imeAction = ImeAction.Next
+                ),
                 colors = TextFieldDefaults.colors(
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
@@ -161,6 +169,10 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(16.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
