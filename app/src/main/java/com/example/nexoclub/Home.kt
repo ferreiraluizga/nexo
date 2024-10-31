@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nexoclub.R
+import com.example.nexoclub.ui.theme.buttonGreen
 
 data class Product(
     val name: String,
@@ -227,7 +228,13 @@ fun HighlightedProductCard(product: Product) {
             .fillMaxWidth()
             .height(120.dp),
         elevation = CardDefaults.cardElevation(8.dp),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        colors = CardColors(
+            containerColor = Color(0xFF003366),
+            contentColor = Color.White,
+            disabledContentColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent
+        )
     ) {
         Row(
             modifier = Modifier
@@ -291,7 +298,13 @@ fun ProductCardCarousel(product: Product) {
             .width(150.dp)
             .height(100.dp),
         elevation = CardDefaults.cardElevation(0.dp), // Sem sombra
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        colors = CardColors(
+            containerColor = Color(0xFFC2D2FF),
+            contentColor = Color.Black,
+            disabledContentColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent
+        )
     ) {
         Column(
             modifier = Modifier

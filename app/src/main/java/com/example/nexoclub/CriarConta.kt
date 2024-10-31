@@ -2,7 +2,6 @@ package com.example.nexoclub
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,15 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -32,15 +26,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -49,8 +40,6 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -97,7 +86,6 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
             
             Spacer(modifier = Modifier.weight(1f))
 
-            // input name
             Text(
                 text = "Nome Completo",
                 color = Color.White,
@@ -123,7 +111,6 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // phone input
             Text(
                 text = "Telefone",
                 color = Color.White,
@@ -154,7 +141,6 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Campo de texto para CPF/Email
             Text(
                 text = "CPF ou E-Mail",
                 color = Color.White,
@@ -180,8 +166,8 @@ fun CriarContaScreen(modifier: Modifier = Modifier, viewModel: ClienteViewModel,
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Botão "Entrar"
             val context = LocalContext.current
+
             Button(
                 onClick = {
                     if (nome.isBlank() || telefone.isBlank() || cpfEmail.isBlank()) {
