@@ -8,8 +8,8 @@
 
 <h1 align="center">Sistema de Gerenciamento Geral</h1>
 
-### ℹ Sobre o Sistema?
-O **NEXO** é um minimercado local fictício. O projeto foi criado com a visão de oferecer soluções tecnológicas eficientes e de fácil manutenção, destinadas a gerenciar as operações de um mercadinho tradicional. Inspirado pela simplicidade e pela conexão direta com a comunidade, o nome "NEXO" reflete o papel do mercado em unir clientes e fornecedores, criando um ponto de encontro entre necessidades e soluções.
+### ℹ Sobre o Sistema
+A aplicação desktop foi projetada com o objetivo de atender a todas as necessidades do **Minimercado NEXO**. As funcionalidades principais da aplicação incluem o cadastro de compras e funcionários, que permitem uma gestão completa das operações do minimercado. Além disso, o sistema conta com a impressão de comprovantes e relatórios.
 
 > Para maiores detalhes sobre o projeto, acesse a [documentação](https://github.com/ferreiraluizga/nexo/blob/main/docs/doc_nexo.pdf)
 
