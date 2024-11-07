@@ -11,7 +11,7 @@
     </a>
 </p>
 
-<h1 align="center">🛒 Minimercado NEXO</h1>
+<h1 align="center">Minimercado NEXO</h1>
 
 ### ℹ O que é o NEXO?
 O **NEXO** é um minimercado local fictício. O projeto foi criado com a visão de oferecer soluções tecnológicas eficientes e de fácil manutenção, destinadas a gerenciar as operações de um mercadinho tradicional. Inspirado pela simplicidade e pela conexão direta com a comunidade, o nome "NEXO" reflete o papel do mercado em unir clientes e fornecedores, criando um ponto de encontro entre necessidades e soluções.
