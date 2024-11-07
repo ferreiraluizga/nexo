@@ -1,11 +1,11 @@
 # 🛒 Minimercado NEXO
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/ferreiraluizga/nexo?)
-![GitHub language count](https://img.shields.io/github/languages/count/ferreiraluizga/nexo?)
+![GitHub language count](https://img.shields.io/badge/languages-8-blue)
+![Project status](https://img.shields.io/static/v1?label=status&message=concluído&color=blue)
 <a href="#" title="Instagram">
     <img src="https://img.shields.io/badge/-Instagram-5c5756?labelColor=blue&logo=instagram&logoColor=white&link=LINK-DO-SEU-INSTAGRAM" alt="Instagram"/>
 </a>
-![Project status](https://img.shields.io/static/v1?label=status&message=concluído&color=blue)
 
 <br>
 
@@ -13,12 +13,10 @@
 
 <br>
 
-<p align="center">
-    <img src="https://skillicons.dev/icons?i=java,php,html,css,js,kotlin,mysql,sqlite" />
-</p>
-
-## O que é o NEXO?
+## ℹ O que é o NEXO?
 O **NEXO** é um minimercado local fictício. O projeto foi criado com a visão de oferecer soluções tecnológicas eficientes e de fácil manutenção, destinadas a gerenciar as operações de um mercadinho tradicional. Inspirado pela simplicidade e pela conexão direta com a comunidade, o nome "NEXO" reflete o papel do mercado em unir clientes e fornecedores, criando um ponto de encontro entre necessidades e soluções.
+
+> Para maiores detalhes sobre o projeto, acesse a [documentação](https://github.com/ferreiraluizga/nexo/blob/main/docs/doc_nexo.pdf)
 
 ## 🖥️ Sistema de Gerenciamento Geral (Desktop)
 
@@ -44,6 +42,8 @@ A versão desktop visa proporcionar rapidez e facilidade no gerenciamento do est
 - [x] **Histórico de Movimentação:** Relatórios de entradas e saídas de estoque.
 - [x] **Interface de Usuário Simplificada:** Layout responsivo e moderno com Bootstrap, garantindo uma experiência fluida e intuitiva.
 
+> Para uso da aplicação e informações de funcionamento, navegue até a branch [web_app](https://github.com/ferreiraluizga/nexo/tree/web_app)
+
 ## 📱 NEXOClub (Mobile)
 
 ![languages](https://skillicons.dev/icons?i=kotlin,sqlite)
@@ -52,3 +52,36 @@ O **NEXOClub** é o aplicativo mobile do programa de fidelidade, projetado para 
 
 - [x] **Benefícios e Ofertas:** Ofertas exclusivas e benefícios nas compras no minimercado NEXO.
 - [x] **Interface Moderna e Intuitiva:** interface moderna, navegação simplificada e responsiva em diferentes dispositivos.
+
+> Para uso da aplicação e informações de funcionamento, navegue até a branch [mobile_app](https://github.com/ferreiraluizga/nexo/tree/mobile_app)
+
+## 🛠️ Desenvolvedores
+
+<table border="0" style="border-collapse: collapse;">
+  <tr>
+    <td align="center" style="border: none;">
+      <a href="#">
+        <img src="https://placehold.co/100x100?text=+" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <sub>
+          <b>Luiz Gabriel Ferreira</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center" style="border: none;">
+      <a href="#">
+        <img src="https://placehold.co/100x100?text=+" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <sub>
+          <b>Rebeca de Moura Mendes</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center" style="border: none;">
+      <a href="#">
+        <img src="https://placehold.co/100x100?text=+" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <sub>
+          <b>Vitor Daisuke Iwamoto</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
