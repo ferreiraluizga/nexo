@@ -1,17 +1,17 @@
-# 🛒 Minimercado NEXO
-
-![GitHub repo size](https://img.shields.io/github/repo-size/ferreiraluizga/nexo?)
-![GitHub language count](https://img.shields.io/badge/languages-8-blue)
-![Project status](https://img.shields.io/static/v1?label=status&message=concluído&color=blue)
-<a href="#" title="Instagram">
-    <img src="https://img.shields.io/badge/-Instagram-5c5756?labelColor=blue&logo=instagram&logoColor=white&link=LINK-DO-SEU-INSTAGRAM" alt="Instagram"/>
-</a>
-
-<br>
-
 <img src="docs/logo.png">
 
 <br>
+
+<p align="center">
+    <img src="https://img.shields.io/github/repo-size/ferreiraluizga/nexo?" alt="GitHub repo size"/>
+    <img src="https://img.shields.io/badge/languages-8-blue" alt="GitHub language count"/>
+    <img src="https://img.shields.io/static/v1?label=status&message=concluído&color=blue" alt="Project status"/>
+    <a href="#" title="Instagram">
+        <img src="https://img.shields.io/badge/-Instagram-5c5756?labelColor=blue&logo=instagram&logoColor=white&link=LINK-DO-SEU-INSTAGRAM" alt="Instagram"/>
+    </a>
+</p>
+
+<h1 align="center">🛒 Minimercado NEXO</h1>
 
 ## ℹ O que é o NEXO?
 O **NEXO** é um minimercado local fictício. O projeto foi criado com a visão de oferecer soluções tecnológicas eficientes e de fácil manutenção, destinadas a gerenciar as operações de um mercadinho tradicional. Inspirado pela simplicidade e pela conexão direta com a comunidade, o nome "NEXO" reflete o papel do mercado em unir clientes e fornecedores, criando um ponto de encontro entre necessidades e soluções.
