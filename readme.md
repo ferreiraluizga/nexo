@@ -28,7 +28,7 @@ Siga os passos abaixo para instalar de forma correta:
 
 1. Baixe o arquivo ZIP desta branch ou clone o repositório em sua máquina:
 ```
-git clone https://github.com/ferreiraluizga/nexo.git
+git clone -b desktop_app https://github.com/ferreiraluizga/nexo.git
 ```
 
 2. Em seu `PHPMyAdmin`, importe o banco de dados contido no diretório `src/sql_database`
