@@ -1,4 +1,4 @@
-<img src="docs/logo.png">
+![desktop-image](https://github.com/user-attachments/assets/f5934724-78eb-45af-badf-9b93cdd3dfc0)
 
 <br>
 
@@ -12,8 +12,6 @@
 A aplicação desktop foi projetada com o objetivo de atender a todas as necessidades do **Minimercado NEXO**. As funcionalidades principais da aplicação incluem o cadastro de compras e funcionários, que permitem uma gestão completa das operações do minimercado. Além disso, o sistema conta com a impressão de comprovantes e relatórios.
 
 > Para maiores detalhes sobre o projeto, acesse a [documentação](https://github.com/ferreiraluizga/nexo/blob/main/docs/doc_nexo.pdf)
-
-<br>
 
 ## 💻 Requisitos Mínimos
 
@@ -48,9 +46,8 @@ Após esses passos concluídos, a aplicação está pronta para uso
 
 ## Teste Screenshots
 
-![Imagem 1](https://placehold.co/300x200)
-![Imagem 1](https://placehold.co/300x200)
-![Imagem 1](https://placehold.co/300x200)
+![Imagem 1](https://github.com/user-attachments/assets/579789cf-3412-4e5d-9aea-21dd040c9844)
+![Imagem 2](https://github.com/user-attachments/assets/c92c1df7-34be-40c7-8dd4-dc738d5d4d41)
 
 <br>
 
@@ -68,7 +65,7 @@ Após esses passos concluídos, a aplicação está pronta para uso
     </td>
     <td align="center" style="border: none;">
       <a href="#">
-        <img src="https://placehold.co/100x100" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <img src="https://github.com/user-attachments/assets/38f7f200-6a5a-47e6-b365-9f3c4651db4d" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Rebeca de Moura Mendes</b>
         </sub>
