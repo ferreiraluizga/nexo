@@ -18,8 +18,6 @@ O **NEXO** é um minimercado local fictício. O projeto foi criado com a visão 
 
 > Para maiores detalhes sobre o projeto, acesse a [documentação](https://github.com/ferreiraluizga/nexo/blob/main/docs/doc_nexo.pdf)
 
-<br>
-
 ## 🖥️ Sistema de Gerenciamento Geral (Desktop)
 
 ![languages](https://skillicons.dev/icons?i=java,mysql)
@@ -34,8 +32,6 @@ A versão desktop visa centralizar a administração do minimercado, focando na 
 
 > Para uso da aplicação e informações de funcionamento, navegue até a branch [desktop_app](https://github.com/ferreiraluizga/nexo/tree/desktop_app)
 
-<br>
-
 ## 🌐 Sistema de Gerenciamento de Estoque (Web)
 
 ![languages](https://skillicons.dev/icons?i=php,html,css,js,bootstrap,mysql)
@@ -48,8 +44,6 @@ A versão desktop visa proporcionar rapidez e facilidade no gerenciamento do est
 
 > Para uso da aplicação e informações de funcionamento, navegue até a branch [web_app](https://github.com/ferreiraluizga/nexo/tree/web_app)
 
-<br>
-
 ## 📱 NEXOClub (Mobile)
 
 ![languages](https://skillicons.dev/icons?i=kotlin,sqlite)
@@ -60,8 +54,6 @@ O **NEXOClub** é o aplicativo mobile do programa de fidelidade, projetado para 
 - [x] **Interface Moderna e Intuitiva:** interface moderna, navegação simplificada e responsiva em diferentes dispositivos.
 
 > Para uso da aplicação e informações de funcionamento, navegue até a branch [mobile_app](https://github.com/ferreiraluizga/nexo/tree/mobile_app)
-
-<br>
 
 ## 🛠️ Desenvolvedores
 
