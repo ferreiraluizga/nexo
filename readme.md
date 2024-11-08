@@ -1,4 +1,4 @@
-<img src="docs/logo.png">
+![repo-image](https://github.com/user-attachments/assets/608bd27e-757a-44c8-924a-ef7edf612173)
 
 <br>
 
@@ -77,7 +77,7 @@ O **NEXOClub** é o aplicativo mobile do programa de fidelidade, projetado para 
     </td>
     <td align="center" style="border: none;">
       <a href="#">
-        <img src="https://placehold.co/100x100?text=+" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <img src="https://github.com/user-attachments/assets/38f7f200-6a5a-47e6-b365-9f3c4651db4d" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Rebeca de Moura Mendes</b>
         </sub>
