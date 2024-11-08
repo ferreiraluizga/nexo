@@ -42,7 +42,7 @@ dados já inseridos, importe database_query_with_inserts.sql.
 Após esses passos concluídos, a aplicação está pronta para uso
 > Para que a aplicação funcione corretamente, é necessário manter os serviços `Apache` e `MySql` do XAMPP ativos
 
-## Teste Screenshots
+## 📷 Screenshots
 
 ![Imagem 1](https://github.com/user-attachments/assets/579789cf-3412-4e5d-9aea-21dd040c9844)
 ![Imagem 2](https://github.com/user-attachments/assets/c92c1df7-34be-40c7-8dd4-dc738d5d4d41)
