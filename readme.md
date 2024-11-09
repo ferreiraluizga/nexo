@@ -1,7 +1,3 @@
-![desktop-image](https://github.com/user-attachments/assets/f5934724-78eb-45af-badf-9b93cdd3dfc0)
-
-<br>
-
 <p align="center">
     <img src="https://skillicons.dev/icons?i=java,mysql"/>
 </p>
@@ -44,6 +40,7 @@ Após esses passos concluídos, a aplicação está pronta para uso
 
 ## 📷 Screenshots
 
+![desktop-image](https://github.com/user-attachments/assets/f5934724-78eb-45af-badf-9b93cdd3dfc0)
 ![Imagem 1](https://github.com/user-attachments/assets/579789cf-3412-4e5d-9aea-21dd040c9844)
 ![Imagem 2](https://github.com/user-attachments/assets/c92c1df7-34be-40c7-8dd4-dc738d5d4d41)
 
