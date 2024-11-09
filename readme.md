@@ -1,7 +1,3 @@
-<img src="https://github.com/user-attachments/assets/be08e6bf-606c-4e1f-9a68-a35acf518b80" height="500px">
-
-<br>
-
 <p align="center">
     <img src="https://skillicons.dev/icons?i=kotlin,sqlite"/>
 </p>
@@ -39,6 +35,7 @@ Após esses passos concluídos, a aplicação está pronta para uso
 
 ## 📷 Screenshots
 
+<img src="https://github.com/user-attachments/assets/be08e6bf-606c-4e1f-9a68-a35acf518b80" height="500px">
 <img src="https://github.com/user-attachments/assets/474eea91-568e-47fb-aaf5-2a75d90eee5a" height="500px">
 <img src="https://github.com/user-attachments/assets/f949a84d-24af-41eb-997b-b67488dd7713" height="500px">
 
