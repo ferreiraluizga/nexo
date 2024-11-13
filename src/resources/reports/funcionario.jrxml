@@ -13,6 +13,7 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="id_func" class="java.lang.Integer"/>
+        <parameter name="image" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[SELECT * FROM funcionario
 	inner join cargo ON funcionario.`Cod_Cargo` = cargo.`Cod_Cargo` 
@@ -109,7 +110,7 @@
 			</textField>
 			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
 				<reportElement x="409" y="10" width="135" height="50" uuid="d74db286-9ef6-48f4-b3bb-20ea773fe797"/>
-				<imageExpression><![CDATA["src/resources/img/white_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -6,11 +6,17 @@ import controller.CategoriaProdutoController;
 import controller.FornecedorController;
 import controller.MarcaController;
 import controller.ProdutoController;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.CategoriaProduto;
@@ -627,7 +633,10 @@ public class ConsultarProduto extends javax.swing.JPanel {
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         try {
-            Utilitaries.imprimirRelatorio(null, "produto.jrxml", false, 0);
+            Map<String, Object> parameters = new HashMap<>();
+            InputStream imageStream = Utilitaries.class.getResourceAsStream("/resources/img/white_logo.png");
+            parameters.put("image", imageStream);
+            Utilitaries.imprimirRelatorio(parameters, "produto.jrxml", false, 0);
         } catch (JRException ex) {
             Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

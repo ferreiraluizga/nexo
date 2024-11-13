@@ -1,6 +1,7 @@
 package controller;
 
 import dao.FuncionarioDAO;
+import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;

@@ -4,6 +4,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import controller.CargoController;
 import controller.FuncionarioController;
 import java.io.File;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Cargo;
+import resources.utilitaries.ImageDatabase;
 import resources.utilitaries.Utilitaries;
 
 /**
@@ -24,7 +26,7 @@ import resources.utilitaries.Utilitaries;
  */
 
 public class CadastrarFunc extends javax.swing.JPanel {
-
+    
     public CadastrarFunc() {
         initComponents();
         atribuirCargos();
@@ -68,6 +70,7 @@ public class CadastrarFunc extends javax.swing.JPanel {
         txtDominio.setText("@nexo.com.br");
         comboBoxCargo.setSelectedIndex(0);
         txtNome.requestFocus();
+        lblImg.setIcon(null);
     }
     
     @SuppressWarnings("unchecked")
@@ -305,7 +308,7 @@ public class CadastrarFunc extends javax.swing.JPanel {
         int cod_cargo;
         LocalDate nasc;
         
-        if (txtNome.getText().isEmpty() || txtNasc.getText().equals("__/__/____") || txtCpf.getText().equals("___.___.___-__") || txtTelefone.getText().equals("(__) _____-____") || comboBoxCargo.getSelectedIndex() == 0 || txtEmail.getText().isEmpty() || txtSenha.getPassword().equals("")) {
+        if (txtNome.getText().isEmpty() || txtNasc.getText().equals("__/__/____") || txtCpf.getText().equals("___.___.___-__") || txtTelefone.getText().equals("(__) _____-____") || comboBoxCargo.getSelectedIndex() == 0 || txtEmail.getText().isEmpty() || txtSenha.getPassword().equals("") || lblImg.getIcon() == null) {
             JOptionPane.showMessageDialog(panelRound1, "Preencha todos os campos para enviar", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
@@ -318,8 +321,9 @@ public class CadastrarFunc extends javax.swing.JPanel {
                 email = txtEmail.getText() + txtDominio.getText();
                 String senhaTemp = String.valueOf(txtSenha.getPassword());
                 senha = Utilitaries.encryptString(senhaTemp);
+                ImageIcon img_func = (ImageIcon) lblImg.getIcon();
                 try {
-                    FuncionarioController.cadastrarFuncionario(nome, nasc, cpf, cod_cargo, email, senha, telefone, (ImageIcon) lblImg.getIcon());
+                    FuncionarioController.cadastrarFuncionario(nome, nasc, cpf, cod_cargo, email, senha, telefone, img_func);
                     limparCampos();
                 } catch (SQLException ex) {
                     Logger.getLogger(CadastrarFunc.class.getName()).log(Level.SEVERE, null, ex);

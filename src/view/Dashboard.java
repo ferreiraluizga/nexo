@@ -10,6 +10,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import model.Funcionario;
 import resources.graphicComponents.FontLoader;
+import resources.utilitaries.ImageDatabase;
 import resources.utilitaries.Utilitaries;
 import view.cliente.CadastrarCliente;
 import view.cliente.ConsultarCliente;
@@ -53,7 +54,7 @@ public class Dashboard extends javax.swing.JFrame {
         definirFuncionalidade(func.getCargo().getNome_cargo());
         Utilitaries.setImage(lblDashboardLogo, "dashboard_logo.png");
         Utilitaries.updateBody(body, new CadastrarCompra(func), false);
-        imgFunc.setIcon(Utilitaries.getImageFromDatabase(func.getCod_Func()));
+        imgFunc.setIcon(ImageDatabase.selectImage(func.getCod_Func()));
     }
     
     // método para definir funcionalidades de acordo com o cargo

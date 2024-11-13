@@ -12,6 +12,7 @@
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL-NEXODatabase"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+        <parameter name="image" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[select * from cliente 
 left join clube_fidelidade on cliente.Cod_Cli = clube_fidelidade.Cod_Cli
@@ -82,7 +83,7 @@ where cliente.Ativo_Clube = 1 order by cliente.Cod_Cli]]>
 			</staticText>
 			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
 				<reportElement x="410" y="20" width="135" height="50" uuid="8951729e-4175-40fd-b5e2-03ba2cb8dcdd"/>
-				<imageExpression><![CDATA["src/resources/img/white_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
 			</image>
 		</band>
 	</title>

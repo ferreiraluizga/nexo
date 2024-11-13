@@ -3,15 +3,19 @@ package view;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import controller.FuncionarioController;
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Funcionario;
 import resources.graphicComponents.FontLoader;
+import resources.utilitaries.ImageDatabase;
 import resources.utilitaries.Utilitaries;
 
 /**
@@ -35,8 +39,7 @@ public class AlterarLogin extends javax.swing.JFrame {
         txtNome.setText(func.getNome_Func());
         txtEmail.setText(func.getEmail_Func());
         txtTelefone.setText(func.getTelefone());
-        ImageIcon img_func = Utilitaries.getImageFromDatabase(func.getCod_Func());
-        Utilitaries.setLabelImageIcon(lblImg, img_func);
+        Utilitaries.setLabelImageIcon(lblImg, ImageDatabase.selectImage(func.getCod_Func()));
         styleComponents();
     }
 
@@ -85,11 +88,16 @@ public class AlterarLogin extends javax.swing.JFrame {
 
         txtNome.setEnabled(false);
 
-        lblConfirmacao.setText("Nova Senha");
+        lblConfirmacao.setText("Confirmar Nova Senha");
 
         btnImg.setText("Alterar Imagem");
         btnImg.setBorderPainted(false);
         btnImg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImgActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setText("Confirmar Alterações");
         btnAtualizar.setBorderPainted(false);
@@ -175,12 +183,11 @@ public class AlterarLogin extends javax.swing.JFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         String novaSenha = null, telefone;
-        ImageIcon img_func;
         if (txtTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "O campo telefone não pode estar vazio", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             if (String.valueOf(txtSenha.getPassword()).isEmpty()) {
-                int status = JOptionPane.showConfirmDialog(null, "Tem certeza que manterá a mesma senha", "Alteração de Senha", JOptionPane.YES_NO_OPTION);
+                int status = JOptionPane.showConfirmDialog(null, "Tem certeza que manterá a mesma senha?", "Alteração de Senha", JOptionPane.YES_NO_OPTION);
                 if (status == JOptionPane.YES_OPTION) {
                     novaSenha = "";
                 }
@@ -198,16 +205,31 @@ public class AlterarLogin extends javax.swing.JFrame {
                     Logger.getLogger(AlterarLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-        try {
-            telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
-            img_func = (ImageIcon) lblImg.getIcon();
-            FuncionarioController.alterarLogin(func.getCod_Func(), novaSenha, telefone, img_func);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(AlterarLogin.class.getName()).log(Level.SEVERE, null, ex);
+
+            try {
+                telefone = txtTelefone.getText().replaceAll("[^0-9]", "");
+                ImageIcon img_func = (ImageIcon) lblImg.getIcon();
+                FuncionarioController.alterarLogin(func.getCod_Func(), novaSenha, telefone, img_func);
+                this.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(AlterarLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgActionPerformed
+        File f;
+
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter fnwf = new FileNameExtensionFilter(".png, .jpg, .jpeg", "png", "jpg", "jpeg");
+        fileChooser.addChoosableFileFilter(fnwf);
+        int load = fileChooser.showOpenDialog(null);
+
+        if (load == fileChooser.APPROVE_OPTION) {
+            f = fileChooser.getSelectedFile();
+            Utilitaries.setFileImage(lblImg, f);
+        }
+    }//GEN-LAST:event_btnImgActionPerformed
 
     public static void main(String args[]) {
         FlatCarbonIJTheme.setup();

@@ -133,7 +133,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblConfirmacao">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nova Senha"/>
+        <Property name="text" type="java.lang.String" value="Confirmar Nova Senha"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtConfirmacao">
@@ -148,6 +148,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImgActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAtualizar">
       <Properties>

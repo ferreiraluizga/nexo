@@ -4,9 +4,12 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ClienteController;
 import controller.ClubeFidelidadeController;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -725,15 +728,19 @@ public class ConsultarCliente extends javax.swing.JPanel {
                 options,
                 null);
 
-        if (option == 0) {
+        Map<String, Object> parameters = new HashMap<>();
+        InputStream imageStream = Utilitaries.class.getResourceAsStream("/resources/img/white_logo.png");
+        parameters.put("image", imageStream);
+        
+        if (option == 0) {        
             try {
-                Utilitaries.imprimirRelatorio(null, "cliente.jrxml", false, 0);
+                Utilitaries.imprimirRelatorio(parameters, "cliente.jrxml", false, 0);
             } catch (JRException | SQLException ex) {
                 Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (option == 1) {
             try {
-                Utilitaries.imprimirRelatorio(null, "nexoclub.jrxml", false, 0);
+                Utilitaries.imprimirRelatorio(parameters, "nexoclub.jrxml", false, 0);
             } catch (JRException | SQLException ex) {
                 Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }

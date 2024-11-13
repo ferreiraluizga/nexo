@@ -5,6 +5,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.CargoController;
 import controller.FuncionarioController;
 import java.io.File;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Cargo;
 import model.Funcionario;
 import net.sf.jasperreports.engine.JRException;
+import resources.utilitaries.ImageDatabase;
 import resources.utilitaries.Utilitaries;
 
 /**
@@ -29,7 +31,7 @@ import resources.utilitaries.Utilitaries;
  * @author ferreiraluizga
  */
 public class ConsultarFunc extends javax.swing.JPanel {
-
+    
     public ConsultarFunc() {
         initComponents();
         tabbedPane.setEnabledAt(1, false);
@@ -593,8 +595,7 @@ public class ConsultarFunc extends javax.swing.JPanel {
             comboBoxCargo.setSelectedIndex(func.getCargo().getCod_cargo());
             txtEmail.setText(func.getEmail_Func());
 
-            ImageIcon img_func = Utilitaries.getImageFromDatabase(id);
-            Utilitaries.setLabelImageIcon(lblImg, img_func);
+            Utilitaries.setLabelImageIcon(lblImg, ImageDatabase.selectImage(id));
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar", "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -654,6 +655,8 @@ public class ConsultarFunc extends javax.swing.JPanel {
             int id = (int) tblFunc.getValueAt(selectedRow, 0);
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("id_func", id);
+            InputStream imageStream = Utilitaries.class.getResourceAsStream("/resources/img/white_logo.png");
+            parameters.put("image", imageStream);
             try {
                 Utilitaries.imprimirRelatorio(parameters, "funcionario.jrxml", false, 0);
             } catch (JRException ex) {

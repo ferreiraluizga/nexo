@@ -4,6 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL-NEXODatabase"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<subDataset name="Empty Dataset1" uuid="f95e4dec-716c-4dc5-9e0a-f45118936631"/>
+        <parameter name="image" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[select * from produto
 inner join fornecedor on produto.Cod_Forn = fornecedor.Cod_Forn
@@ -122,9 +123,9 @@ inner join marca on produto.Cod_Marca = marca.Cod_Marca order by produto.Cod_Pro
 				<reportElement x="0" y="40" width="320" height="20" forecolor="#FFFFFF" uuid="250616ef-0026-44a5-8f73-1611f02b39ea"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+                        <image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
 				<reportElement x="409" y="10" width="135" height="50" uuid="7fe1bbac-ea25-40e4-b248-f8bd6256e2cc"/>
-				<imageExpression><![CDATA["src/resources/img/white_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
 			</image>
 		</band>
 	</title>

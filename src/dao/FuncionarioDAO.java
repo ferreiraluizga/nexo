@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.File;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Cargo;
 import model.Funcionario;
-import resources.utilitaries.Utilitaries;
+import resources.utilitaries.ImageDatabase;
 
 /**
  *
@@ -30,7 +32,7 @@ public class FuncionarioDAO {
                 if (generatedKeys.next()) {
                     int id_func = generatedKeys.getInt(1);
                     cadastrarTelefone(id_func, func.getTelefone());
-                    Utilitaries.saveImageIconToDatabase(id_func, img_func);
+                    ImageDatabase.saveImage(id_func, img_func);
                 }
             }
             JOptionPane.showMessageDialog(null, "Funcionário cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
@@ -189,7 +191,7 @@ public class FuncionarioDAO {
             stmt.setString(5, func.getEmail_Func());
             stmt.setInt(6, func.getCod_Func());
             editarTelefone(func.getCod_Func(), func.getTelefone());
-            Utilitaries.saveImageIconToDatabase(func.getCod_Func(), img_func);
+            ImageDatabase.updateImage(func.getCod_Func(), img_func);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "Editar", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -278,13 +280,13 @@ public class FuncionarioDAO {
 
     // método para alterar informações de login do usuário
     public static void alterarLogin(int cod_func, String senha, String telefone, ImageIcon img_func) throws SQLException {
-        Utilitaries.saveImageIconToDatabase(cod_func, img_func);
         editarTelefone(cod_func, telefone);
         if (!senha.isEmpty()) {
             String sql = "UPDATE funcionario SET Senha_Func=? WHERE Cod_Func=?";
             try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
                 stmt.setString(1, senha);
                 stmt.setInt(2, cod_func);
+                ImageDatabase.updateImage(cod_func, img_func);
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao editar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

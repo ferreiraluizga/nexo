@@ -6,6 +6,7 @@
 	<parameter name="id_compra" class="java.lang.Integer"/>
 	<parameter name="valor_total" class="java.lang.String"/>
 	<parameter name="valor_desconto" class="java.lang.String"/>
+        <parameter name="image" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[select * from prod_compra
 inner join produto on prod_Compra.Cod_Prod = produto.Cod_Prod
@@ -174,7 +175,7 @@ where prod_compra.Cod_Compra = $P{id_compra}]]>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<image>
 				<reportElement x="0" y="6" width="30" height="30" uuid="3e8d40f0-db6e-4666-91e7-eaa4676bf503"/>
-				<imageExpression><![CDATA["src/resources/img/invoice.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="40" y="6" width="150" height="14" uuid="6cf73584-6ef6-46aa-b2f2-81c65cce8733"/>

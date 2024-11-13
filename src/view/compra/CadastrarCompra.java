@@ -8,8 +8,8 @@ import controller.CompraController;
 import controller.FormaPagController;
 import controller.ProdCompraController;
 import controller.ProdutoController;
+import java.io.InputStream;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -291,6 +291,8 @@ public class CadastrarCompra extends javax.swing.JPanel {
         String valor_total_string = String.format("R$ %.2f", valor_total);
         String valor_desconto_string = String.format("R$ %.2f", valor_desconto);
         Map<String, Object> parameters = new HashMap<>();
+        InputStream imageStream = Utilitaries.class.getResourceAsStream("/resources/img/invoice.png");
+        parameters.put("image", imageStream);
         parameters.put("id_compra", id_compra);
         parameters.put("valor_total", valor_total_string);
         parameters.put("valor_desconto", valor_desconto_string);
