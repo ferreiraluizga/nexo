@@ -7,7 +7,7 @@
 ### ℹ Sobre o Sistema
 A aplicação desktop foi projetada com o objetivo de atender a todas as necessidades do **Minimercado NEXO**. As funcionalidades principais da aplicação incluem o cadastro de compras e funcionários, que permitem uma gestão completa das operações do minimercado. Além disso, o sistema conta com a impressão de comprovantes e relatórios.
 
-> Para maiores detalhes sobre o projeto, acesse a [documentação](https://github.com/ferreiraluizga/nexo/blob/main/docs/doc_nexo.pdf)
+> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17747624/doc_nexo.pdf)
 
 ## 💻 Requisitos Mínimos
 
