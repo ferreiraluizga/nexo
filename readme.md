@@ -41,9 +41,9 @@ Após esses passos concluídos, a aplicação está pronta para uso
 
 ## 📷 Screenshots
 
-![desktop-image](https://github.com/user-attachments/assets/f5934724-78eb-45af-badf-9b93cdd3dfc0)
-![Imagem 1](https://github.com/user-attachments/assets/579789cf-3412-4e5d-9aea-21dd040c9844)
-![Imagem 2](https://github.com/user-attachments/assets/c92c1df7-34be-40c7-8dd4-dc738d5d4d41)
+![web-image](https://github.com/user-attachments/assets/c836d8f4-2e0a-49bf-83ae-d1004cee1ebe)
+![Imagem 1](https://github.com/user-attachments/assets/ce104c27-52df-4306-8104-d4cfe92f8925)
+![Imagem 2](https://github.com/user-attachments/assets/3cf9d226-7250-4251-b28e-a456cb3d1ac5)
 
 ## 🛠️ Desenvolvedores
 
