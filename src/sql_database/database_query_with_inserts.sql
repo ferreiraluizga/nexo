@@ -189,7 +189,7 @@ INSERT INTO `funcionario` (`Cod_Func`, `Nome_Func`, `Nasc_Func`, `CPF_Func`, `Co
 
 CREATE TABLE `img_func` (
   `Cod_Func` int(11) NOT NULL,
-  `Img_Func` blob NOT NULL
+  `Img_Func` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `img_func` (`Cod_Func`, `Img_Func`) VALUES
