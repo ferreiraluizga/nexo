@@ -1,59 +1,49 @@
-![repo-image](https://github.com/user-attachments/assets/608bd27e-757a-44c8-924a-ef7edf612173)
-
-<br>
-
 <p align="center">
-    <img src="https://img.shields.io/github/repo-size/ferreiraluizga/nexo?" alt="GitHub repo size"/>
-    <img src="https://img.shields.io/badge/languages-8-blue" alt="GitHub language count"/>
-    <img src="https://img.shields.io/badge/status-completed-green" alt="Project status"/>
-    <a href="#" title="Instagram">
-        <img src="https://img.shields.io/badge/-Instagram-5c5756?labelColor=blue&logo=instagram&logoColor=white&link=LINK-DO-SEU-INSTAGRAM" alt="Instagram"/>
-    </a>
+    <img src="https://skillicons.dev/icons?i=php,html,css,js,bootstrap,mysql"/>
 </p>
 
-<h1 align="center">Minimercado NEXO</h1>
+<h1 align="center">Sistema de Gerenciamento de Estoque</h1>
 
-### ℹ O que é o NEXO?
-O **NEXO** é um minimercado local fictício. O projeto foi criado com a visão de oferecer soluções tecnológicas eficientes e de fácil manutenção, destinadas a gerenciar as operações de um mercadinho tradicional. Inspirado pela simplicidade e pela conexão direta com a comunidade, o nome "NEXO" reflete o papel do mercado em unir clientes e fornecedores, criando um ponto de encontro entre necessidades e soluções.
+### ℹ Sobre o Sistema
+O Website do **NEXO** foi projetado para aproximar o cliente do minimercado, possibilitando seu cadastro no **NEXOClub** e também para funções internas de gerenciamento de estoque. Assim como na aplicação desktop, a geração de relatórios é uma das principais funcionalidades do sistema.
 
 > Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17747624/doc_nexo.pdf)
 
-## 🖥️ Sistema de Gerenciamento Geral (Desktop)
+## 💻 Requisitos Mínimos
 
-![languages](https://skillicons.dev/icons?i=java,mysql)
+Verifique se você atende aos requisitos antes de instalar o projeto:
+- Sistema Operacional: `Windows 10 ou 11`
+- Conexão à Internet: `Sim`
+- Armazenamento: mínimo de `2GB` disponíveis
+- Gerenciamento do Banco de Dados e Servidor Local: `XAMPP 8.2`
 
-A versão desktop visa centralizar a administração do minimercado, focando na realização de operações cotidianas, como:
+## 🚀 Instalação
 
-- [x] **Controle de Estoque:** Atualizar e monitorar o inventário em tempo real, incluindo notificações para níveis baixos de estoque.
-- [x] **Gerenciamento de Clientes:** Funções dedicadas ao cadastro e manutenção dos dados dos clientes do programa de fidelidade.
-- [x] **Relatórios Gerenciais:** Geração de relatórios personalizados com JasperReports para análises de vendas e estoque, com integração ao MySQL para persistência de dados.
-- [x] **Controle de Compras:** Gestão de compras e impressão de comprovantes e relatórios de fluxo de caixa
-- [x] **Gerenciamento de Funcionários:** Cadastro e manutenção dos dados dos funcionários do minimercado
+Siga os passos abaixo para instalar de forma correta:
 
-> Para uso da aplicação e informações de funcionamento, navegue até a branch [desktop_app](https://github.com/ferreiraluizga/nexo/tree/desktop_app)
+1. Baixe o arquivo ZIP desta branch ou clone o repositório em sua máquina:
+```
+git clone -b web_app https://github.com/ferreiraluizga/nexo.git
+```
 
-## 🌐 Sistema de Gerenciamento de Estoque (Web)
+2. Em seu `PHPMyAdmin`, importe o banco de dados contido no diretório `src/sql_database`
+```
+Para uma instalação limpa, importe database_query.sql e para uma análise com
+dados já inseridos, importe database_query_with_inserts.sql.
+```
 
-![languages](https://skillicons.dev/icons?i=php,html,css,js,bootstrap,mysql)
+3. Coloque a pasta do repositório no diretório `xampp/htdocs` e mude o nome da pasta para `nexo`
 
-A versão desktop visa proporcionar rapidez e facilidade no gerenciamento do estoque, possuindo os seguintes atributos:
+4. Em seu navegador digite a URL `localhost/nexo` e execute o arquivo `nexo_desktopApp.jar` ou abra o projeto em sua IDE - recomenda-se o `Apache NetBeans 22`
 
-- [x] **Painel Responsivo de Estoque:** Visualização em tempo real dos produtos em estoque e seus status.
-- [x] **Histórico de Movimentação:** Relatórios de entradas e saídas de estoque.
-- [x] **Interface de Usuário Simplificada:** Layout responsivo e moderno com Bootstrap, garantindo uma experiência fluida e intuitiva.
+Após esses passos concluídos, a aplicação está pronta para uso
+> Para que a aplicação funcione corretamente, é necessário manter os serviços `Apache` e `MySql` do XAMPP ativos
 
-> Para uso da aplicação e informações de funcionamento, navegue até a branch [web_app](https://github.com/ferreiraluizga/nexo/tree/web_app)
+## 📷 Screenshots
 
-## 📱 NEXOClub (Mobile)
-
-![languages](https://skillicons.dev/icons?i=kotlin,sqlite)
-
-O **NEXOClub** é o aplicativo mobile do programa de fidelidade, projetado para proporcionar uma experiência direta e personalizada aos clientes:
-
-- [x] **Benefícios e Ofertas:** Ofertas exclusivas e benefícios nas compras no minimercado NEXO.
-- [x] **Interface Moderna e Intuitiva:** interface moderna, navegação simplificada e responsiva em diferentes dispositivos.
-
-> Para uso da aplicação e informações de funcionamento, navegue até a branch [mobile_app](https://github.com/ferreiraluizga/nexo/tree/mobile_app)
+![desktop-image](https://github.com/user-attachments/assets/f5934724-78eb-45af-badf-9b93cdd3dfc0)
+![Imagem 1](https://github.com/user-attachments/assets/579789cf-3412-4e5d-9aea-21dd040c9844)
+![Imagem 2](https://github.com/user-attachments/assets/c92c1df7-34be-40c7-8dd4-dc738d5d4d41)
 
 ## 🛠️ Desenvolvedores
 
@@ -61,7 +51,7 @@ O **NEXOClub** é o aplicativo mobile do programa de fidelidade, projetado para 
   <tr>
     <td align="center" style="border: none;">
       <a href="#">
-        <img src="https://placehold.co/100x100?text=+" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <img src="https://placehold.co/100x100" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Luiz Gabriel Ferreira</b>
         </sub>
@@ -77,7 +67,7 @@ O **NEXOClub** é o aplicativo mobile do programa de fidelidade, projetado para 
     </td>
     <td align="center" style="border: none;">
       <a href="#">
-        <img src="https://placehold.co/100x100?text=+" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+        <img src="https://placehold.co/100x100" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Vitor Daisuke Iwamoto</b>
         </sub>
