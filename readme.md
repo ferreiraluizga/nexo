@@ -34,7 +34,7 @@ dados já inseridos, importe database_query_with_inserts.sql.
 
 3. Coloque a pasta do repositório no diretório `xampp/htdocs` e mude o nome da pasta para `nexo`
 
-4. Em seu navegador digite a URL `localhost/nexo` e execute o arquivo `nexo_desktopApp.jar` ou abra o projeto em sua IDE - recomenda-se o `Apache NetBeans 22`
+4. Em seu navegador digite a URL `localhost/nexo/src`
 
 Após esses passos concluídos, a aplicação está pronta para uso
 > Para que a aplicação funcione corretamente, é necessário manter os serviços `Apache` e `MySql` do XAMPP ativos
