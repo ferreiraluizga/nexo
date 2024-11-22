@@ -7,7 +7,7 @@
 ### ℹ Sobre o Sistema
 O Website do **NEXO** foi projetado para aproximar o cliente do minimercado, possibilitando seu cadastro no **NEXOClub** e também para funções internas de gerenciamento de estoque. Assim como na aplicação desktop, a geração de relatórios é uma das principais funcionalidades do sistema.
 
-> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17747624/doc_nexo.pdf)
+> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17845880/doc_nexo.pdf)
 
 ## 💻 Requisitos Mínimos
 
@@ -50,15 +50,15 @@ Após esses passos concluídos, a aplicação está pronta para uso
 <table border="0" style="border-collapse: collapse;">
   <tr>
     <td align="center" style="border: none;">
-      <a href="#">
-        <img src="https://placehold.co/100x100" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+      <a href="https://github.com/ferreiraluizga">
+        <img src="https://github.com/user-attachments/assets/b8926ea3-be80-475d-9b2d-f4e882916675" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Luiz Gabriel Ferreira</b>
         </sub>
       </a>
     </td>
     <td align="center" style="border: none;">
-      <a href="#">
+      <a href="https://github.com/RebecadeMouraMendes">
         <img src="https://github.com/user-attachments/assets/38f7f200-6a5a-47e6-b365-9f3c4651db4d" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Rebeca de Moura Mendes</b>
@@ -66,8 +66,8 @@ Após esses passos concluídos, a aplicação está pronta para uso
       </a>
     </td>
     <td align="center" style="border: none;">
-      <a href="#">
-        <img src="https://placehold.co/100x100" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
+      <a href="https://github.com/Daisukeiw">
+        <img src="https://github.com/user-attachments/assets/cceb179a-5a49-46d4-b4b3-f6e17c06099b" width="100px" style="border-radius: 50%;" alt="Placeholder"/><br>
         <sub>
           <b>Vitor Daisuke Iwamoto</b>
         </sub>
