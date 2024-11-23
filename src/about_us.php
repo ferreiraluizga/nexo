@@ -94,7 +94,7 @@
             <div class="row">
                 <div class="col text-start">
                     <figure>
-                        <img src="" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
+                        <img src="img/luiz.png" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
                         <figcaption>Gabriel Ferreira, CEO do NEXO</figcaption>
                     </figure>
                 </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col text-end">
                     <figure>
-                        <img src="" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
+                        <img src="img/vitor.png" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
                         <figcaption>Vitor Iwamoto, CEO do NEXO</figcaption>
                     </figure>
                 </div>
@@ -145,7 +145,7 @@
                     <span class="fw-bold fs-5">Ligando você ao que mais importa</span><br>
                     <span class="fw-semibold" data-bs-theme="dark">
                         <a href="#"><i class="bi bi-geo-alt-fill text-white me-1"></i></a>
-                        Av. Mal. Rondon, 2100 - 1 - Jardim Santa Cruz, Salto - SP, 13323-505</span>
+                        Av. Mal. Rondon, 2100 - 1 - Jardim Santa Cruz</span>
                 </div>
                 <div class="col-3 text-end">
                     <a href="#"><i class="bi bi-instagram text-white fs-2 mx-3"></i></a>
