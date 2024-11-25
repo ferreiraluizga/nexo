@@ -7,7 +7,7 @@
 ### ℹ Sobre o Aplicativo
 O aplicativo mobile foi projetado com o objetivo de apresentar o clube de fidelidade do **NEXO**. O aplicativo possui um sistema de login, onde ao cadastrar-se ou entrar em sua conta, o cliente terá acesso às ofertas do minimercado.
 
-> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17845880/doc_nexo.pdf)
+> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17882095/doc_nexo.pdf)
 
 ## 💻 Requisitos Mínimos
 
