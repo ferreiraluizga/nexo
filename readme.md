@@ -7,7 +7,7 @@
 ### ℹ Sobre o Sistema
 O Website do **NEXO** foi projetado para aproximar o cliente do minimercado, possibilitando seu cadastro no **NEXOClub** e também para funções internas de gerenciamento de estoque. Assim como na aplicação desktop, a geração de relatórios é uma das principais funcionalidades do sistema.
 
-> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17845880/doc_nexo.pdf)
+> Para maiores detalhes sobre o projeto, baixe a [documentação](https://github.com/user-attachments/files/17882095/doc_nexo.pdf)
 
 ## 💻 Requisitos Mínimos
 
