@@ -74,34 +74,17 @@ public class ImageDatabase {
     }
     
     public static void updateImage(int cod_func, ImageIcon img_func) {
-        String sql = "UPDATE img_func SET Img_Func = ? WHERE Cod_Func = ?";
-        
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        
-        try {
-            BufferedImage bufferedImage = new BufferedImage(
-                img_func.getIconWidth(),
-                img_func.getIconHeight(),
-                BufferedImage.TYPE_INT_RGB
-            );
-            bufferedImage.getGraphics().drawImage(img_func.getImage(), 0, 0, null);
-            ImageIO.write(bufferedImage, "jpg", baos);
-
-            byte[] imageBytes = baos.toByteArray();
-
-            try (Connection conn = Connect.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-                pstmt.setInt(1, cod_func);
-                pstmt.setBytes(2, imageBytes);
-
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
+        deleteImage(cod_func);
+        saveImage(cod_func, img_func);
+    }
+    
+    public static void deleteImage(int cod_func) {
+        String sql = "DELETE FROM img_func WHERE Cod_Func=?";
+        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, cod_func);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
 }

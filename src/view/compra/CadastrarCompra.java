@@ -76,18 +76,18 @@ public class CadastrarCompra extends javax.swing.JPanel {
         switch (opcao) {
             case 1:
                 try {
-                produtos = ProdutoController.listarProduto();
-            } catch (SQLException ex) {
-                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            break;
+                    produtos = ProdutoController.listarProduto();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             case 2:
                 try {
-                produtos = ProdutoController.buscarPorNome(nome);
-            } catch (SQLException ex) {
-                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            break;
+                    produtos = ProdutoController.buscarPorNome(nome);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -115,18 +115,18 @@ public class CadastrarCompra extends javax.swing.JPanel {
         switch (opcao) {
             case 1:
                 try {
-                clientes = ClienteController.listarCliente();
-            } catch (SQLException ex) {
-                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            break;
+                    clientes = ClienteController.listarCliente();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             case 2:
                 try {
-                clientes = ClienteController.buscarPorNome(nome);
-            } catch (SQLException ex) {
-                Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            break;
+                    clientes = ClienteController.buscarPorNome(nome);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -138,23 +138,25 @@ public class CadastrarCompra extends javax.swing.JPanel {
             tblCliente.getColumnModel().getColumn(i).setPreferredWidth(columnSize[i]);
         }
         for (Cliente cliente : clientes) {
-            Object[] row = new Object[6];
-            row[0] = cliente.getCod_cli();
-            row[1] = cliente.getNome_cli();
-            row[2] = cliente.getTelefone();
-            if (cliente.getAtivo_clube() == 0) {
-                row[3] = "Não";
-                row[4] = "";
-            } else {
-                try {
-                    ClubeFidelidade clube = ClubeFidelidadeController.buscarClubePorId(cliente.getCod_cli());
-                    row[3] = "Sim";
-                    row[4] = clube.getCpf();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+            if (cliente.getCod_cli() > 1) {
+                Object[] row = new Object[6];
+                row[0] = cliente.getCod_cli();
+                row[1] = cliente.getNome_cli();
+                row[2] = cliente.getTelefone();
+                if (cliente.getAtivo_clube() == 0) {
+                    row[3] = "Não";
+                    row[4] = "";
+                } else {
+                    try {
+                        ClubeFidelidade clube = ClubeFidelidadeController.buscarClubePorId(cliente.getCod_cli());
+                        row[3] = "Sim";
+                        row[4] = clube.getCpf();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CadastrarCompra.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                model.addRow(row);
             }
-            model.addRow(row);
         }
     }
 

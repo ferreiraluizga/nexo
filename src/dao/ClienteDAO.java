@@ -145,14 +145,8 @@ public class ClienteDAO {
 
     // método para editar telefone de um cliente cadastrado no banco
     private static void editarTelefone(int cod_cli, String telefone) throws SQLException {
-        String sql = "UPDATE fone_cli SET Fone_Cli=? WHERE Cod_Cli=?";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(2, cod_cli);
-            stmt.setString(1, telefone);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar telefone: " + e.getMessage());
-        }
+        deletarTelefone(cod_cli);
+        cadastrarTelefone(cod_cli, telefone);
     }
 
     // método que deleta clientes cadastrados no banco de dados

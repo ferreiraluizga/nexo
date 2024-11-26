@@ -1,7 +1,5 @@
 package dao;
 
-import java.io.File;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -201,20 +199,14 @@ public class FuncionarioDAO {
 
     // método privado para editar telefone do funcionario
     private static void editarTelefone(int cod_func, String telefone) throws SQLException {
-        String sql = "UPDATE fone_func SET Fone_Func=? WHERE Cod_Func=?";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, cod_func);
-            stmt.setString(2, telefone);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        deletarTelefone(cod_func);
+        cadastrarTelefone(cod_func, telefone);
     }
 
     // método público para deletar funcionario cadastrado
     public static void deletarFuncionario(int cod_func) throws SQLException {
         deletarTelefone(cod_func);
-        deletarImagem(cod_func);
+        ImageDatabase.deleteImage(cod_func);
         String sql = "DELETE FROM funcionario WHERE Cod_Func=?";
         try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, cod_func);
@@ -233,17 +225,6 @@ public class FuncionarioDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar telefone: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    // método privado para deletar imagem do banco de dados
-    private static void deletarImagem(int cod_func) throws SQLException {
-        String sql = "DELETE FROM img_func WHERE Cod_Func=?";
-        try (Connection con = Connect.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, cod_func);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar imagem: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -93,29 +93,31 @@ public class ConsultarCliente extends javax.swing.JPanel {
                 tblCliente.getColumnModel().getColumn(i).setPreferredWidth(columnSize[i]);
             }
             for (Cliente cliente : clientes) {
-                Object[] row = new Object[6];
-                row[0] = cliente.getCod_cli();
-                row[1] = cliente.getNome_cli();
-                row[2] = cliente.getTelefone();
-                if (cliente.getAtivo_clube() == 0) {
-                    row[3] = "Não";
-                    row[4] = "";
-                    row[5] = "";
-                } else {
-                    try {
-                        ClubeFidelidade clube = ClubeFidelidadeController.buscarClubePorId(cliente.getCod_cli());
-                        row[3] = "Sim";
-                        row[4] = clube.getCpf();
-                        if (clube.getEmail() == null) {
-                            row[5] = "E-Mail não cadastrado";
-                        } else {
-                            row[5] = clube.getEmail();
+                if (cliente.getCod_cli() > 1) {
+                    Object[] row = new Object[6];
+                    row[0] = cliente.getCod_cli();
+                    row[1] = cliente.getNome_cli();
+                    row[2] = cliente.getTelefone();
+                    if (cliente.getAtivo_clube() == 0) {
+                        row[3] = "Não";
+                        row[4] = "";
+                        row[5] = "";
+                    } else {
+                        try {
+                            ClubeFidelidade clube = ClubeFidelidadeController.buscarClubePorId(cliente.getCod_cli());
+                            row[3] = "Sim";
+                            row[4] = clube.getCpf();
+                            if (clube.getEmail() == null) {
+                                row[5] = "E-Mail não cadastrado";
+                            } else {
+                                row[5] = clube.getEmail();
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    model.addRow(row);
                 }
-                model.addRow(row);
             }
         } else {
             List<ClubeFidelidade> clube = new ArrayList<>();
@@ -146,18 +148,20 @@ public class ConsultarCliente extends javax.swing.JPanel {
                 tblCliente.getColumnModel().getColumn(i).setPreferredWidth(columnSize[i]);
             }
             for (ClubeFidelidade cliente : clube) {
-                Object[] row = new Object[6];
-                row[0] = cliente.getCliente().getCod_cli();
-                row[1] = cliente.getCliente().getNome_cli();
-                row[2] = cliente.getCliente().getTelefone();
-                row[3] = "Sim";
-                row[4] = cliente.getCpf();
-                if (cliente.getEmail() == null) {
-                    row[5] = "E-Mail não cadastrado";
-                } else {
-                    row[5] = cliente.getEmail();
+                if (cliente.getCliente().getCod_cli() > 1) {
+                    Object[] row = new Object[6];
+                    row[0] = cliente.getCliente().getCod_cli();
+                    row[1] = cliente.getCliente().getNome_cli();
+                    row[2] = cliente.getCliente().getTelefone();
+                    row[3] = "Sim";
+                    row[4] = cliente.getCpf();
+                    if (cliente.getEmail() == null) {
+                        row[5] = "E-Mail não cadastrado";
+                    } else {
+                        row[5] = cliente.getEmail();
+                    }
+                    model.addRow(row);
                 }
-                model.addRow(row);
             }
         }
 
@@ -731,8 +735,8 @@ public class ConsultarCliente extends javax.swing.JPanel {
         Map<String, Object> parameters = new HashMap<>();
         InputStream imageStream = Utilitaries.class.getResourceAsStream("/resources/img/white_logo.png");
         parameters.put("image", imageStream);
-        
-        if (option == 0) {        
+
+        if (option == 0) {
             try {
                 Utilitaries.imprimirRelatorio(parameters, "cliente.jrxml", false, 0);
             } catch (JRException | SQLException ex) {
