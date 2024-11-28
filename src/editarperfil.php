@@ -229,7 +229,7 @@ document.getElementById('imgupload').addEventListener('change', function() {
                                         if(isset($_GET['status']) && $_GET['status'] == 'confirmarsenha'){ 
                                             $telefoneFormatado = preg_replace('/^(\d{2})(\d{5})(\d{4})$/', '($1) $2-$3', $_SESSION['telefonenovo']);
                                             ?> value= "<?=$telefoneFormatado?>" <?php
-                                        } else{ if($_SESSION['telefone'] != "") { ?> value= "<?=$telefoneFormatado?>" <?php }} ?> required>
+                                        } else{ if($_SESSION['telefone'] != "") { ?> value= "<?=$telefoneFormatado?>" <?php }} ?> >
                                     </div>
                                     <br> 
                                     <p class="fs-5">Senha:</p>
