@@ -65,7 +65,7 @@
         <section id="slogan" class="mb-5">
             <div class="row align-items-center">
                 <div class="col-12">
-                    <h1 class="fw-semibold mb-4">ligando você que mais importa</h1>
+                    <h1 class="fw-semibold mb-4">Ligando você ao que mais importa</h1>
                     <p class="fs-6 text-justify">O NEXO conecta você às experiências e produtos que realmente fazem a
                         diferença na sua vida. Nossa missão é facilitar o acesso ao que é essencial, criando laços que
                         transformam o cotidiano.
